@@ -1,10 +1,14 @@
 import React from "react";
-import products from "./products.js";
+import Home from "./Navigation/Home";
+import Router from "./Navigation/Router";
+import AppTheme from "./Theming/AppTheme";
 
 function App() {
-  console.log(products);
-
-  return <div className="App"></div>;
+  return (
+    <AppTheme>
+      <Router />
+    </AppTheme>
+  );
 }
 
 export default App;
