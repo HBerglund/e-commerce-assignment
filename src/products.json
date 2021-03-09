@@ -1,0 +1,24 @@
+{
+    "yoga-mats": [
+       {
+          "id":"01",
+          "fabric": "XXXX",
+          "price": "XXXX",
+          "color": "XXXX",
+          "img-url": "https......."
+       }
+    ], 
+
+    "private-islands": [
+        {
+            "id": "01",
+            "location": "XXXXX",
+            "price": "XXXXX",
+            "size": "asdasdasd",
+            "img-url": "https......."
+        }
+    ]
+ }
+
+ 
+ 
