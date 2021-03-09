@@ -8,10 +8,12 @@ import About from "./About";
 import Privacy from "./Privacy";
 import Checkout from "./Checkout";
 import Faq from "./Faq";
+import NavBar from "../Components/NavBar";
 
 function Router() {
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/products" component={Products} />
