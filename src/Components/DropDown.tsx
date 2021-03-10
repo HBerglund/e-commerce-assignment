@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { MenuItem, Menu } from "@material-ui/core";
+import { Menu, IconButton } from "@material-ui/core";
+import { routes } from "../Navigation/routes";
+import { Link } from "react-router-dom";
 
 function DropDown() {
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const dropDownRoutes = routes.slice(1, routes.length);
 
   const handleClose = (event: any) => {
     setAnchorEl(null);
@@ -16,17 +19,29 @@ function DropDown() {
 
   return (
     <div>
-      <MenuIcon onClick={openMenu} />
+      <MenuIcon
+        onClick={openMenu}
+        aria-haspopup="true"
+        style={{ color: "black", cursor: "pointer" }}
+      />
       <Menu
-        id="dropdown-menu"
+        id="fade-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        style={{ width: "10rem" }}
       >
-        <MenuItem onClick={handleClose}>Hej</MenuItem>
-        <MenuItem onClick={handleClose}>Herman</MenuItem>
-        <MenuItem onClick={handleClose}>Hej då</MenuItem>
+        {dropDownRoutes.map(({ name, path }) => (
+          <IconButton
+            component={Link}
+            to={path}
+            onClick={handleClose}
+            style={{ color: "black", fontSize: "1rem" }}
+          >
+            {name}
+          </IconButton>
+        ))}
       </Menu>
     </div>
   );

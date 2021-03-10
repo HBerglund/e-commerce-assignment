@@ -1,12 +1,14 @@
 import React from "react";
-import Home from "./Navigation/Home";
 import Router from "./Navigation/Router";
 import AppTheme from "./Theming/AppTheme";
+import { Container } from "@material-ui/core";
 
 function App() {
   return (
     <AppTheme>
-      <Router />
+      <Container maxWidth="lg">
+        <Router />
+      </Container>
     </AppTheme>
   );
 }
