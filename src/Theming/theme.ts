@@ -10,5 +10,8 @@ export const theme = responsiveFontSizes(
         main: "#909D7F",
       },
     },
+    shape: {
+      borderRadius: 0,
+    },
   })
 );
