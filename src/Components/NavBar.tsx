@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Button, IconButton, Hidden } from "@material-ui/core";
-import Logo from "../Assets/bhagwan-logo.svg";
+import Logo from "../assets/bhagwan-logo.svg";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
 import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
