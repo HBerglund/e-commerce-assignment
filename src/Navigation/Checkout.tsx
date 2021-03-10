@@ -1,13 +1,8 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import Container from "@material-ui/core/Container";
 
 function Checkout() {
-  return (
-    <Container>
-      <Typography variant="h1">Hello World</Typography>
-    </Container>
-  );
+  return <Typography variant="h1">Hello World</Typography>;
 }
 
 export default Checkout;
