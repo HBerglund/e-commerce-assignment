@@ -36,16 +36,21 @@ function Discover() {
         justifyContent: "space-between",
         alignItems: "center",
       },
+      paragraph: {
+        maxWidth: "500px",
+        textAlign: "left",
+        margin: "2rem 0 2rem 2rem",
+      },
       img1: {
-        height: "300px",
+        width: "500px",
       },
       img2: {
-        height: "250px",
-        marginRight: "1rem",
+        height: "240px",
+        marginRight: "10px",
       },
       img3: {
-        height: "250px",
-        marginRight: "1rem",
+        height: "240px",
+        marginLeft: "10px",
       },
     })
   );
@@ -64,15 +69,18 @@ function Discover() {
         <img className={classes.img1} src={img1} />
       </div>
       <div className={classes.bottomDiv}>
-        <div>
+        <div style={{ display: "flex" }}>
           <img className={classes.img2} src={img2} />
           <img className={classes.img3} src={img3} />
         </div>
         <Box>
-          <Typography variant='body1' gutterBottom>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
-            fugiat!
-          </Typography>
+          <div className={classes.paragraph}>
+            <Typography variant='body1' gutterBottom>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Praesentium ad aut nihil enim amet optio commodi, quis corrupti
+              omnis dicta!
+            </Typography>
+          </div>
         </Box>
       </div>
     </Section>
