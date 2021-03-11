@@ -1,9 +1,9 @@
 import { Grid, makeStyles, createStyles } from "@material-ui/core";
 import ProductCard from "./ProductCard";
-import ProductTypes from "../productTypes";
+import Product from "../productTypes";
 
 interface Props {
-  products: ProductTypes[];
+  products: Product[];
 }
 
 const useStyles = makeStyles(() =>
@@ -23,8 +23,9 @@ function ProductGrid(props: Props) {
   return (
     <div className={classes.root}>
       <Grid container spacing={4}>
-        {props.products.map((product: ProductTypes) => (
+        {props.products.map((product: Product) => (
           <ProductCard
+            id={product.id}
             name={product.name}
             imgUrl={product.imgUrl}
             price={product.price}

@@ -1,11 +1,11 @@
-interface ProductTypes {
+interface Product {
   id: string;
   category: string;
   name: string;
   price: string;
-  color: string;
+  color?: string;
   fabric?: string;
   imgUrl: string;
 }
 
-export default ProductTypes;
+export default Product;
