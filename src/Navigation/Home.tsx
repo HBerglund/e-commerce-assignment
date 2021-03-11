@@ -1,13 +1,11 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
 import Hero from "../Components/Hero";
-import ProductGrid from "../Components/ProductGrid";
+import LatestSection from "../Components/LatestSection";
 
 function Home() {
   return (
     <div>
       <Hero />
-      <ProductGrid />
+      <LatestSection />
     </div>
   );
 }

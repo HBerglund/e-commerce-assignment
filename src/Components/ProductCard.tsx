@@ -1,6 +1,14 @@
-import { Grid, Card, CardContent, Typography } from "@material-ui/core";
-import { CSSProperties } from "@material-ui/core/styles/withStyles";
-import React from "react";
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  CardMedia,
+  makeStyles,
+  createStyles,
+  useTheme,
+  useMediaQuery,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -9,25 +17,43 @@ interface Props {
   price?: string;
 }
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {},
+    img: {
+      height: "350px",
+      width: "100%",
+      marginBottom: "2rem",
+    },
+  })
+);
+
 function ProductCard(props: Props) {
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
+  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const classes = useStyles();
+
   return (
-    <div>
-      <Grid item>
-        <Link to="/products">
-          <Card>
-            <CardContent>
-              <img
-                style={{ height: "200px", width: "150px" }}
-                src={props.imgUrl}
-                alt="product"
-              />
-              <Typography variant="h4">{props.name}</Typography>
-              <Typography variant="h5">{props.price}</Typography>
-            </CardContent>
-          </Card>
-        </Link>
-      </Grid>
-    </div>
+    <Grid item xs={matchesMd ? 3 : 6 && matchesSm ? 6 : 12}>
+      <Link to="/products">
+        <Card>
+          <CardContent>
+            <CardMedia
+              className={classes.img}
+              title={props.name}
+              image={props.imgUrl}
+            ></CardMedia>
+            <Typography variant="h6" gutterBottom>
+              {props.name}
+            </Typography>
+            <Typography color="textSecondary" variant="body2">
+              $ {props.price}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Link>
+    </Grid>
   );
 }
 

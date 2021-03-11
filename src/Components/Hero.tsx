@@ -2,11 +2,10 @@ import {
   Button,
   createStyles,
   makeStyles,
-  Paper,
   Typography,
 } from "@material-ui/core";
-import React from "react";
 import bgImage from "../assets/hero-img.jpg";
+import Section from "./Section";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -20,7 +19,6 @@ const useStyles = makeStyles(() =>
       backgroundImage: `url(${bgImage})`,
       backgroundSize: "cover",
       backgroundPosition: "bottom",
-      padding: "4rem",
     },
     button: {
       border: "1.5px solid white",
@@ -30,7 +28,7 @@ const useStyles = makeStyles(() =>
     heading: {
       color: "white",
       fontWeight: "bold",
-      maxWidth: "50%",
+      maxWidth: "60%",
     },
     label: {
       color: "white",
@@ -44,22 +42,24 @@ function Hero() {
   const classes = useStyles();
 
   return (
-    <Paper variant="outlined" className={classes.root}>
-      <Typography className={classes.label} gutterBottom>
-        Bhagwan yoga
-      </Typography>
-      <Typography
-        className={classes.heading}
-        component="h1"
-        variant="h2"
-        gutterBottom
-      >
-        Yoga essentials for everyone
-      </Typography>
-      <Button size="large" className={classes.button} variant="outlined">
-        Shop now
-      </Button>
-    </Paper>
+    <div className={classes.root}>
+      <Section>
+        <Typography className={classes.label} gutterBottom>
+          Bhagwan yoga
+        </Typography>
+        <Typography
+          className={classes.heading}
+          component="h1"
+          variant="h2"
+          gutterBottom
+        >
+          Yoga essentials for everyone
+        </Typography>
+        <Button size="large" className={classes.button} variant="outlined">
+          Shop now
+        </Button>
+      </Section>
+    </div>
   );
 }
 

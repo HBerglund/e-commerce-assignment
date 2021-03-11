@@ -1,38 +1,37 @@
-import { Grid, Card, CardContent, Typography } from "@material-ui/core";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Grid, makeStyles, createStyles } from "@material-ui/core";
 import ProductCard from "./ProductCard";
-import json from "../products";
+import ProductTypes from "../productTypes";
 
-interface Product {
-  name: string;
-  imgUrl: string;
-  price: string;
-  id: string;
+interface Props {
+  products: ProductTypes[];
 }
 
-function ProductGrid() {
-  console.log(json.Sheet1);
-  const products: Product[] = json.Sheet1;
-  const latest = products.filter(
-    (product: Product) =>
-      product.id === "1" ||
-      product.id === "17" ||
-      product.id === "33" ||
-      product.id === "35"
-  );
-  console.log(latest);
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    img: {
+      height: "350px",
+    },
+  })
+);
+
+function ProductGrid(props: Props) {
+  const classes = useStyles();
 
   return (
-    <Grid container spacing={4}>
-      {latest.map((product: Product) => (
-        <ProductCard
-          name={product.name}
-          imgUrl={product.imgUrl}
-          price={product.price}
-        />
-      ))}
-    </Grid>
+    <div className={classes.root}>
+      <Grid container spacing={4}>
+        {props.products.map((product: ProductTypes) => (
+          <ProductCard
+            name={product.name}
+            imgUrl={product.imgUrl}
+            price={product.price}
+          />
+        ))}
+      </Grid>
+    </div>
   );
 }
 
