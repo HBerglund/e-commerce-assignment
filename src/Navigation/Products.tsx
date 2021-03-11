@@ -9,22 +9,23 @@ import { useEffect, useState } from "react";
 
 let products: Product[] = json.Sheet1;
 let filteredProducts = products;
-
-// const latest = products.filter(
-//   (product: Product) =>
-//     product.id === "1" ||
-//     product.id === "17" ||
-//     product.id === "33" ||
-//     product.id === "35"
-// );
+let catArr: string[] = [];
+for (const product of products) {
+  catArr.push(product.category);
+}
+const categories: string[] = [...new Set(catArr)];
 
 function Products() {
   const [filterValue, setFilterValue] = useState("");
 
   const handleFilterClick = (id: string) => {
-    filteredProducts = products.filter(
-      (product: Product) => product.category === id
-    );
+    if (id) {
+      filteredProducts = products.filter(
+        (product: Product) => product.category === id
+      );
+    } else {
+      filteredProducts = products;
+    }
     setFilterValue(id);
   };
 
@@ -39,25 +40,20 @@ function Products() {
       <Section>
         <Button
           onClick={() => {
-            handleFilterClick("Yoga mats");
+            handleFilterClick("");
           }}
         >
-          Yoga Mats
+          All
         </Button>
-        <Button
-          onClick={() => {
-            handleFilterClick("Meditation");
-          }}
-        >
-          Meditation
-        </Button>
-        <Button
-          onClick={() => {
-            handleFilterClick("Incense");
-          }}
-        >
-          Incense
-        </Button>
+        {categories.map((category) => (
+          <Button
+            onClick={() => {
+              handleFilterClick(category);
+            }}
+          >
+            {category}
+          </Button>
+        ))}
         <ProductGrid products={filteredProducts} />
       </Section>
     </div>
