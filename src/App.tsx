@@ -6,7 +6,7 @@ import { Container } from "@material-ui/core";
 function App() {
   return (
     <AppTheme>
-      <Container maxWidth="lg">
+      <Container style={{ backgroundColor: "white", padding: 0 }} maxWidth="lg">
         <Router />
       </Container>
     </AppTheme>

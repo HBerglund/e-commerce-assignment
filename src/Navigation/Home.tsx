@@ -1,9 +1,13 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
 import Hero from "../Components/Hero";
+import LatestSection from "../Components/LatestSection";
 
 function Home() {
-  return <Hero />;
+  return (
+    <div>
+      <Hero />
+      <LatestSection />
+    </div>
+  );
 }
 
 export default Home;

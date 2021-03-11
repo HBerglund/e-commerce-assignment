@@ -13,5 +13,8 @@ export const theme = responsiveFontSizes(
     shape: {
       borderRadius: 0,
     },
+    typography: {
+      fontFamily: "Quicksand",
+    },
   })
 );
