@@ -1,13 +1,13 @@
 import ProductGrid from "./ProductGrid";
 import json from "../products";
-import ProductTypes from "../productTypes";
+import Product from "../productTypes";
 import { Typography } from "@material-ui/core";
 import Section from "./Section";
 
-const products: any = json.Sheet1;
+const products: Product[] = json.Sheet1;
 
 const latest = products.filter(
-  (product: ProductTypes) =>
+  (product: Product) =>
     product.id === "1" ||
     product.id === "17" ||
     product.id === "33" ||

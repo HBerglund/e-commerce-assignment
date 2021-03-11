@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 
 interface Props {
+  id: string;
   name?: string;
   imgUrl?: string;
   price?: string;
@@ -36,7 +37,7 @@ function ProductCard(props: Props) {
 
   return (
     <Grid item xs={matchesMd ? 3 : 6 && matchesSm ? 6 : 12}>
-      <Link to="/products">
+      <Link to={`products/${props.id}`}>
         <Card>
           <CardContent>
             <CardMedia
