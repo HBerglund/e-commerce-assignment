@@ -1,10 +1,4 @@
-import {
-  Button,
-  createStyles,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import bgImage from "../assets/hero-img.jpg";
+import { createStyles, makeStyles, Typography } from "@material-ui/core";
 import Section from "./Section";
 
 interface Props {
