@@ -12,6 +12,10 @@ import Section from "./Section";
 
 const img1: string =
   "https://images.pexels.com/photos/2647471/pexels-photo-2647471.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+const img2: string =
+  "https://images.pexels.com/photos/6037908/pexels-photo-6037908.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+const img3: string =
+  "https://images.pexels.com/photos/4614183/pexels-photo-4614183.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
 
 function Discover() {
   const theme = useTheme();
@@ -26,8 +30,22 @@ function Discover() {
         justifyContent: "space-between",
         alignItems: "center",
       },
+      bottomDiv: {
+        display: "flex",
+        flexDirection: matchesMd ? "row" : "column-reverse",
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
       img1: {
         height: "300px",
+      },
+      img2: {
+        height: "250px",
+        marginRight: "1rem",
+      },
+      img3: {
+        height: "250px",
+        marginRight: "1rem",
       },
     })
   );
@@ -44,6 +62,18 @@ function Discover() {
           <Button variant='outlined'>Read More</Button>
         </Box>
         <img className={classes.img1} src={img1} />
+      </div>
+      <div className={classes.bottomDiv}>
+        <div>
+          <img className={classes.img2} src={img2} />
+          <img className={classes.img3} src={img3} />
+        </div>
+        <Box>
+          <Typography variant='body1' gutterBottom>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
+            fugiat!
+          </Typography>
+        </Box>
       </div>
     </Section>
   );

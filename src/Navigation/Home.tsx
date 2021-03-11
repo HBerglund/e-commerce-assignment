@@ -5,9 +5,9 @@ import LatestSection from "../Components/LatestSection";
 function Home() {
   return (
     <div>
-      <Discover />
       <Hero />
       <LatestSection />
+      <Discover />
     </div>
   );
 }
