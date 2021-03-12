@@ -13,9 +13,9 @@ import Section from "./Section";
 const img1: string =
   "https://images.pexels.com/photos/2647471/pexels-photo-2647471.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
 const img2: string =
-  "https://images.pexels.com/photos/6037908/pexels-photo-6037908.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+  "https://images.unsplash.com/photo-1489659639091-8b687bc4386e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTZ8fHlvZ2F8ZW58MHwwfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60";
 const img3: string =
-  "https://images.pexels.com/photos/4614183/pexels-photo-4614183.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+  "https://images.unsplash.com/photo-1594056113573-f8faae5ac78e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHlvZ2F8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60";
 
 function Discover() {
   const theme = useTheme();
