@@ -5,7 +5,7 @@ import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
 import { Button } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 let products: Product[] = json.Sheet1;
 let filteredProducts = products;
@@ -17,6 +17,7 @@ const categories: string[] = [...new Set(catArr)];
 
 function Products() {
   const [filterValue, setFilterValue] = useState("");
+  console.log(filterValue);
 
   const handleFilterClick = (id: string) => {
     if (id) {
@@ -47,6 +48,7 @@ function Products() {
         </Button>
         {categories.map((category) => (
           <Button
+            key={category}
             onClick={() => {
               handleFilterClick(category);
             }}

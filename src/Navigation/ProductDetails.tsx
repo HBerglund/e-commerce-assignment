@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Button,
@@ -12,7 +11,6 @@ import { Link, useRouteMatch } from "react-router-dom";
 import json from "../products";
 import Product from "../productTypes";
 import Section from "../Components/Section";
-import { PersonAddDisabledTwoTone } from "@material-ui/icons";
 
 interface Params {
   id: string;
