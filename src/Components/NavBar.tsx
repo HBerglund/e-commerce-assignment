@@ -39,6 +39,7 @@ function NavBar() {
             <div>
               {firstNavItems.map(({ name, path }) => (
                 <Button
+                  key={name}
                   component={Link}
                   to={path}
                   disableRipple
@@ -53,6 +54,7 @@ function NavBar() {
             <div>
               {lastNavItems.map(({ name, path }) => (
                 <Button
+                  key={name}
                   component={Link}
                   to={path}
                   disableRipple
@@ -61,8 +63,9 @@ function NavBar() {
                   {name}
                 </Button>
               ))}
-              {checkOutNavItem.map(({ path }) => (
+              {checkOutNavItem.map(({ path, name }) => (
                 <IconButton
+                  key={name}
                   component={Link}
                   to={path}
                   disableRipple

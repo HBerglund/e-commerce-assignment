@@ -213,7 +213,8 @@
             "price": "69.99",
             "color": "Wolf Grey",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg",
+            "description": "These are some great short for doing yogi stuff."
         },
         {
             "id": "21",
@@ -222,7 +223,8 @@
             "price": "69.99",
             "color": "Wolf Grey",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg",
+            "description": "These are some great short for doing yogi stuff."
         },
         {
             "id": "22",
@@ -231,7 +233,8 @@
             "price": "69.99",
             "color": "Wolf Grey",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg",
+            "description": "These are some great short for doing yogi stuff."
         },
         {
             "id": "23",
@@ -240,7 +243,8 @@
             "price": "59.99",
             "color": "Black",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg",
+            "description": "This is a great t-shirt for doing yogi stuff."
         },
         {
             "id": "24",
@@ -249,7 +253,8 @@
             "price": "59.99",
             "color": "Black",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg",
+            "description": "This is a great t-shirt for doing yogi stuff."
         },
         {
             "id": "25",
@@ -258,7 +263,8 @@
             "price": "59.99",
             "color": "Black",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg",
+            "description": "This is a great t-shirt for doing yogi stuff."
         },
         {
             "id": "26",
@@ -267,7 +273,8 @@
             "price": "59.99",
             "color": "Midnight Blue",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg",
+            "description": "This is a great t-shirt for doing yogi stuff."
         },
         {
             "id": "27",
@@ -276,7 +283,8 @@
             "price": "59.99",
             "color": "Midnight Blue",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg",
+            "description": "This is a great t-shirt for doing yogi stuff."
         },
         {
             "id": "28",
@@ -285,7 +293,8 @@
             "price": "59.99",
             "color": "Midnight Blue",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg",
+            "description": "This is a great t-shirt for doing yogi stuff."
         },
         {
             "id": "29",
@@ -294,7 +303,8 @@
             "price": "59.99",
             "color": "Stone Melange",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg",
+            "description": "These are some great pants for doing yogi stuff."
         },
         {
             "id": "30",
@@ -303,7 +313,8 @@
             "price": "59.99",
             "color": "Stone Melange",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg",
+            "description": "These are some great pants for doing yogi stuff."
         },
         {
             "id": "31",
@@ -312,7 +323,8 @@
             "price": "59.99",
             "color": "Stone Melange",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg",
+            "description": "These are some great pants for doing yogi stuff."
         },
         {
             "id": "32",
@@ -321,7 +333,8 @@
             "price": "49.99",
             "color": "Black",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg",
+            "description": "This is a great shirt for doing yogi stuff."
         },
         {
             "id": "33",
@@ -330,7 +343,8 @@
             "price": "49.99",
             "color": "Black",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg",
+            "description": "This is a great shirt for doing yogi stuff."
         },
         {
             "id": "34",
@@ -339,7 +353,8 @@
             "price": "49.99",
             "color": "Black",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg",
+            "description": "This is a great shirt for doing yogi stuff."
         },
         {
             "id": "35",
@@ -348,35 +363,40 @@
             "price": "49.99",
             "color": "Grey Melange",
             "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.140803/meditationskudde-ann-ringstrand-for-yogiraj-meditation-cushion-grey-melange.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.140803/meditationskudde-ann-ringstrand-for-yogiraj-meditation-cushion-grey-melange.jpeg",
+            "description": "You will surely enjoy this nice cushion"
         },
         {
             "id": "36",
             "category": "Meditation",
             "name": "Essential Oil - Jasmine & Cypress",
             "price": "19.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157118/eterisk-olja-balance-roller-yogandha.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.157118/eterisk-olja-balance-roller-yogandha.jpeg",
+            "description": "This smells guuuud"
         },
         {
             "id": "37",
             "category": "Incense",
             "name": "Lavender ",
             "price": "5.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
+            "description": "This smells guuuud"
         },
         {
             "id": "38",
             "category": "Incense",
             "name": "Sage",
             "price": "5.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
+            "description": "This smells guuuud"
         },
         {
             "id": "39",
             "category": "Incense",
             "name": "Chamomile",
             "price": "5.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg"
+            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
+            "description": "This smells guuuud"
         }
     ]
 }

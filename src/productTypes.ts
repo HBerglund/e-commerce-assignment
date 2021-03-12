@@ -6,6 +6,7 @@ interface Product {
   color?: string;
   fabric?: string;
   imgUrl: string;
+  description: string;
 }
 
 export default Product;
