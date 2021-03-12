@@ -35,6 +35,7 @@ function Discover() {
         flexDirection: matchesMd ? "row" : "column-reverse",
         justifyContent: "space-between",
         alignItems: "center",
+        marginTop: "2rem",
       },
       paragraph: {
         maxWidth: "500px",
@@ -42,14 +43,14 @@ function Discover() {
         margin: "2rem 0 2rem 2rem",
       },
       img1: {
-        width: "500px",
+        width: matchesSm ? "500px" : "400px",
       },
       img2: {
-        height: "240px",
+        width: matchesSm ? "240px" : "180px",
         marginRight: "10px",
       },
       img3: {
-        height: "240px",
+        width: matchesSm ? "240px" : "190px",
         marginLeft: "10px",
       },
     })
