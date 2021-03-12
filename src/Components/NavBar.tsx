@@ -24,26 +24,50 @@ function NavBar() {
   return (
     <AppBar position="static" className={classes.root}>
       <Toolbar>
-        <IconButton component={Link} to={"/"}>
+        <IconButton
+          component={Link}
+          to={"/"}
+          disableRipple
+          style={{
+            backgroundColor: "transparent",
+          }}
+        >
           <img src={Logo} style={logoStyle} alt="logo" />
         </IconButton>
         <div style={wrapperDiv}>
           <Hidden smDown>
             <div>
               {firstNavItems.map(({ name, path }) => (
-                <Button component={Link} to={path}>
+                <Button
+                  component={Link}
+                  to={path}
+                  disableRipple
+                  style={{
+                    backgroundColor: "transparent",
+                  }}
+                >
                   {name}
                 </Button>
               ))}
             </div>
             <div>
               {lastNavItems.map(({ name, path }) => (
-                <Button component={Link} to={path}>
+                <Button
+                  component={Link}
+                  to={path}
+                  disableRipple
+                  style={{ backgroundColor: "transparent" }}
+                >
                   {name}
                 </Button>
               ))}
               {checkOutNavItem.map(({ path }) => (
-                <IconButton component={Link} to={path}>
+                <IconButton
+                  component={Link}
+                  to={path}
+                  disableRipple
+                  style={{ backgroundColor: "transparent" }}
+                >
                   <ShoppingCartIcon />
                 </IconButton>
               ))}
