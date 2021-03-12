@@ -13,7 +13,7 @@ const Section: React.FC<Props> = ({ children }) => {
   return (
     <div
       style={{
-        padding: matchesMd ? "4rem" : "2rem" && matchesSm ? "2rem" : "1rem",
+        padding: matchesMd ? "4rem" : "2rem" && matchesSm ? "2rem" : "0.8rem",
       }}
     >
       {children}
