@@ -7,6 +7,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Link, useRouteMatch } from "react-router-dom";
 import json from "../products";
 import Product from "../productTypes";
@@ -74,6 +75,7 @@ function ProductDetails() {
 
   return (
     <Section>
+      <Button startIcon={<ArrowBackIosIcon fontSize="small" />}>Go back</Button>
       <div className={classes.root}>
         <img
           className={classes.productImage}
