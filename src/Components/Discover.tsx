@@ -21,6 +21,8 @@ function Discover() {
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const matchesXs = useMediaQuery(theme.breakpoints.up("xs"));
+  const matchesXsDown = useMediaQuery(theme.breakpoints.down("xs"));
 
   const useStyles = makeStyles(() =>
     createStyles({
@@ -44,14 +46,18 @@ function Discover() {
       },
       img1: {
         width: matchesSm ? "500px" : "400px",
+        maxWidth: matchesXsDown ? "325px" : "500px",
+      },
+      imgsDiv: {
+        flexDirection: matchesSm ? "row" : "column",
       },
       img2: {
-        width: matchesSm ? "240px" : "180px",
-        marginRight: "10px",
+        width: matchesXs ? "240px" : "50px",
+        margin: "10px",
       },
       img3: {
-        width: matchesSm ? "240px" : "190px",
-        marginLeft: "10px",
+        width: matchesXs ? "240px" : "50px",
+        margin: "10px",
       },
     })
   );
@@ -70,7 +76,7 @@ function Discover() {
         <img className={classes.img1} src={img1} />
       </div>
       <div className={classes.bottomDiv}>
-        <div style={{ display: "flex" }}>
+        <div className={classes.imgsDiv} style={{ display: "flex" }}>
           <img className={classes.img2} src={img2} />
           <img className={classes.img3} src={img3} />
         </div>
