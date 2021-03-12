@@ -6,10 +6,10 @@ import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
 
 let products: Product[] = json.Sheet1;
-let filteredProducts = products;
+let womensProducts = products;
 
-function WomensProduct() {
-  filteredProducts = products.filter(
+function WomensProducts() {
+  womensProducts = products.filter(
     (product: Product) => product.category === "Womens clothing"
   );
 
@@ -17,15 +17,15 @@ function WomensProduct() {
     <div>
       <Hero
         label='Bhagwan Yoga'
-        title='Womens products'
+        title={`Women's clothing`}
         bgImg={imageSources.womensPageHero}
         center
       />
       <Section>
-        <ProductGrid products={filteredProducts} />
+        <ProductGrid products={womensProducts} />
       </Section>
     </div>
   );
 }
 
-export default WomensProduct;
+export default WomensProducts;
