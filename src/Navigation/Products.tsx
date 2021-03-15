@@ -6,6 +6,7 @@ import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
 import { Button } from "@material-ui/core";
 import { useState } from "react";
+import Footer from "../Components/Footer";
 
 let products: Product[] = json.Sheet1;
 let filteredProducts = products;
@@ -58,6 +59,7 @@ function Products() {
         ))}
         <ProductGrid products={filteredProducts} />
       </Section>
+      <Footer />
     </div>
   );
 }
