@@ -4,6 +4,8 @@ import Product from "../productTypes";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
+import { Typography } from "@material-ui/core";
+import Footer from "../Components/Footer";
 
 let products: Product[] = json.Sheet1;
 let womensProducts = products;
@@ -24,6 +26,7 @@ function WomensProducts() {
       <Section>
         <ProductGrid products={womensProducts} />
       </Section>
+      <Footer />
     </div>
   );
 }

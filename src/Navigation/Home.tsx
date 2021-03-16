@@ -2,6 +2,7 @@ import Discover from "../Components/Discover";
 import Hero from "../Components/Hero";
 import LatestSection from "../Components/LatestSection";
 import imageSources from "../assets/imageSources";
+import Footer from "../Components/Footer";
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       />
       <LatestSection />
       <Discover />
+      <Footer />
     </div>
   );
 }
