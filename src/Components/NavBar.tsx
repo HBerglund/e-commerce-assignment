@@ -6,7 +6,7 @@ import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import DropDown from "./DropDown";
-import ShoppingCart from "./ShoppingCartIcon";
+import ShoppingCart from "./ShoppingCart";
 
 const useStyles = makeStyles({
   root: {
@@ -89,7 +89,7 @@ function NavBar() {
                   }}
                   onClick={() => handleActivePage(name)}
                 >
-                  <ShoppingCartIcon />
+                  <ShoppingCart />
                 </IconButton>
               ))}
             </div>
