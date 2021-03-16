@@ -6,6 +6,7 @@ import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import DropDown from "./DropDown";
+import ShoppingCart from "./ShoppingCartIcon";
 
 const useStyles = makeStyles({
   root: {
@@ -18,7 +19,6 @@ const useStyles = makeStyles({
 function NavBar() {
   const [activePage, setActivePage] = useState("");
   const classes = useStyles();
-
   const firstNavItems = routes.slice(1, 4);
   const lastNavItems = routes.slice(4, routes.length - 1);
   const checkOutNavItem = routes.slice(routes.length - 1, routes.length);
@@ -37,6 +37,7 @@ function NavBar() {
           style={{
             backgroundColor: "transparent",
           }}
+          onClick={() => handleActivePage("home")}
         >
           <img src={Logo} style={logoStyle} alt="logo" />
         </IconButton>
@@ -60,7 +61,7 @@ function NavBar() {
                 </Button>
               ))}
             </div>
-            <div>
+            <div style={{ display: "flex" }}>
               {lastNavItems.map(({ name, path }) => (
                 <Button
                   key={name}

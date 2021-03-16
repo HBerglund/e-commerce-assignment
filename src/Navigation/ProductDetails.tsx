@@ -60,12 +60,16 @@ function ProductDetails() {
     (p: Product) => p.id === match.params.id
   );
 
-  let prodArr: string[] = [];
+  let prodArr: any = [];
 
   const handleButtonClick = () => {
     if (product) {
-      prodArr.push(product.id);
-      localStorage.setItem("productsInCart", JSON.stringify(prodArr));
+      const currentLS = localStorage.getItem("productsInCart");
+      if (currentLS) {
+        prodArr = JSON.parse(currentLS);
+      }
+      const newLS = [...prodArr, product.id];
+      localStorage.setItem("productsInCart", JSON.stringify(newLS));
     }
   };
 
