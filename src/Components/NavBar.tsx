@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AppBar, Toolbar, Button, IconButton, Hidden } from "@material-ui/core";
 import Logo from "../assets/bhagwan-logo.svg";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
@@ -16,11 +16,16 @@ const useStyles = makeStyles({
 });
 
 function NavBar() {
+  const [activePage, setActivePage] = useState("");
   const classes = useStyles();
 
   const firstNavItems = routes.slice(1, 4);
   const lastNavItems = routes.slice(4, routes.length - 1);
   const checkOutNavItem = routes.slice(routes.length - 1, routes.length);
+
+  const handleActivePage = (name: string) => {
+    setActivePage(name);
+  };
 
   return (
     <AppBar position="static" className={classes.root}>
@@ -46,7 +51,10 @@ function NavBar() {
                   disableRipple
                   style={{
                     backgroundColor: "transparent",
+                    borderBottom:
+                      activePage === name ? "1px solid black" : "none",
                   }}
+                  onClick={() => handleActivePage(name)}
                 >
                   {name}
                 </Button>
@@ -59,7 +67,12 @@ function NavBar() {
                   component={Link}
                   to={path}
                   disableRipple
-                  style={{ backgroundColor: "transparent" }}
+                  style={{
+                    backgroundColor: "transparent",
+                    borderBottom:
+                      activePage === name ? "1px solid black" : "none",
+                  }}
+                  onClick={() => handleActivePage(name)}
                 >
                   {name}
                 </Button>
@@ -70,7 +83,10 @@ function NavBar() {
                   component={Link}
                   to={path}
                   disableRipple
-                  style={{ backgroundColor: "transparent" }}
+                  style={{
+                    backgroundColor: "transparent",
+                  }}
+                  onClick={() => handleActivePage(name)}
                 >
                   <ShoppingCartIcon />
                 </IconButton>
