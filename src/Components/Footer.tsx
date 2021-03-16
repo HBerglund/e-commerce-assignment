@@ -1,5 +1,4 @@
 import {
-  Button,
   createStyles,
   makeStyles,
   Typography,
@@ -69,6 +68,7 @@ function Footer() {
                     </Link>
                   );
                 }
+                return null;
               })}
             </div>
             <div className={classes.flexColumn}>
@@ -83,6 +83,7 @@ function Footer() {
                     </Link>
                   );
                 }
+                return null;
               })}
             </div>
           </div>

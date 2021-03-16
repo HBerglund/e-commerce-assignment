@@ -11,6 +11,7 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: "white",
     textColor: "black",
+    boxShadow: "none",
   },
 });
 
