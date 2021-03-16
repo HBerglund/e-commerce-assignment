@@ -31,13 +31,13 @@ const useStyles = makeStyles(() =>
 const cartLS = localStorage.getItem("productsInCart");
 
 function ShoppingCart() {
-  const [numberOfItems, setNumberOfCartItems] = useState();
+  // const [numberOfItems, setNumberOfCartItems] = useState();
 
   const classes = useStyles();
-  setNumberOfCartItems(JSON.parse(cartLS).length);
+  // setNumberOfCartItems(JSON.parse(cartLS).length);
   return (
     <div className={classes.root}>
-      <Typography className={classes.productNumber}>{numberOfItems}</Typography>
+      {/* <Typography className={classes.productNumber}>{numberOfItems}</Typography> */}
       <IconButton component={Link} to="/checkout" disableRipple>
         <ShoppingCartIcon />
       </IconButton>
