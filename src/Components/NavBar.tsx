@@ -12,6 +12,7 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: "white",
     textColor: "black",
+    boxShadow: "none",
   },
 });
 
@@ -77,7 +78,20 @@ function NavBar() {
                   {name}
                 </Button>
               ))}
-              <ShoppingCart />
+              {checkOutNavItem.map(({ path, name }) => (
+                <IconButton
+                  key={name}
+                  component={Link}
+                  to={path}
+                  disableRipple
+                  style={{
+                    backgroundColor: "transparent",
+                  }}
+                  onClick={() => handleActivePage(name)}
+                >
+                  <ShoppingCartIcon />
+                </IconButton>
+              ))}
             </div>
           </Hidden>
         </div>
