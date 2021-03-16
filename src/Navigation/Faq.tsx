@@ -1,11 +1,4 @@
-import React, { useState } from "react";
-import {
-  createStyles,
-  makeStyles,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@material-ui/core";
+import { createStyles, makeStyles, Typography } from "@material-ui/core";
 import Footer from "../Components/Footer";
 import Section from "../Components/Section";
 import faqQuestions from "../faqQuestions";
@@ -14,9 +7,6 @@ import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
 
 function Faq() {
-  const theme = useTheme();
-  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
-
   const useStyles = makeStyles(() =>
     createStyles({
       root: {},
@@ -28,13 +18,13 @@ function Faq() {
     <div className={classes.root}>
       <Hero
         lessHeight
-        label=""
-        title="FAQ"
+        label=''
+        title='FAQ'
         bgImg={imageSources.faqPageHero}
         center
       />
       <Section>
-        <Typography variant="h5" component="h1" gutterBottom>
+        <Typography variant='h5' component='h1' gutterBottom>
           Frequently asked questions
         </Typography>
         {faqQuestions.map(({ id, question, answer }) => (
