@@ -1,11 +1,14 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 import Footer from "../Components/Footer";
+import Section from "../Components/Section";
 
 function Privacy() {
   return (
     <div>
-      <Typography variant="h1">Hello World</Typography>
+      <Section>
+        <Typography variant="h5">We care about your privacy...</Typography>
+      </Section>
       <Footer />
     </div>
   );
