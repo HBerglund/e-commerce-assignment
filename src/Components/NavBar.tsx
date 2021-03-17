@@ -4,10 +4,8 @@ import Logo from "../assets/bhagwan-logo.svg";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
 import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import DropDown from "./DropDown";
-import ShoppingCart from "./ShoppingCartIcon";
-import { isNamespaceExportDeclaration } from "typescript";
+import ShoppingCart from "./ShoppingCart";
 
 const useStyles = makeStyles({
   root: {
@@ -38,7 +36,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static" className={classes.root}>
+    <AppBar position='static' className={classes.root}>
       <Toolbar>
         <IconButton
           component={Link}
@@ -49,7 +47,7 @@ function NavBar() {
           }}
           onClick={() => handleActivePage("home")}
         >
-          <img src={Logo} style={logoStyle} alt="logo" />
+          <img src={Logo} style={logoStyle} alt='logo' />
         </IconButton>
         <div style={wrapperDiv}>
           <Hidden smDown>
@@ -105,7 +103,7 @@ function NavBar() {
                   }}
                   onClick={() => handleActivePage(name)}
                 >
-                  <ShoppingCartIcon />
+                  <ShoppingCart />
                 </IconButton>
               ))}
             </div>
