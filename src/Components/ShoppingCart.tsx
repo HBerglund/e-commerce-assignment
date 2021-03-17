@@ -60,7 +60,7 @@ function ShoppingCart() {
         </Typography>
         <IconButton
           component={Link}
-          to='/checkout'
+          to="/checkout"
           disableRipple
           onClick={handleShowSidebar}
         >
@@ -74,7 +74,7 @@ function ShoppingCart() {
       <div className={classes.root}>
         <IconButton
           component={Link}
-          to='/checkout'
+          to="/checkout"
           disableRipple
           onClick={handleShowSidebar}
         >
