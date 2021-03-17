@@ -17,6 +17,8 @@ const useStyles = makeStyles({
 
 function NavBar() {
   const [activePage, setActivePage] = useState("");
+  const [isHovered, setIsHovered] = useState("");
+
   const classes = useStyles();
   const firstNavItems = routes.slice(1, 4);
   const lastNavItems = routes.slice(4, routes.length - 1);
@@ -24,6 +26,13 @@ function NavBar() {
 
   const handleActivePage = (name: string) => {
     setActivePage(name);
+  };
+
+  const handleHover = (name: string) => {
+    setIsHovered(name);
+  };
+  const handleHoverLeave = (name: string) => {
+    setIsHovered("");
   };
 
   return (
@@ -53,7 +62,10 @@ function NavBar() {
                     backgroundColor: "transparent",
                     borderBottom:
                       activePage === name ? "1px solid black" : "none",
+                    fontWeight: isHovered === name ? "bold" : "unset",
                   }}
+                  onMouseEnter={() => handleHover(name)}
+                  onMouseLeave={() => handleHoverLeave(name)}
                   onClick={() => handleActivePage(name)}
                 >
                   {name}
@@ -71,7 +83,10 @@ function NavBar() {
                     backgroundColor: "transparent",
                     borderBottom:
                       activePage === name ? "1px solid black" : "none",
+                    fontWeight: isHovered === name ? "bold" : "unset",
                   }}
+                  onMouseEnter={() => handleHover(name)}
+                  onMouseLeave={() => handleHoverLeave(name)}
                   onClick={() => handleActivePage(name)}
                 >
                   {name}
