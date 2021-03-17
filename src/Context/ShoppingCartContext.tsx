@@ -2,9 +2,18 @@ import { createContext, FC, useState } from "react";
 import json from "../products";
 import Product from "../productTypes";
 
+interface CartItem {
+  amount: number;
+  id: string;
+  name: string;
+  color: string;
+  size: string;
+  price: string;
+}
+
 interface ShoppingCartValue {
-  cart: Product[];
-  addToCart: (product: Product) => void;
+  cart: CartItem[];
+  addToCart: (item: CartItem) => void;
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartValue>({
@@ -13,9 +22,22 @@ export const ShoppingCartContext = createContext<ShoppingCartValue>({
 });
 
 const ShoppingCartProvider: FC<{}> = ({ children }) => {
-  const exampleProduct: Product[] = json.Sheet1;
-  const [cart, setCart] = useState<Product[]>(exampleProduct);
-  const addToCart = (product: Product) => {};
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  const addToCart = (item: CartItem) => {
+    const cartItem = {
+      amount: item.amount,
+      id: item.id,
+      name: item.name,
+      color: item.color,
+      size: item.size,
+      price: item.price,
+    };
+
+    const updatedCart = [...cart, cartItem];
+
+    setCart(updatedCart);
+  };
 
   return (
     <ShoppingCartContext.Provider

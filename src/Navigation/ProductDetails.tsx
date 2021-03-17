@@ -15,6 +15,7 @@ import json from "../products";
 import Product from "../productTypes";
 import Section from "../Components/Section";
 import { useState } from "react";
+import { convertToObject } from "typescript";
 
 interface Params {
   id: string;
@@ -97,7 +98,7 @@ function ProductDetails() {
     }
   };
 
-  const handleButtonClick = () => {
+  const handleAddToCartClick = () => {
     if (product) {
       const currentLS = localStorage.getItem("productsInCart");
       if (currentLS) {
@@ -180,7 +181,7 @@ function ProductDetails() {
                 />
               ))}
             </Box>
-            <Button onClick={handleButtonClick} variant="outlined">
+            <Button onClick={handleAddToCartClick} variant="outlined">
               Add to cart
             </Button>
           </Box>
