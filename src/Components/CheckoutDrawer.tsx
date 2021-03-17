@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Drawer, Typography } from "@material-ui/core";
@@ -22,12 +21,13 @@ const useStyles = makeStyles({
 function CheckoutDrawer(props: Props) {
   const classes = useStyles();
 
-  //   const [productsInCart, setProductsInCart] = useState();
+  const [productsInCart, setProductsInCart] = useState();
 
   useEffect(() => {
     const cartLS = localStorage.getItem("productsInCart");
+    console.log(cartLS);
     if (cartLS) {
-      //   setProductsInCart(JSON.parse(cartLS));
+      setProductsInCart(JSON.parse(cartLS));
     }
   }, []);
 
@@ -37,7 +37,7 @@ function CheckoutDrawer(props: Props) {
 
   return (
     <div className={classes.root}>
-      <Drawer anchor='right' open={props.isOpen}>
+      <Drawer anchor="right" open={props.isOpen}>
         <Typography>Cart Items</Typography>
         <Button onClick={handleDrawerExit}>Exit</Button>
       </Drawer>

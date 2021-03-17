@@ -1,5 +1,6 @@
 import {
   createStyles,
+  Hidden,
   makeStyles,
   Typography,
   useMediaQuery,
@@ -17,6 +18,7 @@ function Footer() {
   const useStyles = makeStyles(() =>
     createStyles({
       root: {
+        padding: matchesSm ? 0 : "2rem",
         backgroundColor: "#19181a",
         color: "white",
       },
@@ -49,12 +51,14 @@ function Footer() {
     <div className={classes.root}>
       <Section>
         <div className={classes.wrapper}>
-          <div className={classes.sentence}>
-            <Typography component="h4" variant="h5">
-              Bhagwan Yoga provides you with the latest yoga equipment
-              available...
-            </Typography>
-          </div>
+          <Hidden xsDown>
+            <div className={classes.sentence}>
+              <Typography component="h4" variant="h5">
+                Bhagwan Yoga provides you with the latest yoga equipment
+                available...
+              </Typography>
+            </div>
+          </Hidden>
           <div className={classes.linksWrapper}>
             <div className={classes.flexColumn}>
               <Typography component="h4" variant="h5" gutterBottom>

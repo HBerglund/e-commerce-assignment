@@ -8,13 +8,7 @@ import {
   Box,
 } from "@material-ui/core";
 import Section from "./Section";
-
-const img1: string =
-  "https://images.pexels.com/photos/2647471/pexels-photo-2647471.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-const img2: string =
-  "https://images.unsplash.com/photo-1489659639091-8b687bc4386e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTZ8fHlvZ2F8ZW58MHwwfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60";
-const img3: string =
-  "https://images.unsplash.com/photo-1594056113573-f8faae5ac78e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHlvZ2F8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60";
+import imageSources from "../assets/imageSources";
 
 function Discover() {
   const theme = useTheme();
@@ -26,37 +20,50 @@ function Discover() {
   const useStyles = makeStyles(() =>
     createStyles({
       topDiv: {
+        width: "100%",
         display: "flex",
         flexDirection: matchesMd ? "row" : "column",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: matchesMd ? "center" : "start",
       },
       bottomDiv: {
+        width: "100%",
         display: "flex",
+        flex: 1,
         flexDirection: matchesMd ? "row" : "column-reverse",
         justifyContent: "space-between",
         alignItems: "center",
         marginTop: "2rem",
       },
-      paragraph: {
+      quote: {
         maxWidth: "500px",
         textAlign: "left",
-        margin: "2rem 0 2rem 2rem",
+        margin: matchesMd ? "2rem 0 2rem 2rem" : 0,
+        padding: matchesMd ? 0 : "3rem",
+        fontSize: "1rem",
+        fontStyle: "italic",
       },
       img1: {
-        width: matchesSm ? "500px" : "400px",
-        maxWidth: matchesXsDown ? "325px" : "500px",
+        objectFit: "cover",
+        width: matchesMd ? "50%" : "100%",
       },
       imgsDiv: {
+        display: "flex",
+        justifyContent: "space-between",
         flexDirection: matchesSm ? "row" : "column",
+        width: matchesMd ? "50%" : "100%",
       },
       img2: {
-        width: matchesXs ? "240px" : "50px",
-        margin: "10px",
+        objectFit: "cover",
+        width: matchesSm ? "48%" : "100%",
+        maxHeight: "250px",
+        marginTop: "1rem",
       },
       img3: {
-        width: matchesXs ? "240px" : "50px",
-        margin: "10px",
+        objectFit: "cover",
+        width: matchesSm ? "48%" : "100%",
+        maxHeight: "250px",
+        marginTop: "1rem",
       },
     })
   );
@@ -72,19 +79,19 @@ function Discover() {
           </Typography>
           <Button variant="outlined">Read More</Button>
         </Box>
-        <img className={classes.img1} alt="" src={img1} />
+        <img className={classes.img1} alt="" src={imageSources.discover1} />
       </div>
       <div className={classes.bottomDiv}>
         <div className={classes.imgsDiv} style={{ display: "flex" }}>
-          <img className={classes.img2} alt="" src={img2} />
-          <img className={classes.img3} alt="" src={img3} />
+          <img className={classes.img2} alt="" src={imageSources.discover2} />
+          <img className={classes.img3} alt="" src={imageSources.discover3} />
         </div>
         <Box>
-          <div className={classes.paragraph}>
+          <div className={classes.quote}>
             <Typography variant="body1" gutterBottom>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Praesentium ad aut nihil enim amet optio commodi, quis corrupti
-              omnis dicta!
+              omnis dicta!"
             </Typography>
           </div>
         </Box>
