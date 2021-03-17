@@ -7,10 +7,6 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 
 function Home() {
-  const shoppingCart = useContext(ShoppingCartContext);
-
-  console.log(shoppingCart);
-
   return (
     <div>
       <Hero

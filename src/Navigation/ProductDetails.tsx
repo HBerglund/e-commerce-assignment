@@ -14,8 +14,8 @@ import { Link, useRouteMatch } from "react-router-dom";
 import json from "../products";
 import Product from "../productTypes";
 import Section from "../Components/Section";
-import { useState } from "react";
-import { convertToObject } from "typescript";
+import { useContext, useState } from "react";
+import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
 
 interface Params {
   id: string;
@@ -59,6 +59,8 @@ function ProductDetails() {
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
 
+  const shoppingCart = useContext(ShoppingCartContext);
+
   const classes = useStyles();
 
   const products: Product[] = json.Sheet1;
@@ -68,12 +70,12 @@ function ProductDetails() {
   );
 
   const [selectedProps, setSelectedProps] = useState({
-    price: product ? product.sizeProps[0].price : null,
-    size: product ? product.sizeProps[0].size : null,
+    price: product ? product.sizeProps[0].price : "",
+    size: product ? product.sizeProps[0].size : "",
     img: product
       ? product.colorProps[0].img
       : "https://images.unsplash.com/photo-1532630571098-79a3d222b00d",
-    color: product ? product.colorProps[0].color : null,
+    color: product ? product.colorProps[0].color : "",
   });
 
   let prodArr: any = [];
@@ -100,12 +102,15 @@ function ProductDetails() {
 
   const handleAddToCartClick = () => {
     if (product) {
-      const currentLS = localStorage.getItem("productsInCart");
-      if (currentLS) {
-        prodArr = JSON.parse(currentLS);
-      }
-      const newLS = [...prodArr, product.id];
-      localStorage.setItem("productsInCart", JSON.stringify(newLS));
+      const itemToAdd: CartItem = {
+        amount: 1,
+        id: product.id,
+        name: product.name,
+        color: selectedProps.color,
+        size: selectedProps.size,
+        price: selectedProps.price,
+      };
+      shoppingCart.addToCart(itemToAdd);
     }
   };
 

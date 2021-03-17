@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Drawer, Typography } from "@material-ui/core";
@@ -20,16 +19,6 @@ const useStyles = makeStyles({
 
 function CheckoutDrawer(props: Props) {
   const classes = useStyles();
-
-  const [productsInCart, setProductsInCart] = useState();
-
-  useEffect(() => {
-    const cartLS = localStorage.getItem("productsInCart");
-    console.log(cartLS);
-    if (cartLS) {
-      setProductsInCart(JSON.parse(cartLS));
-    }
-  }, []);
 
   const handleDrawerExit = () => {
     props.handleExit(!props.isOpen);

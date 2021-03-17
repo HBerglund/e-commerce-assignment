@@ -1,13 +1,13 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useEffect, useState } from "react";
 import json from "../products";
 import Product from "../productTypes";
 
-interface CartItem {
+export interface CartItem {
   amount: number;
   id: string;
   name: string;
-  color: string;
-  size: string;
+  color?: string;
+  size?: string;
   price: string;
 }
 

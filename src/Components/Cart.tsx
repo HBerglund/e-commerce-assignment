@@ -30,7 +30,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-function ShoppingCart() {
+function Cart() {
   const [numberOfItems, setNumberOfCartItems] = useState(0);
 
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -86,4 +86,4 @@ function ShoppingCart() {
   }
 }
 
-export default ShoppingCart;
+export default Cart;
