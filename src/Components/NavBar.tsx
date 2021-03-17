@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AppBar, Toolbar, Button, IconButton, Hidden } from "@material-ui/core";
 import Logo from "../assets/bhagwan-logo.svg";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
@@ -95,8 +95,6 @@ function NavBar() {
               {checkOutNavItem.map(({ path, name }) => (
                 <IconButton
                   key={name}
-                  component={Link}
-                  to={path}
                   disableRipple
                   style={{
                     backgroundColor: "transparent",

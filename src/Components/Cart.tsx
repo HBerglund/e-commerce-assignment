@@ -32,9 +32,7 @@ const useStyles = makeStyles(() =>
 
 function Cart() {
   const [numberOfItems, setNumberOfCartItems] = useState(0);
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-
   const classes = useStyles();
 
   useEffect(() => {
@@ -45,7 +43,7 @@ function Cart() {
   }, []);
 
   const handleShowSidebar = () => {
-    setSidebarIsOpen((prevState) => !prevState);
+    setSidebarIsOpen(true);
   };
 
   const handleExit = (isOpen: boolean) => {

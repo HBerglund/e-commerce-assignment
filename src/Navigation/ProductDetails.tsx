@@ -144,6 +144,7 @@ function ProductDetails() {
               </Typography>
               {product.sizeProps.map(({ size, price }) => (
                 <Button
+                  key={size}
                   style={{
                     border:
                       selectedProps.size === size ? "1px solid black" : "none",
@@ -164,6 +165,7 @@ function ProductDetails() {
               </Typography>
               {product.colorProps.map(({ img, color }) => (
                 <IconButton
+                  key={color}
                   style={{
                     border:
                       selectedProps.color === color
