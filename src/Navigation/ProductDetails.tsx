@@ -2,7 +2,9 @@ import {
   Box,
   Button,
   createStyles,
+  IconButton,
   makeStyles,
+  Size,
   Typography,
   useMediaQuery,
   useTheme,
@@ -12,6 +14,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import json from "../products";
 import Product from "../productTypes";
 import Section from "../Components/Section";
+import { useState } from "react";
 
 interface Params {
   id: string;
@@ -45,6 +48,9 @@ function ProductDetails() {
         display: "flex",
         flexDirection: "column",
       },
+      propsContainer: {
+        margin: "1rem 0",
+      },
     })
   );
 
@@ -60,7 +66,36 @@ function ProductDetails() {
     (p: Product) => p.id === match.params.id
   );
 
+  const [selectedProps, setSelectedProps] = useState({
+    price: product ? product.sizeProps[0].price : null,
+    size: product ? product.sizeProps[0].size : null,
+    img: product
+      ? product.colorProps[0].img
+      : "https://images.unsplash.com/photo-1532630571098-79a3d222b00d",
+    color: product ? product.colorProps[0].color : null,
+  });
+
   let prodArr: any = [];
+
+  const selectedColor = (color: string) => {
+    switch (color) {
+      case "Blueberry Blue": {
+        return "#5a6fa4";
+      }
+      case "Moss Green": {
+        return "#78A5AB";
+      }
+      case "Heather Pink": {
+        return "#E0C5D4";
+      }
+      case "Silver Grey": {
+        return "#D5DADE";
+      }
+      case "Birch White": {
+        return "#E2E2E2";
+      }
+    }
+  };
 
   const handleButtonClick = () => {
     if (product) {
@@ -83,7 +118,7 @@ function ProductDetails() {
       <div className={classes.root}>
         <img
           className={classes.productImage}
-          src={product.imgUrl}
+          src={selectedProps.img}
           alt={product.name}
         />
         <Box className={classes.infoContainer}>
@@ -95,15 +130,55 @@ function ProductDetails() {
               {product.name}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              $ {product.price}
+              $ {selectedProps.price}
             </Typography>
             <Typography variant="body1" gutterBottom>
               {product.description}
             </Typography>
-            <Box>
+            <Box className={classes.propsContainer}>
               <Typography variant="body1" gutterBottom>
-                Size
+                Available sizes
               </Typography>
+              {product.sizeProps.map(({ size, price }) => (
+                <Button
+                  style={{
+                    border:
+                      selectedProps.size === size ? "1px solid black" : "none",
+                  }}
+                  onClick={() =>
+                    setSelectedProps((prevState) => {
+                      return { ...prevState, size: size, price: price };
+                    })
+                  }
+                >
+                  {size}
+                </Button>
+              ))}
+            </Box>
+            <Box className={classes.propsContainer}>
+              <Typography variant="body1" gutterBottom>
+                Available colors
+              </Typography>
+              {product.colorProps.map(({ img, color }) => (
+                <IconButton
+                  style={{
+                    border:
+                      selectedProps.color === color
+                        ? "1px solid black"
+                        : "none",
+                    backgroundColor: selectedColor(color),
+                    borderRadius: "50%",
+                    height: "50px",
+                    width: "50px",
+                    marginRight: ".5rem",
+                  }}
+                  onClick={() =>
+                    setSelectedProps((prevState) => {
+                      return { ...prevState, img: img, color: color };
+                    })
+                  }
+                />
+              ))}
             </Box>
             <Button onClick={handleButtonClick} variant="outlined">
               Add to cart
