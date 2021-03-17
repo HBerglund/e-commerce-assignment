@@ -2,10 +2,9 @@ interface Product {
   id: string;
   category: string;
   name: string;
-  price: string;
-  color?: string;
   fabric?: string;
-  imgUrl: string;
+  colorProps: Array<{ img: string; color: string }>;
+  sizeProps: Array<{ size: string; price: string }>;
   description: string;
 }
 

@@ -3,400 +3,277 @@
         {
             "id": "1",
             "category": "Yoga mats",
-            "name": "Yoga Mat 2mm",
-            "price": "19.99",
-            "color": "Blueberry Blue",
-            "weight": "1.2kg",
+            "name": "Yoga Mat",
             "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145258/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
+            "colorProps": [{
+                "img": "https://www.yogagrossisten.se/images/2.145258/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
+                "color": "Blueberry Blue"
+            },{
+                "img": "https://www.yogagrossisten.se/images/2.145208/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
+                "color": "Heather Pink"
+            }, {
+                "img": "https://www.yogagrossisten.se/images/2.145203/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
+                "color": "Moss Green"
+            }, {
+                "img": "https://www.yogagrossisten.se/images/2.145213/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
+                "color": "Silver Grey"
+            }],
+            "sizeProps": [
+                {
+                "size": "2mm",
+                "price": "19.99"
+            },
+                {
+                "size": "4mm",
+                "price": "24.99"
+            },
+                {
+                "size": "5mm",
+                "price": "29.99"
+            },
+                {
+                "size": "6mm",
+                "price": "39.99"
+            }
+        ],
             "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
         },
+       
         {
             "id": "2",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 2mm",
-            "price": "19.99",
-            "color": "Heather Pink",
-            "weight": "1.2kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145208/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Yoga straps",
+            "name": "Yoga Strap",
+            "fabric": "Organic Cotton",
+            "colorProps": [
+                {
+                "img": "https://www.yogagrossisten.se/images/2.146373/yogabalte-yoga-belt-standard-yogiraj.jpeg",
+                "color": "Moss Green"
+            },
+                {
+                "img": "https://www.yogagrossisten.se/images/2.146363/yogabalte-yoga-belt-standard-yogiraj.jpeg",
+                "color": "Birch White"
+            },
+                {
+                "img": "https://www.yogagrossisten.se/images/2.146358/yogabalte-yoga-belt-standard-yogiraj.jpeg",
+                "color": "Blueberry Blue"
+            }
+        ],
+            "sizeProps": [
+                {
+                    "size": "244cm",
+                    "price": "24.99"
+                }
+            ],
+            "description": "This yoga belt makes it easier to reach desired positions. This adjustable belt is made from ecologic cotton and will improve your mobility. Remember - yoga is not all about reaching your toes."
         },
         {
             "id": "3",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 2mm",
-            "price": "19.99",
-            "color": "Moss Green",
-            "weight": "1.2kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145203/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Mens clothing",
+            "name": "Yoga Shorts",
+            "fabric": "Organic Cotton",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg",
+                    "color": "Wolf Grey"
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "S",
+                    "price": "69.99"
+                },
+                {
+                    "size": "M",
+                    "price": "69.99"
+                },
+                {
+                    "size": "L",
+                    "price": "69.99"
+                }
+            ],
+            "description": "These are some great shorts for doing yogi stuff."
         },
         {
             "id": "4",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 2mm",
-            "price": "19.99",
-            "color": "Silver Grey",
-            "weight": "1.2kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145213/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Mens clothing",
+            "name": "Yoga T-Shirt",
+            "fabric": "Organic Cotton",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg",
+                    "color": "Black"
+                },
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg",
+                    "color": "Midnight Blue"
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "S",
+                    "price": "59.99"
+                },
+                {
+                    "size": "M",
+                    "price": "59.99"
+                },
+                {
+                    "size": "L",
+                    "price": "59.99"
+                }
+            ],
+            "description": "This is a great t-shirt for doing yogi stuff."
         },
         {
             "id": "5",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 4mm",
-            "price": "24.99",
-            "color": "Blueberry Blue",
-            "weight": "1.5kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145258/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Womens clothing",
+            "name": "Yoga Pants",
+            "fabric": "Organic Cotton",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg",
+                    "color": "Stone Melange"
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "S",
+                    "price": "59.99"
+                },
+                {
+                    "size": "M",
+                    "price": "59.99"
+                },
+                {
+                    "size": "L",
+                    "price": "59.99"
+                }
+            ],
+            "description": "These are some great pants for doing yogi stuff."
         },
         {
             "id": "6",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 4mm",
-            "price": "24.99",
-            "color": "Heather Pink",
-            "weight": "1.5kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145208/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Womens clothing",
+            "name": "Yoga Shirt",
+            "fabric": "Organic Cotton",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg",
+                    "color": "Black"
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "S",
+                    "price": "49.99"
+                },
+                {
+                    "size": "M",
+                    "price": "49.99"
+                },
+                {
+                    "size": "L",
+                    "price": "49.99"
+                }
+            ],
+            "description": "This is a great shirt for doing yogi stuff."
         },
         {
             "id": "7",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 4mm",
-            "price": "24.99",
-            "color": "Moss Green",
-            "weight": "1.5kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145203/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Meditation",
+            "name": "Meditation Cushion",
+            "fabric": "Organic Cotton",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.140803/meditationskudde-ann-ringstrand-for-yogiraj-meditation-cushion-grey-melange.jpeg",
+                    "color": "Grey Melange"
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "One Size",
+                    "price": "49.99"
+                }
+           
+            ],
+            "description": "This is a great cushion for meditation."
         },
         {
             "id": "8",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 4mm",
-            "price": "24.99",
-            "color": "Silver Grey",
-            "weight": "1.5kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145213/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Meditation",
+            "name": "Essential Oil - Jasmine & Cypress",
+            "fabric": "",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.157118/eterisk-olja-balance-roller-yogandha.jpeg",
+                    "color": ""
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "",
+                    "price": "19.99"
+                }
+           
+            ],
+            "description": "This stuff smells good!"
         },
         {
             "id": "9",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 5mm",
-            "price": "29.99",
-            "color": "Blueberry Blue",
-            "weight": "1.7kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145258/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Incense",
+            "name": "Lavender",
+            "fabric": "",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
+                    "color": ""
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "",
+                    "price": "5.99"
+                }
+            ],
+            "description": "This stuff smells good!"
         },
         {
             "id": "10",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 5mm",
-            "price": "29.99",
-            "color": "Heather Pink",
-            "weight": "1.7kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145208/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
+            "category": "Incense",
+            "name": "Sage",
+            "fabric": "",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
+                    "color": ""
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "",
+                    "price": "5.99"
+                }
+            ],
+            "description": "This stuff smells good!"
         },
         {
             "id": "11",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 5mm",
-            "price": "29.99",
-            "color": "Moss Green",
-            "weight": "1.7kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145203/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
-        },
-        {
-            "id": "12",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 5mm",
-            "price": "29.99",
-            "color": "Silver Grey",
-            "weight": "1.7kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145213/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
-        },
-        {
-            "id": "13",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 6mm",
-            "price": "39.99",
-            "color": "Blueberry Blue",
-            "weight": "2kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145258/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
-        },
-        {
-            "id": "14",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 6mm",
-            "price": "39.99",
-            "color": "Heather Pink",
-            "weight": "2kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145208/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
-        },
-        {
-            "id": "15",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 6mm",
-            "price": "39.99",
-            "color": "Moss Green",
-            "weight": "2kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145203/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
-        },
-        {
-            "id": "16",
-            "category": "Yoga mats",
-            "name": "Yoga Mat 6mm",
-            "price": "39.99",
-            "color": "Silver Grey",
-            "weight": "2kg",
-            "fabric": "PVC",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.145213/yogamatta-all-round-yoga-mat-4-mm-yogiraj.jpeg",
-            "description": "This yoga mat suits beginners as well as experienced yogis. This all-around mat is enduring, and the grip improves with time and use."
-        },
-        {
-            "id": "17",
-            "category": "Yoga strap",
-            "name": "Yoga Strap 244cm",
-            "price": "24.99",
-            "color": "Moss Green",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.146373/yogabalte-yoga-belt-standard-yogiraj.jpeg",
-            "description": "This yoga belt makes it easier to reach desired positions. This adjustable belt is made from ecologic cotton and will improve your mobility. Remember - yoga is not all about reaching your toes."
-        },
-        {
-            "id": "18",
-            "category": "Yoga strap",
-            "name": "Yoga Strap 244cm",
-            "price": "24.99",
-            "color": "Birch White",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.146363/yogabalte-yoga-belt-standard-yogiraj.jpeg",
-            "description": "This yoga belt makes it easier to reach desired positions. This adjustable belt is made from ecologic cotton and will improve your mobility. Remember - yoga is not all about reaching your toes."
-        },
-        {
-            "id": "19",
-            "category": "Yoga strap",
-            "name": "Yoga Strap 244cm",
-            "price": "24.99",
-            "color": "Blueberry Blue",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.146358/yogabalte-yoga-belt-standard-yogiraj.jpeg",
-            "description": "This yoga belt makes it easier to reach desired positions. This adjustable belt is made from ecologic cotton and will improve your mobility. Remember - yoga is not all about reaching your toes."
-        },
-        {
-            "id": "20",
-            "category": "Mens clothing",
-            "name": "Yoga Shorts - S",
-            "price": "69.99",
-            "color": "Wolf Grey",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg",
-            "description": "These are some great short for doing yogi stuff."
-        },
-        {
-            "id": "21",
-            "category": "Mens clothing",
-            "name": "Yoga Shorts - M",
-            "price": "69.99",
-            "color": "Wolf Grey",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg",
-            "description": "These are some great short for doing yogi stuff."
-        },
-        {
-            "id": "22",
-            "category": "Mens clothing",
-            "name": "Yoga Shorts - L",
-            "price": "69.99",
-            "color": "Wolf Grey",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.149598/yogashorts-boardshort-wolf-grey-onzie.jpeg",
-            "description": "These are some great short for doing yogi stuff."
-        },
-        {
-            "id": "23",
-            "category": "Mens clothing",
-            "name": "Yoga T-Shirt - S",
-            "price": "59.99",
-            "color": "Black",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg",
-            "description": "This is a great t-shirt for doing yogi stuff."
-        },
-        {
-            "id": "24",
-            "category": "Mens clothing",
-            "name": "Yoga T-Shirt - M",
-            "price": "59.99",
-            "color": "Black",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg",
-            "description": "This is a great t-shirt for doing yogi stuff."
-        },
-        {
-            "id": "25",
-            "category": "Mens clothing",
-            "name": "Yoga T-Shirt - L",
-            "price": "59.99",
-            "color": "Black",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147043/mens-clothing-cross-train-tee-manduka.jpeg",
-            "description": "This is a great t-shirt for doing yogi stuff."
-        },
-        {
-            "id": "26",
-            "category": "Mens clothing",
-            "name": "Yoga T-Shirt - S",
-            "price": "59.99",
-            "color": "Midnight Blue",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg",
-            "description": "This is a great t-shirt for doing yogi stuff."
-        },
-        {
-            "id": "27",
-            "category": "Mens clothing",
-            "name": "Yoga T-Shirt - M",
-            "price": "59.99",
-            "color": "Midnight Blue",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg",
-            "description": "This is a great t-shirt for doing yogi stuff."
-        },
-        {
-            "id": "28",
-            "category": "Mens clothing",
-            "name": "Yoga T-Shirt - L",
-            "price": "59.99",
-            "color": "Midnight Blue",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.147033/mens-clothing-cross-train-tee-manduka.jpeg",
-            "description": "This is a great t-shirt for doing yogi stuff."
-        },
-        {
-            "id": "29",
-            "category": "Womens clothing",
-            "name": "Yoga Pants - S",
-            "price": "59.99",
-            "color": "Stone Melange",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg",
-            "description": "These are some great pants for doing yogi stuff."
-        },
-        {
-            "id": "30",
-            "category": "Womens clothing",
-            "name": "Yoga Pants - M",
-            "price": "59.99",
-            "color": "Stone Melange",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg",
-            "description": "These are some great pants for doing yogi stuff."
-        },
-        {
-            "id": "31",
-            "category": "Womens clothing",
-            "name": "Yoga Pants - L",
-            "price": "59.99",
-            "color": "Stone Melange",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.141683/yogabyxa-essential-high-line-stone-melange-manduka.jpeg",
-            "description": "These are some great pants for doing yogi stuff."
-        },
-        {
-            "id": "32",
-            "category": "Womens clothing",
-            "name": "Yoga Shirt - S",
-            "price": "49.99",
-            "color": "Black",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg",
-            "description": "This is a great shirt for doing yogi stuff."
-        },
-        {
-            "id": "33",
-            "category": "Womens clothing",
-            "name": "Yoga Shirt - M",
-            "price": "49.99",
-            "color": "Black",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg",
-            "description": "This is a great shirt for doing yogi stuff."
-        },
-        {
-            "id": "34",
-            "category": "Womens clothing",
-            "name": "Yoga Shirt - L",
-            "price": "49.99",
-            "color": "Black",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.138748/adorn-braided-strap-tank-black-manduka.jpeg",
-            "description": "This is a great shirt for doing yogi stuff."
-        },
-        {
-            "id": "35",
-            "category": "Meditation",
-            "name": "Meditation Cushion",
-            "price": "49.99",
-            "color": "Grey Melange",
-            "fabric": "Organic Cotton",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.140803/meditationskudde-ann-ringstrand-for-yogiraj-meditation-cushion-grey-melange.jpeg",
-            "description": "You will surely enjoy this nice cushion"
-        },
-        {
-            "id": "36",
-            "category": "Meditation",
-            "name": "Essential Oil - Jasmine & Cypress",
-            "price": "19.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157118/eterisk-olja-balance-roller-yogandha.jpeg",
-            "description": "This smells guuuud"
-        },
-        {
-            "id": "37",
-            "category": "Incense",
-            "name": "Lavender ",
-            "price": "5.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
-            "description": "This smells guuuud"
-        },
-        {
-            "id": "38",
-            "category": "Incense",
-            "name": "Sage",
-            "price": "5.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
-            "description": "This smells guuuud"
-        },
-        {
-            "id": "39",
             "category": "Incense",
             "name": "Chamomile",
-            "price": "5.99",
-            "imgUrl": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
-            "description": "This smells guuuud"
+            "fabric": "",
+            "colorProps": [
+                {
+                    "img": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
+                    "color": ""
+                }
+            ],
+            "sizeProps": [
+                {
+                    "size": "",
+                    "price": "5.99"
+                }
+            ],
+            "description": "This stuff smells good!"
         }
     ]
 }

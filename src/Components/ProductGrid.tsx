@@ -28,8 +28,8 @@ function ProductGrid(props: Props) {
             key={product.id}
             id={product.id}
             name={product.name}
-            imgUrl={product.imgUrl}
-            price={product.price}
+            imgUrl={product.colorProps[0].img}
+            price={product.sizeProps[0].price}
           />
         ))}
       </Grid>
