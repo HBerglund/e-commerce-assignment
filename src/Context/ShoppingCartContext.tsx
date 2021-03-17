@@ -1,6 +1,4 @@
-import { createContext, FC, useEffect, useState } from "react";
-import json from "../products";
-import Product from "../productTypes";
+import { createContext, FC, useState } from "react";
 
 export interface CartItem {
   amount: number;

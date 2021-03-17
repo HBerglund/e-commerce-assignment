@@ -3,8 +3,6 @@ import Hero from "../Components/Hero";
 import LatestSection from "../Components/LatestSection";
 import imageSources from "../assets/imageSources";
 import Footer from "../Components/Footer";
-import { useContext } from "react";
-import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 
 function Home() {
   return (

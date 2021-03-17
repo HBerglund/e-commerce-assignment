@@ -4,7 +4,6 @@ import {
   createStyles,
   IconButton,
   makeStyles,
-  Size,
   Typography,
   useMediaQuery,
   useTheme,
@@ -77,8 +76,6 @@ function ProductDetails() {
       : "https://images.unsplash.com/photo-1532630571098-79a3d222b00d",
     color: product ? product.colorProps[0].color : "",
   });
-
-  let prodArr: any = [];
 
   const selectedColor = (color: string) => {
     switch (color) {
