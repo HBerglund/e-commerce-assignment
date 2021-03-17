@@ -30,11 +30,9 @@ const useStyles = makeStyles(() =>
   })
 );
 
-function ShoppingCart() {
+function Cart() {
   const [numberOfItems, setNumberOfCartItems] = useState(0);
-
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-
   const classes = useStyles();
 
   useEffect(() => {
@@ -45,7 +43,7 @@ function ShoppingCart() {
   }, []);
 
   const handleShowSidebar = () => {
-    setSidebarIsOpen((prevState) => !prevState);
+    setSidebarIsOpen(true);
   };
 
   const handleExit = (isOpen: boolean) => {
@@ -86,4 +84,4 @@ function ShoppingCart() {
   }
 }
 
-export default ShoppingCart;
+export default Cart;

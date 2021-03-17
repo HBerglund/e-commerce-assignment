@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AppBar, Toolbar, Button, IconButton, Hidden } from "@material-ui/core";
 import Logo from "../assets/bhagwan-logo.svg";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
 import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
-import ShoppingCart from "./ShoppingCart";
+import Cart from "./Cart";
 
 const useStyles = makeStyles({
   root: {
@@ -36,7 +36,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar position='static' className={classes.root}>
+    <AppBar position="static" className={classes.root}>
       <Toolbar>
         <IconButton
           component={Link}
@@ -47,7 +47,7 @@ function NavBar() {
           }}
           onClick={() => handleActivePage("home")}
         >
-          <img src={Logo} style={logoStyle} alt='logo' />
+          <img src={Logo} style={logoStyle} alt="logo" />
         </IconButton>
         <div style={wrapperDiv}>
           <Hidden smDown>
@@ -95,15 +95,13 @@ function NavBar() {
               {checkOutNavItem.map(({ path, name }) => (
                 <IconButton
                   key={name}
-                  component={Link}
-                  to={path}
                   disableRipple
                   style={{
                     backgroundColor: "transparent",
                   }}
                   onClick={() => handleActivePage(name)}
                 >
-                  <ShoppingCart />
+                  <Cart />
                 </IconButton>
               ))}
             </div>

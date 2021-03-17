@@ -4,7 +4,6 @@ import {
   createStyles,
   IconButton,
   makeStyles,
-  Size,
   Typography,
   useMediaQuery,
   useTheme,
@@ -14,7 +13,8 @@ import { Link, useRouteMatch } from "react-router-dom";
 import json from "../products";
 import Product from "../productTypes";
 import Section from "../Components/Section";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
 
 interface Params {
   id: string;
@@ -58,6 +58,8 @@ function ProductDetails() {
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
 
+  const shoppingCart = useContext(ShoppingCartContext);
+
   const classes = useStyles();
 
   const products: Product[] = json.Sheet1;
@@ -67,15 +69,13 @@ function ProductDetails() {
   );
 
   const [selectedProps, setSelectedProps] = useState({
-    price: product ? product.sizeProps[0].price : null,
-    size: product ? product.sizeProps[0].size : null,
+    price: product ? product.sizeProps[0].price : "",
+    size: product ? product.sizeProps[0].size : "",
     img: product
       ? product.colorProps[0].img
       : "https://images.unsplash.com/photo-1532630571098-79a3d222b00d",
-    color: product ? product.colorProps[0].color : null,
+    color: product ? product.colorProps[0].color : "",
   });
-
-  let prodArr: any = [];
 
   const selectedColor = (color: string) => {
     switch (color) {
@@ -97,14 +97,17 @@ function ProductDetails() {
     }
   };
 
-  const handleButtonClick = () => {
+  const handleAddToCartClick = () => {
     if (product) {
-      const currentLS = localStorage.getItem("productsInCart");
-      if (currentLS) {
-        prodArr = JSON.parse(currentLS);
-      }
-      const newLS = [...prodArr, product.id];
-      localStorage.setItem("productsInCart", JSON.stringify(newLS));
+      const itemToAdd: CartItem = {
+        amount: 1,
+        id: product.id,
+        name: product.name,
+        color: selectedProps.color,
+        size: selectedProps.size,
+        price: selectedProps.price,
+      };
+      shoppingCart.addToCart(itemToAdd);
     }
   };
 
@@ -141,6 +144,7 @@ function ProductDetails() {
               </Typography>
               {product.sizeProps.map(({ size, price }) => (
                 <Button
+                  key={size}
                   style={{
                     border:
                       selectedProps.size === size ? "1px solid black" : "none",
@@ -161,6 +165,7 @@ function ProductDetails() {
               </Typography>
               {product.colorProps.map(({ img, color }) => (
                 <IconButton
+                  key={color}
                   style={{
                     border:
                       selectedProps.color === color
@@ -180,7 +185,7 @@ function ProductDetails() {
                 />
               ))}
             </Box>
-            <Button onClick={handleButtonClick} variant="outlined">
+            <Button onClick={handleAddToCartClick} variant="outlined">
               Add to cart
             </Button>
           </Box>

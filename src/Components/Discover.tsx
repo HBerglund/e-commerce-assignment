@@ -14,8 +14,6 @@ function Discover() {
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
-  const matchesXs = useMediaQuery(theme.breakpoints.up("xs"));
-  const matchesXsDown = useMediaQuery(theme.breakpoints.down("xs"));
 
   const useStyles = makeStyles(() =>
     createStyles({
