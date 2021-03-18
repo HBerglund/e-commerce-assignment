@@ -93,23 +93,21 @@ function Contact() {
             </Typography>
           </Box>
           <Box className={classes.form}>
-            <FormControl>
-              <InputLabel htmlFor='my-input'>Name</InputLabel>
-              <Input id='my-input' aria-describedby='my-helper-text' />
+            <FormControl margin='normal'>
+              <InputLabel>Name</InputLabel>
+              <Input />
             </FormControl>
-            <FormControl>
-              <InputLabel htmlFor='my-input'>Last Name</InputLabel>
-              <Input id='my-input' aria-describedby='my-helper-text' />
+            <FormControl margin='normal'>
+              <InputLabel>Last Name</InputLabel>
+              <Input />
             </FormControl>
-            <FormControl>
-              <InputLabel htmlFor='my-input'>Email address</InputLabel>
-              <Input id='my-input' aria-describedby='my-helper-text' />
-              <FormHelperText id='my-helper-text'>
-                We'll never share your email.
-              </FormHelperText>
+            <FormControl margin='normal'>
+              <InputLabel>Email address</InputLabel>
+              <Input />
+              <FormHelperText>We'll never share your email.</FormHelperText>
             </FormControl>
 
-            <FormControl>
+            <FormControl margin='normal'>
               <TextField
                 id='filled-multiline-static'
                 label='Message'
