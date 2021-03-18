@@ -100,14 +100,33 @@ function ProductDetails() {
   const handleAddToCartClick = () => {
     if (product) {
       const itemToAdd: CartItem = {
-        amount: 1,
+        quantity: 1,
         id: product.id,
         name: product.name,
         color: selectedProps.color,
         size: selectedProps.size,
         price: selectedProps.price,
       };
+
+      const { cart } = shoppingCart;
+
+      const foundIndex = cart.findIndex(
+        (p) =>
+          p.id === itemToAdd.id &&
+          p.color === itemToAdd.color &&
+          p.size === itemToAdd.size
+      );
+
+      if (foundIndex !== -1) {
+        cart[foundIndex].quantity += 1;
+        const localStorageCart = [...cart];
+        localStorage.setItem("cart", JSON.stringify(localStorageCart));
+        return;
+      }
+
       shoppingCart.addToCart(itemToAdd);
+      const localStorageCart = [...shoppingCart.cart, itemToAdd];
+      localStorage.setItem("cart", JSON.stringify(localStorageCart));
     }
   };
 
