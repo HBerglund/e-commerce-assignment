@@ -10,21 +10,23 @@ import Checkout from "./Checkout";
 import Faq from "./Faq";
 import NavBar from "../Components/NavBar";
 import ProductDetails from "./ProductDetails";
+import Contact from "./Contact";
 
 function Router() {
   return (
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/products" exact component={Products} />
-        <Route path="/products/:id" component={ProductDetails} />
-        <Route path="/women" component={Women} />
-        <Route path="/men" component={Men} />
-        <Route path="/about" component={About} />
-        <Route path="/privacy" component={Privacy} />
-        <Route path="/faq" component={Faq} />
-        <Route path="/checkout" component={Checkout} />
+        <Route path='/' exact component={Home} />
+        <Route path='/products' exact component={Products} />
+        <Route path='/products/:id' component={ProductDetails} />
+        <Route path='/women' component={Women} />
+        <Route path='/men' component={Men} />
+        <Route path='/about' component={About} />
+        <Route path='/privacy' component={Privacy} />
+        <Route path='/faq' component={Faq} />
+        <Route path='/contact' component={Contact} />
+        <Route path='/checkout' component={Checkout} />
       </Switch>
     </BrowserRouter>
   );
