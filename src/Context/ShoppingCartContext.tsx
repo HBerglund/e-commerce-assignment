@@ -1,7 +1,7 @@
 import { createContext, FC, useState, useEffect } from "react";
 
 export interface CartItem {
-  amount: number;
+  quantity: number;
   id: string;
   name: string;
   color?: string;
@@ -36,7 +36,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
 
   const addToCart = (item: CartItem) => {
     const cartItem = {
-      amount: item.amount,
+      quantity: item.quantity,
       id: item.id,
       name: item.name,
       color: item.color,
