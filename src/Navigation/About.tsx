@@ -10,7 +10,6 @@ import Footer from "../Components/Footer";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-import Slider from "react-slick";
 import json from "../products";
 import Product from "../productTypes";
 import ProductGrid from "../Components/ProductGrid";
@@ -30,8 +29,6 @@ const getProducts = (
 };
 
 const firstProducts = getProducts(products, 0, 3);
-const secondProducts = getProducts(products, 2, 4);
-const thirdProducts = getProducts(products, 4, 6);
 
 function About() {
   const theme = useTheme();
@@ -69,19 +66,6 @@ function About() {
       },
     })
   );
-
-  const sliderSettings = {
-    pauseOnHover: true,
-    adaptiveHeight: true,
-    autoplay: true,
-    centerMode: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-    speed: 500,
-    infinite: true,
-    slidesToScroll: 1,
-    slidesToShow: 1,
-  };
 
   const classes = useStyles();
 
