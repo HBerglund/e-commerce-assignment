@@ -7,6 +7,7 @@ export interface CartItem {
   color?: string;
   size?: string;
   price: string;
+  image: string;
 }
 
 interface ShoppingCartValue {
@@ -42,6 +43,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
       color: item.color,
       size: item.size,
       price: item.price,
+      image: item.image,
     };
 
     const updatedCart = [...cart, cartItem];
