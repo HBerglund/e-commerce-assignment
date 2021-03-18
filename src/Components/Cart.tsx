@@ -1,12 +1,7 @@
-import {
-  createStyles,
-  IconButton,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import { createStyles, IconButton, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CheckoutDrawer from "./CheckoutDrawer";
 
 const useStyles = makeStyles(() =>
@@ -31,16 +26,8 @@ const useStyles = makeStyles(() =>
 );
 
 function Cart() {
-  const [numberOfItems, setNumberOfCartItems] = useState(0);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const classes = useStyles();
-
-  useEffect(() => {
-    const cartLS = localStorage.getItem("productsInCart");
-    if (cartLS) {
-      setNumberOfCartItems(JSON.parse(cartLS).length);
-    }
-  }, []);
 
   const handleShowSidebar = () => {
     setSidebarIsOpen(true);
@@ -50,38 +37,37 @@ function Cart() {
     setSidebarIsOpen(isOpen);
   };
 
-  if (numberOfItems > 0) {
-    return (
-      <div className={classes.root}>
-        <Typography className={classes.productNumber}>
-          {numberOfItems}
-        </Typography>
-        <IconButton
-          component={Link}
-          to="/checkout"
-          disableRipple
-          onClick={handleShowSidebar}
-        >
-          <ShoppingCartIcon />
-        </IconButton>
-        <CheckoutDrawer isOpen={sidebarIsOpen} handleExit={handleExit} />
-      </div>
-    );
-  } else {
-    return (
-      <div className={classes.root}>
-        <IconButton
-          component={Link}
-          to="/checkout"
-          disableRipple
-          onClick={handleShowSidebar}
-        >
-          <ShoppingCartIcon />
-        </IconButton>
-        <CheckoutDrawer isOpen={sidebarIsOpen} handleExit={handleExit} />
-      </div>
-    );
-  }
+  // if (numberOfItems > 0) {
+  //   return (
+  //     <div className={classes.root}>
+  //       <Typography className={classes.productNumber}>
+  //         {numberOfItems}
+  //       </Typography>
+  //       <IconButton
+  //         component={Link}
+  //         to="/checkout"
+  //         disableRipple
+  //         onClick={handleShowSidebar}
+  //       >
+  //         <ShoppingCartIcon />
+  //       </IconButton>
+  //       <CheckoutDrawer isOpen={sidebarIsOpen} handleExit={handleExit} />
+  //     </div>
+  //   );
+  // } else {
+  return (
+    <div className={classes.root}>
+      <IconButton
+        component={Link}
+        to="/checkout"
+        disableRipple
+        onClick={handleShowSidebar}
+      >
+        <ShoppingCartIcon />
+      </IconButton>
+      <CheckoutDrawer isOpen={sidebarIsOpen} handleExit={handleExit} />
+    </div>
+  );
 }
 
 export default Cart;

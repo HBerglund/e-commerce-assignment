@@ -108,6 +108,8 @@ function ProductDetails() {
         price: selectedProps.price,
       };
       shoppingCart.addToCart(itemToAdd);
+      const localStorageCart = [...shoppingCart.cart, itemToAdd];
+      localStorage.setItem("cart", JSON.stringify(localStorageCart));
     }
   };
 

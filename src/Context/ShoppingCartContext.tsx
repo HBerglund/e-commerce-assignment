@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useState, useEffect } from "react";
 
 export interface CartItem {
   amount: number;
@@ -21,6 +21,18 @@ export const ShoppingCartContext = createContext<ShoppingCartValue>({
 
 const ShoppingCartProvider: FC<{}> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  console.log(cart);
+
+  useEffect(() => {
+    let currentCart: any = localStorage.getItem("cart");
+    if (currentCart) {
+      currentCart = JSON.parse(currentCart);
+    } else {
+      currentCart = cart;
+    }
+    setCart(currentCart);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const addToCart = (item: CartItem) => {
     const cartItem = {

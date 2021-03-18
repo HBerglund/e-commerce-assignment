@@ -9,9 +9,9 @@ const products: Product[] = json.Sheet1;
 const latest = products.filter(
   (product: Product) =>
     product.id === "1" ||
-    product.id === "17" ||
-    product.id === "33" ||
-    product.id === "35"
+    product.id === "2" ||
+    product.id === "5" ||
+    product.id === "7"
 );
 
 function LatestSection() {
