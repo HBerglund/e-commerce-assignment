@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 import SideBarCartItem from "./SideBarCartItem";
-import CartItem from "../Context/ShoppingCartContext";
 import { useContext } from "react";
 
 interface Props {
@@ -49,14 +48,14 @@ function CheckoutDrawer(props: Props) {
   return (
     <div>
       <Drawer
-        anchor="right"
+        anchor='right'
         open={props.isOpen}
         classes={{ paper: classes.paper }}
       >
         <div className={classes.root}>
           {/* Lägg i ett paper */}
           <div className={classes.header}>
-            <Typography variant="h5">Your cart</Typography>
+            <Typography variant='h5'>Your cart</Typography>
             <IconButton onClick={handleDrawerExit}>
               <CloseIcon />
             </IconButton>
@@ -76,7 +75,7 @@ function CheckoutDrawer(props: Props) {
             ))}
           </div>
           <div className={classes.buttonsWrapper}>
-            <Button onClick={handleDrawerExit} component={Link} to="/checkout">
+            <Button onClick={handleDrawerExit} component={Link} to='/checkout'>
               Checkout
             </Button>
           </div>
