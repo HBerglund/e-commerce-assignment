@@ -28,6 +28,10 @@ export const routes: { name: string; path: string }[] = [
     path: "/faq",
   },
   {
+    name: "Contact",
+    path: "/contact",
+  },
+  {
     name: "Checkout",
     path: "/checkout",
   },
