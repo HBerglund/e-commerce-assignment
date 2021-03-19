@@ -6,7 +6,6 @@ import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
 import { Button } from "@material-ui/core";
 import { useState } from "react";
-import Footer from "../Components/Footer";
 
 let products: Product[] = json.Sheet1;
 let filteredProducts = products;
@@ -34,8 +33,8 @@ function Products() {
   return (
     <div>
       <Hero
-        label="Bhagwan Yoga"
-        title="Explore our products"
+        label='Bhagwan Yoga'
+        title='Explore our products'
         bgImg={imageSources.productsPageHero}
         center
       />
@@ -59,7 +58,6 @@ function Products() {
         ))}
         <ProductGrid products={filteredProducts} />
       </Section>
-      <Footer />
     </div>
   );
 }

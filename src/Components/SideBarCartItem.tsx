@@ -1,4 +1,3 @@
-import classes from "*.module.css";
 import {
   Button,
   createStyles,
@@ -6,8 +5,6 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import React, { useContext } from "react";
-import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 
 interface Props {
   quantity: number;
@@ -47,11 +44,11 @@ function SideBarCartItem(props: Props) {
           <img
             className={classes.productImg}
             src={props.image}
-            alt="product image"
+            alt={props.name}
           />
         </div>
         <div className={classes.productInfo}>
-          <Typography variant="h6">{props.name}</Typography>
+          <Typography variant='h6'>{props.name}</Typography>
           <Typography>{props.color}</Typography>
           <Typography>{props.size}</Typography>
           <Typography>Quantity: {props.quantity}</Typography>

@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import Section from "./Section";
 import imageSources from "../assets/imageSources";
+import { Link } from "react-router-dom";
 
 function Discover() {
   const theme = useTheme();
@@ -72,21 +73,24 @@ function Discover() {
     <Section>
       <div className={classes.topDiv}>
         <Box mb={2}>
-          <Typography variant="h3" component="h2" gutterBottom>
+          <Typography variant='h3' component='h2' gutterBottom>
             Discover our products
           </Typography>
-          <Button variant="outlined">Read More</Button>
+
+          <Button component={Link} to='/about' variant='outlined'>
+            Read More
+          </Button>
         </Box>
-        <img className={classes.img1} alt="" src={imageSources.discover1} />
+        <img className={classes.img1} alt='' src={imageSources.discover1} />
       </div>
       <div className={classes.bottomDiv}>
         <div className={classes.imgsDiv} style={{ display: "flex" }}>
-          <img className={classes.img2} alt="" src={imageSources.discover2} />
-          <img className={classes.img3} alt="" src={imageSources.discover3} />
+          <img className={classes.img2} alt='' src={imageSources.discover2} />
+          <img className={classes.img3} alt='' src={imageSources.discover3} />
         </div>
         <Box>
           <div className={classes.quote}>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant='body1' gutterBottom>
               "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Praesentium ad aut nihil enim amet optio commodi, quis corrupti
               omnis dicta!"
