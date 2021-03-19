@@ -59,6 +59,7 @@ function ProductDetails() {
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
 
   const shoppingCart = useContext(ShoppingCartContext);
+  console.log(shoppingCart);
 
   const classes = useStyles();
 
@@ -106,6 +107,7 @@ function ProductDetails() {
         color: selectedProps.color,
         size: selectedProps.size,
         price: selectedProps.price,
+        image: selectedProps.img,
       };
 
       const { cart } = shoppingCart;
