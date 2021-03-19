@@ -59,8 +59,7 @@ function NavButton(props: Props) {
       <div
         className={classes.bottomLine}
         style={{
-          opacity: activePage === name ? 1 : 0.5,
-          width: activePage === name || isHovered === name ? "98%" : "0%",
+          width: activePage === name || isHovered === name ? "99%" : "0%",
           backgroundColor:
             activePage === name || isHovered === name ? "black" : "transparent",
         }}
