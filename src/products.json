@@ -211,7 +211,7 @@
             ],
             "sizeProps": [
                 {
-                    "size": "",
+                    "size": "10ml",
                     "price": "19.99"
                 }
            
@@ -226,12 +226,12 @@
             "colorProps": [
                 {
                     "img": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
-                    "color": ""
+                    "color": "No color"
                 }
             ],
             "sizeProps": [
                 {
-                    "size": "",
+                    "size": "15g",
                     "price": "5.99"
                 }
             ],
@@ -245,12 +245,12 @@
             "colorProps": [
                 {
                     "img": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
-                    "color": ""
+                    "color": "No color"
                 }
             ],
             "sizeProps": [
                 {
-                    "size": "",
+                    "size": "15g",
                     "price": "5.99"
                 }
             ],
@@ -264,12 +264,12 @@
             "colorProps": [
                 {
                     "img": "https://www.yogagrossisten.se/images/2.157908/rokelse-nag-champa-satya-sai-baba.jpeg",
-                    "color": ""
+                    "color": "No color"
                 }
             ],
             "sizeProps": [
                 {
-                    "size": "",
+                    "size": "15g",
                     "price": "5.99"
                 }
             ],

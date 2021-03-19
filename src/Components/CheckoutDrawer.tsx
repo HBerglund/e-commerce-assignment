@@ -27,8 +27,9 @@ const useStyles = makeStyles({
   paper: {
     width: "40%",
   },
-  titleWrapper: {
+  header: {
     display: "flex",
+    position: "fixed",
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -53,7 +54,8 @@ function CheckoutDrawer(props: Props) {
         classes={{ paper: classes.paper }}
       >
         <div className={classes.root}>
-          <div className={classes.titleWrapper}>
+          {/* Lägg i ett paper */}
+          <div className={classes.header}>
             <Typography variant="h5">Your cart</Typography>
             <IconButton onClick={handleDrawerExit}>
               <CloseIcon />
@@ -77,7 +79,6 @@ function CheckoutDrawer(props: Props) {
             <Button onClick={handleDrawerExit} component={Link} to="/checkout">
               Checkout
             </Button>
-            <Button onClick={handleDrawerExit}>Exit</Button>
           </div>
         </div>
       </Drawer>
