@@ -74,22 +74,22 @@ function Contact() {
               Email
             </Typography>
             <Typography variant='h6' component='h4' gutterBottom>
-              support@bhagwan.com
+              contact@bhagwan.com
             </Typography>
             <Typography variant='h5' component='h2'>
               Phone
             </Typography>
             <Typography variant='h6' component='h4' gutterBottom>
-              +46 701 111 222
+              111 222 333
             </Typography>
             <Typography variant='h5' component='h2'>
               Social
             </Typography>
             <Typography variant='h6' component='h4'>
-              <Facebook />
-              <Twitter />
-              <LinkedIn />
-              <Instagram />
+              <Facebook fontSize='large' />
+              <Twitter fontSize='large' />
+              <LinkedIn fontSize='large' />
+              <Instagram fontSize='large' />
             </Typography>
           </Box>
           <Box className={classes.form}>
@@ -119,11 +119,7 @@ function Contact() {
                 rows={4}
                 variant='filled'
               />
-              <Button
-                color='secondary'
-                className={classes.button}
-                variant='outlined'
-              >
+              <Button className={classes.button} variant='outlined'>
                 Send
               </Button>
             </FormControl>
