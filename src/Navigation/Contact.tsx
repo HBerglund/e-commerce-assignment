@@ -1,13 +1,9 @@
-import React from "react";
 import {
   Box,
   Button,
   createStyles,
   FormControl,
   FormHelperText,
-  Icon,
-  Input,
-  InputLabel,
   makeStyles,
   TextField,
   Typography,
@@ -23,21 +19,25 @@ import { Facebook, Instagram, LinkedIn, Twitter } from "@material-ui/icons";
 function Contact() {
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
-  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
 
   const useStyles = makeStyles(() =>
     createStyles({
       root: {
         width: "100%",
         display: "flex",
+        flexDirection: matchesMd ? "row" : "column-reverse",
       },
       address: {
-        width: "40%",
-      },
-      form: {
-        width: "60%",
+        width: matchesMd ? "40%" : "100%",
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center",
+      },
+      form: {
+        width: matchesMd ? "60%" : "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
       },
       button: {
         maxWidth: "8rem",
@@ -94,28 +94,36 @@ function Contact() {
           </Box>
           <Box className={classes.form}>
             <FormControl margin='normal'>
-              <InputLabel>Name</InputLabel>
-              <Input />
+              <TextField label='Name' color='secondary'>
+                Name
+              </TextField>
             </FormControl>
             <FormControl margin='normal'>
-              <InputLabel>Last Name</InputLabel>
-              <Input />
+              <TextField label='Last Name' color='secondary'>
+                Last Name
+              </TextField>
             </FormControl>
             <FormControl margin='normal'>
-              <InputLabel>Email address</InputLabel>
-              <Input />
+              <TextField label='Email' color='secondary'>
+                Email
+              </TextField>
               <FormHelperText>We'll never share your email.</FormHelperText>
             </FormControl>
 
             <FormControl margin='normal'>
               <TextField
+                color='secondary'
                 id='filled-multiline-static'
                 label='Message'
                 multiline
                 rows={4}
                 variant='filled'
               />
-              <Button className={classes.button} variant='outlined'>
+              <Button
+                color='secondary'
+                className={classes.button}
+                variant='outlined'
+              >
                 Send
               </Button>
             </FormControl>
