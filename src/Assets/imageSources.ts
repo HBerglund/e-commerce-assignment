@@ -12,6 +12,10 @@ const imageSources = {
   discover2: "https://images.unsplash.com/photo-1489659639091-8b687bc4386e",
   discover3: "https://images.unsplash.com/photo-1594056113573-f8faae5ac78e",
 
+  aboutHero:
+    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1",
+  yogaGirl: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3",
+  mats: "https://images.unsplash.com/photo-1592432678016-e910b452f9a2",
 };
 
 export default imageSources;

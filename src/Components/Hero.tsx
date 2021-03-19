@@ -33,7 +33,7 @@ function Hero(props: Props) {
       heading: {
         color: "white",
         fontWeight: "bold",
-        width: "100%",
+        maxWidth: "800px",
       },
       label: {
         color: "white",
