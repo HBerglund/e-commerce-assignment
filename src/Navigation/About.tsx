@@ -75,6 +75,7 @@ function About() {
         bgImg={imageSources.aboutHero}
         label="About us"
         title="Our passion is yoga"
+        lessHeight
       ></Hero>
       <Section>
         <Box className={classes.alternatingContainer}>
