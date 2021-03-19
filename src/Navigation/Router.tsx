@@ -11,6 +11,7 @@ import Faq from "./Faq";
 import NavBar from "../Components/NavBar";
 import ProductDetails from "./ProductDetails";
 import Contact from "./Contact";
+import Footer from "../Components/Footer";
 
 function Router() {
   return (
@@ -28,6 +29,7 @@ function Router() {
         <Route path='/contact' component={Contact} />
         <Route path='/checkout' component={Checkout} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

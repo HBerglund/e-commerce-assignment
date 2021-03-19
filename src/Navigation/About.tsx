@@ -6,7 +6,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
-import Footer from "../Components/Footer";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
@@ -73,8 +72,8 @@ function About() {
     <div className={classes.root}>
       <Hero
         bgImg={imageSources.aboutHero}
-        label="About us"
-        title="Our passion is yoga"
+        label='About us'
+        title='Our passion is yoga'
         lessHeight
       ></Hero>
       <Section>
@@ -82,13 +81,13 @@ function About() {
           <img
             className={classes.alternatingImg}
             src={imageSources.yogaGirl}
-            alt="Yoga girl"
+            alt='Yoga girl'
           />
           <Box className={classes.alternatingContent}>
-            <Typography gutterBottom variant="h4" component="h3">
+            <Typography gutterBottom variant='h4' component='h3'>
               High quality and always organic
             </Typography>
-            <Typography variant="body1" component="p">
+            <Typography variant='body1' component='p'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -102,14 +101,14 @@ function About() {
           <img
             className={classes.alternatingImg}
             src={imageSources.mats}
-            alt="Yoga girl"
+            alt='Yoga girl'
           />
 
           <Box className={classes.alternatingContent}>
-            <Typography gutterBottom variant="h4" component="h3">
+            <Typography gutterBottom variant='h4' component='h3'>
               High quality and always organic
             </Typography>
-            <Typography variant="body1" component="p" gutterBottom>
+            <Typography variant='body1' component='p' gutterBottom>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -122,13 +121,12 @@ function About() {
       </Section>
       <Box className={classes.carouselSection}>
         <Section>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant='h3' gutterBottom>
             Discover Our Yoga Essentials
           </Typography>
           <ProductGrid products={firstProducts} />
         </Section>
       </Box>
-      <Footer />
     </div>
   );
 }

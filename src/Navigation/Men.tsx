@@ -4,7 +4,6 @@ import Product from "../productTypes";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-import Footer from "../Components/Footer";
 
 let products: Product[] = json.Sheet1;
 
@@ -16,7 +15,7 @@ function MensProducts() {
   return (
     <div>
       <Hero
-        label="Bhagwan Yoga"
+        label='Bhagwan Yoga'
         title={`Men's clothing`}
         bgImg={imageSources.mensPageHero}
         center
@@ -24,7 +23,6 @@ function MensProducts() {
       <Section>
         <ProductGrid products={mensProducts} />
       </Section>
-      <Footer />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { createStyles, makeStyles, Typography } from "@material-ui/core";
-import Footer from "../Components/Footer";
 import Section from "../Components/Section";
 import faqQuestions from "../faqQuestions";
 import FaqQuestion from "../Components/FaqQuestion";
@@ -31,7 +30,6 @@ function Faq() {
           <FaqQuestion id={id} question={question} answer={answer} />
         ))}
       </Section>
-      <Footer />
     </div>
   );
 }

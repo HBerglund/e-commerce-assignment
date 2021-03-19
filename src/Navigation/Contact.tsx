@@ -10,7 +10,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
-import Footer from "../Components/Footer";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
@@ -126,7 +125,6 @@ function Contact() {
           </Box>
         </div>
       </Section>
-      <Footer />
     </div>
   );
 }
