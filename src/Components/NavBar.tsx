@@ -1,24 +1,38 @@
 import { useState } from "react";
-import { AppBar, Toolbar, Button, IconButton, Hidden } from "@material-ui/core";
-import Logo from "../assets/bhagwan-logo.svg";
-import { CSSProperties, makeStyles } from "@material-ui/styles";
+import { AppBar, Toolbar, IconButton, Hidden } from "@material-ui/core";
+import Logo from "../assets/bhagwanlogo3.svg";
+import { makeStyles } from "@material-ui/styles";
 import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import CartButton from "./CartButton";
+import NavButton from "./NavButton";
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: "white",
-    textColor: "black",
     boxShadow: "none",
+  },
+  logo: {
+    height: "70px",
+    margin: "0.5rem 2rem 0.5rem 0.5rem",
+  },
+  navWrapper: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "5px",
+  },
+  buttonWrapper: {
+    margin: "0.5rem 2rem 0 0",
+    display: "flex",
+    alignItems: "center",
   },
 });
 
 function NavBar() {
   const [activePage, setActivePage] = useState("");
-  const [isHovered, setIsHovered] = useState("");
-
   const classes = useStyles();
   const firstNavItems = routes.slice(1, 4);
   const lastNavItems = routes.slice(4, routes.length - 1);
@@ -28,15 +42,8 @@ function NavBar() {
     setActivePage(name);
   };
 
-  const handleHover = (name: string) => {
-    setIsHovered(name);
-  };
-  const handleHoverLeave = (name: string) => {
-    setIsHovered("");
-  };
-
   return (
-    <AppBar position='static' className={classes.root}>
+    <AppBar position="static" className={classes.root}>
       <Toolbar>
         <IconButton
           component={Link}
@@ -47,50 +54,28 @@ function NavBar() {
           }}
           onClick={() => handleActivePage("home")}
         >
-          <img src={Logo} style={logoStyle} alt='logo' />
+          <img className={classes.logo} src={Logo} alt="logo" />
         </IconButton>
-        <div style={wrapperDiv}>
+        <div className={classes.navWrapper}>
           <Hidden smDown>
-            <div>
+            <div className={classes.buttonWrapper}>
               {firstNavItems.map(({ name, path }) => (
-                <Button
-                  key={name}
-                  component={Link}
-                  to={path}
-                  disableRipple
-                  style={{
-                    backgroundColor: "transparent",
-                    borderBottom:
-                      activePage === name ? "1px solid black" : "none",
-                    fontWeight: isHovered === name ? "bold" : "unset",
-                  }}
-                  onMouseEnter={() => handleHover(name)}
-                  onMouseLeave={() => handleHoverLeave(name)}
-                  onClick={() => handleActivePage(name)}
-                >
-                  {name}
-                </Button>
+                <NavButton
+                  name={name}
+                  path={path}
+                  activePage={activePage}
+                  onActivePageClick={handleActivePage}
+                />
               ))}
             </div>
-            <div style={{ display: "flex" }}>
+            <div className={classes.buttonWrapper}>
               {lastNavItems.map(({ name, path }) => (
-                <Button
-                  key={name}
-                  component={Link}
-                  to={path}
-                  disableRipple
-                  style={{
-                    backgroundColor: "transparent",
-                    borderBottom:
-                      activePage === name ? "1px solid black" : "none",
-                    fontWeight: isHovered === name ? "bold" : "unset",
-                  }}
-                  onMouseEnter={() => handleHover(name)}
-                  onMouseLeave={() => handleHoverLeave(name)}
-                  onClick={() => handleActivePage(name)}
-                >
-                  {name}
-                </Button>
+                <NavButton
+                  name={name}
+                  path={path}
+                  activePage={activePage}
+                  onActivePageClick={handleActivePage}
+                />
               ))}
               {checkOutNavItem.map(({ path, name }) => (
                 <IconButton
@@ -98,6 +83,7 @@ function NavBar() {
                   disableRipple
                   style={{
                     backgroundColor: "transparent",
+                    marginBottom: "0.5rem",
                   }}
                   onClick={() => handleActivePage(name)}
                 >
@@ -116,15 +102,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-const logoStyle: CSSProperties = {
-  width: "6rem",
-  marginRight: "2rem",
-};
-
-const wrapperDiv: CSSProperties = {
-  width: "100%",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
