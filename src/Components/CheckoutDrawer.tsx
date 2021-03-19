@@ -1,6 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { Divider, Drawer, IconButton, Typography } from "@material-ui/core";
+import {
+  Divider,
+  Drawer,
+  IconButton,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
@@ -17,7 +23,7 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     textColor: "black",
     boxShadow: "none",
-    margin: "1rem",
+    margin: "5rem 1rem 1rem 1rem",
   },
   buttonsWrapper: {
     display: "flex",
@@ -27,17 +33,18 @@ const useStyles = makeStyles({
     width: "40%",
   },
   header: {
-    display: "flex",
+    width: "40%",
     position: "fixed",
-    justifyContent: "space-between",
+    display: "flex",
     alignItems: "center",
+    justifyContent: "space-between",
+    padding: "1rem",
   },
 });
 
 function CheckoutDrawer(props: Props) {
   const shoppingCart = useContext(ShoppingCartContext);
   const { cart } = shoppingCart;
-  console.log(shoppingCart);
 
   const classes = useStyles();
 
@@ -52,14 +59,13 @@ function CheckoutDrawer(props: Props) {
         open={props.isOpen}
         classes={{ paper: classes.paper }}
       >
+        <Paper className={classes.header}>
+          <Typography variant='h5'>Your cart</Typography>
+          <IconButton onClick={handleDrawerExit}>
+            <CloseIcon />
+          </IconButton>
+        </Paper>
         <div className={classes.root}>
-          {/* Lägg i ett paper */}
-          <div className={classes.header}>
-            <Typography variant='h5'>Your cart</Typography>
-            <IconButton onClick={handleDrawerExit}>
-              <CloseIcon />
-            </IconButton>
-          </div>
           <Divider />
           <div>
             {cart.map(({ color, id, name, price, quantity, size, image }) => (

@@ -76,9 +76,10 @@ function Discover() {
           <Typography variant='h3' component='h2' gutterBottom>
             Discover our products
           </Typography>
-          <Link to='/about'>
-            <Button variant='outlined'>Read More</Button>
-          </Link>
+
+          <Button component={Link} to='/about' variant='outlined'>
+            Read More
+          </Button>
         </Box>
         <img className={classes.img1} alt='' src={imageSources.discover1} />
       </div>
