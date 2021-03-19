@@ -9,10 +9,8 @@ interface Props {
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      flexGrow: 1,
-    },
-    img: {
-      height: "350px",
+      width: "100%",
+      flex: 1,
     },
   })
 );
@@ -22,7 +20,7 @@ function ProductGrid(props: Props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={4}>
+      <Grid justify="center" container spacing={4}>
         {props.products.map((product: Product) => (
           <ProductCard
             key={product.id}
