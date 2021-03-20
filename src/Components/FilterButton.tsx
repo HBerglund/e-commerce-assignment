@@ -1,4 +1,4 @@
-import { Button, createStyles, makeStyles, useTheme } from "@material-ui/core";
+import { Button, createStyles, makeStyles } from "@material-ui/core";
 import { useState } from "react";
 
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
 function FilterButton(props: Props) {
   const [isHovered, setIsHovered] = useState("");
 
-  const theme = useTheme();
   const useStyles = makeStyles(() =>
     createStyles({
       root: { padding: "0 1rem" },
