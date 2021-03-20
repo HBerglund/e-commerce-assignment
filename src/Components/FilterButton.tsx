@@ -1,17 +1,16 @@
-import { Button, createStyles, makeStyles } from "@material-ui/core";
+import { Button, createStyles, makeStyles, useTheme } from "@material-ui/core";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 interface Props {
-  name: string;
-  path: string;
+  category: string;
   activePage: string;
-  onActivePageClick: (name: string) => void;
+  onActiveCategoryClick: (category: string) => void;
 }
 
-function NavButton(props: Props) {
+function FilterButton(props: Props) {
   const [isHovered, setIsHovered] = useState("");
 
+  const theme = useTheme();
   const useStyles = makeStyles(() =>
     createStyles({
       root: { padding: "0 1rem" },
@@ -24,27 +23,29 @@ function NavButton(props: Props) {
   );
 
   const classes = useStyles();
+  const { category, activePage } = props;
 
-  const handleActivePage = () => {
-    props.onActivePageClick(name);
+  const handleActiveCategory = () => {
+    props.onActiveCategoryClick(category);
   };
 
   const handleHover = () => {
-    setIsHovered(name);
+    setIsHovered(category);
   };
   const handleHoverLeave = () => {
     setIsHovered("");
   };
 
-  const { name, path, activePage } = props;
-
   return (
     <div className={classes.root}>
       <Button
-        key={name}
-        component={Link}
-        to={path}
+        key={category}
         disableRipple
+        color={
+          activePage === category || isHovered === category
+            ? "primary"
+            : "default"
+        }
         style={{
           backgroundColor: "transparent",
           padding: 0,
@@ -52,20 +53,13 @@ function NavButton(props: Props) {
         }}
         onMouseEnter={handleHover}
         onMouseLeave={handleHoverLeave}
-        onClick={handleActivePage}
+        onClick={handleActiveCategory}
       >
-        {name}
+        {category}
       </Button>
-      <div
-        className={classes.bottomLine}
-        style={{
-          width: activePage === name || isHovered === name ? "99%" : "0%",
-          backgroundColor:
-            activePage === name || isHovered === name ? "black" : "transparent",
-        }}
-      ></div>
+      <div className={classes.bottomLine}></div>
     </div>
   );
 }
 
-export default NavButton;
+export default FilterButton;

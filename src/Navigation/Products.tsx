@@ -4,8 +4,9 @@ import Product from "../productTypes";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-import { Button } from "@material-ui/core";
 import { useState } from "react";
+import FilterButton from "../Components/FilterButton";
+import { createStyles, makeStyles } from "@material-ui/core";
 
 let products: Product[] = json.Sheet1;
 let filteredProducts = products;
@@ -15,47 +16,54 @@ for (const product of products) {
 }
 const categories: string[] = [...new Set(catArr)];
 
-function Products() {
-  const [filterValue, setFilterValue] = useState("");
-  console.log(filterValue);
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {},
+    flexWrapper: {
+      display: "flex",
+      marginBottom: "1rem",
+    },
+  })
+);
 
-  const handleFilterClick = (id: string) => {
-    if (id) {
+function Products() {
+  const classes = useStyles();
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const handleActivePage = (category: string) => {
+    if (category !== "All") {
       filteredProducts = products.filter(
-        (product: Product) => product.category === id
+        (product: Product) => product.category === category
       );
     } else {
       filteredProducts = products;
     }
-    setFilterValue(id);
+    setActiveCategory(category);
   };
 
   return (
     <div>
       <Hero
-        label='Bhagwan Yoga'
-        title='Explore our products'
+        label="Bhagwan Yoga"
+        title="Explore our products"
         bgImg={imageSources.productsPageHero}
         center
       />
       <Section>
-        <Button
-          onClick={() => {
-            handleFilterClick("");
-          }}
-        >
-          All
-        </Button>
-        {categories.map((category) => (
-          <Button
-            key={category}
-            onClick={() => {
-              handleFilterClick(category);
-            }}
-          >
-            {category}
-          </Button>
-        ))}
+        <div className={classes.flexWrapper}>
+          <FilterButton
+            category="All"
+            activePage={activeCategory}
+            onActiveCategoryClick={handleActivePage}
+          />
+          {categories.map((category) => (
+            <FilterButton
+              category={category}
+              activePage={activeCategory}
+              onActiveCategoryClick={handleActivePage}
+            />
+          ))}
+        </div>
         <ProductGrid products={filteredProducts} />
       </Section>
     </div>
