@@ -20,7 +20,7 @@ function ProductGrid(props: Props) {
 
   return (
     <div className={classes.root}>
-      <Grid justify="center" container spacing={4}>
+      <Grid container spacing={4}>
         {props.products.map((product: Product) => (
           <ProductCard
             key={product.id}
