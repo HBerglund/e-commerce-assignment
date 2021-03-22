@@ -55,33 +55,30 @@ function CheckoutDrawer(props: Props) {
   return (
     <div>
       <Drawer
-        anchor='right'
+        anchor="right"
         open={props.isOpen}
         classes={{ paper: classes.paper }}
       >
         <Paper className={classes.header}>
-          <Typography variant='h5'>Your cart</Typography>
+          <Typography variant="h5">Your cart</Typography>
           <IconButton onClick={handleDrawerExit}>
             <CloseIcon />
           </IconButton>
         </Paper>
         <div className={classes.root}>
           <Divider />
-          <div>
-            {cart.map(({ color, id, name, price, quantity, size, image }) => (
-              <SideBarCartItem
-                color={color}
-                id={id}
-                name={name}
-                price={price}
-                quantity={quantity}
-                size={size}
-                image={image}
-              />
-            ))}
-          </div>
+          {cart.length > 0 ? (
+            <div>
+              {cart.map((item) => (
+                <SideBarCartItem item={item} />
+              ))}
+            </div>
+          ) : (
+            <div>No items in cart yet</div>
+          )}
+
           <div className={classes.buttonsWrapper}>
-            <Button onClick={handleDrawerExit} component={Link} to='/checkout'>
+            <Button onClick={handleDrawerExit} component={Link} to="/checkout">
               Checkout
             </Button>
           </div>
