@@ -1,8 +1,7 @@
-import { merge } from "lodash";
+import { cloneDeep, isEqual } from "lodash";
 import { createContext, FC, useState, useEffect } from "react";
 
-export interface CartItem {
-  quantity: number;
+interface CartProduct {
   id: string;
   name: string;
   color?: string;
@@ -11,14 +10,21 @@ export interface CartItem {
   image: string;
 }
 
+export interface CartItem {
+  quantity: number;
+  product: CartProduct;
+}
+
 interface ShoppingCartValue {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
+  removeFromCart: (item: CartItem) => void;
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartValue>({
   cart: [],
   addToCart: () => {},
+  removeFromCart: () => {},
 });
 
 const ShoppingCartProvider: FC<{}> = ({ children }) => {
@@ -31,20 +37,31 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
   }, [cart]);
 
   const addToCart = (item: CartItem) => {
-    const foundIndex = cart.findIndex(
-      (p) => p.id === item.id && p.color === item.color && p.size === item.size
+    const clonedCart = cloneDeep(cart);
+
+    const foundIndex = clonedCart.findIndex((p) =>
+      isEqual(p.product, item.product)
     );
 
     if (foundIndex !== -1) {
-      cart[foundIndex].quantity += 1;
-      const localStorageCart = [...cart];
-      localStorage.setItem("cart", JSON.stringify(localStorageCart));
+      clonedCart[foundIndex].quantity += 1;
+      setCart(clonedCart);
       return;
     }
 
-    const clonedCart = merge(item, cart);
+    const updatedCart = [...clonedCart, item];
+    setCart(updatedCart);
+  };
 
-    setCart(clonedCart);
+  const removeFromCart = (item: CartItem) => {
+    const clonedCart = cloneDeep(cart);
+    const foundIndex = clonedCart.findIndex((p) =>
+      isEqual(p.product, item.product)
+    );
+    const updatedCart = clonedCart.filter(
+      (p) => clonedCart.indexOf(p) !== foundIndex
+    );
+    setCart(updatedCart);
   };
 
   return (
@@ -52,6 +69,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
       value={{
         cart,
         addToCart,
+        removeFromCart,
       }}
     >
       {children}

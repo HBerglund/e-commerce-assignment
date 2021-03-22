@@ -5,15 +5,11 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import { useContext } from "react";
+import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
 
 interface Props {
-  quantity: number;
-  id: string;
-  name: string;
-  color?: string;
-  size?: string;
-  price: string;
-  image: string;
+  item: CartItem;
 }
 
 const useStyles = makeStyles(() =>
@@ -37,24 +33,28 @@ const useStyles = makeStyles(() =>
 
 function SideBarCartItem(props: Props) {
   const classes = useStyles();
+  const shoppingCart = useContext(ShoppingCartContext);
+
+  const handleRemoveItem = (cartItem: CartItem) => {
+    shoppingCart.removeFromCart(cartItem);
+  };
+
+  const { name, image, color, size } = props.item.product;
+
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
         <div>
-          <img
-            className={classes.productImg}
-            src={props.image}
-            alt={props.name}
-          />
+          <img className={classes.productImg} src={image} alt={name} />
         </div>
         <div className={classes.productInfo}>
-          <Typography variant='h6'>{props.name}</Typography>
-          <Typography>{props.color}</Typography>
-          <Typography>{props.size}</Typography>
-          <Typography>Quantity: {props.quantity}</Typography>
+          <Typography variant="h6">{name}</Typography>
+          <Typography>{color}</Typography>
+          <Typography>{size}</Typography>
+          <Typography>Quantity: {props.item.quantity}</Typography>
         </div>
       </div>
-      <Button>Remove item</Button>
+      <Button onClick={() => handleRemoveItem(props.item)}>Remove item</Button>
       <Divider />
     </div>
   );

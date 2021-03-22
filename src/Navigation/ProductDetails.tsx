@@ -59,7 +59,6 @@ function ProductDetails() {
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
 
   const shoppingCart = useContext(ShoppingCartContext);
-  console.log(shoppingCart);
 
   const classes = useStyles();
 
@@ -102,12 +101,14 @@ function ProductDetails() {
     if (product) {
       const itemToAdd: CartItem = {
         quantity: 1,
-        id: product.id,
-        name: product.name,
-        color: selectedProps.color,
-        size: selectedProps.size,
-        price: selectedProps.price,
-        image: selectedProps.img,
+        product: {
+          id: product.id,
+          name: product.name,
+          color: selectedProps.color,
+          size: selectedProps.size,
+          price: selectedProps.price,
+          image: selectedProps.img,
+        },
       };
 
       shoppingCart.addToCart(itemToAdd);
