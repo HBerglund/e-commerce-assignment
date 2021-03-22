@@ -35,4 +35,8 @@ export const routes: { name: string; path: string }[] = [
     name: "Checkout",
     path: "/checkout",
   },
+  {
+    name: "Admin",
+    path: "/admin",
+  },
 ];

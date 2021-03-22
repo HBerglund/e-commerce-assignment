@@ -12,6 +12,8 @@ import NavBar from "../Components/NavBar";
 import ProductDetails from "./ProductDetails";
 import Contact from "./Contact";
 import Footer from "../Components/Footer";
+import Admin from "./Admin";
+import SignIn from "./SignIn";
 
 function Router() {
   return (
@@ -28,6 +30,7 @@ function Router() {
         <Route path='/faq' component={Faq} />
         <Route path='/contact' component={Contact} />
         <Route path='/checkout' component={Checkout} />
+        <Route path='/admin' component={SignIn} />
       </Switch>
       <Footer />
     </BrowserRouter>
