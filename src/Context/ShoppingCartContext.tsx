@@ -1,3 +1,4 @@
+import { merge } from "lodash";
 import { createContext, FC, useState, useEffect } from "react";
 
 export interface CartItem {
@@ -21,34 +22,29 @@ export const ShoppingCartContext = createContext<ShoppingCartValue>({
 });
 
 const ShoppingCartProvider: FC<{}> = ({ children }) => {
-  const [cart, setCart] = useState<CartItem[]>([]);
-  console.log(cart);
+  const [cart, setCart] = useState<CartItem[]>(
+    JSON.parse(localStorage.getItem("cart") || "[]")
+  );
 
   useEffect(() => {
-    let currentCart: any = localStorage.getItem("cart");
-    if (currentCart) {
-      currentCart = JSON.parse(currentCart);
-    } else {
-      currentCart = cart;
-    }
-    setCart(currentCart);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (item: CartItem) => {
-    const cartItem = {
-      quantity: item.quantity,
-      id: item.id,
-      name: item.name,
-      color: item.color,
-      size: item.size,
-      price: item.price,
-      image: item.image,
-    };
+    const foundIndex = cart.findIndex(
+      (p) => p.id === item.id && p.color === item.color && p.size === item.size
+    );
 
-    const updatedCart = [...cart, cartItem];
+    if (foundIndex !== -1) {
+      cart[foundIndex].quantity += 1;
+      const localStorageCart = [...cart];
+      localStorage.setItem("cart", JSON.stringify(localStorageCart));
+      return;
+    }
 
-    setCart(updatedCart);
+    const clonedCart = merge(item, cart);
+
+    setCart(clonedCart);
   };
 
   return (
