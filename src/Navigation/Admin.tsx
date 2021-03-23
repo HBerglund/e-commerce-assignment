@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Section from "../Components/Section";
+import { ProductsContext, Product } from "../Context/ProductListContext";
+import AdminListItem from "../Components/AdminListItem";
 
 function Admin() {
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
   return (
     <Section>
-      <div>hej hej</div>
+      {products.map((product: Product) => (
+        <AdminListItem product={product} />
+      ))}
     </Section>
   );
 }
