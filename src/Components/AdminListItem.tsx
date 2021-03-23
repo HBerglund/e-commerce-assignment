@@ -41,7 +41,6 @@ function AdminListItem(props: Props) {
   const classes = useStyles();
 
   const productsContext = useContext(ProductsContext);
-  const products: Product[] = productsContext.list;
 
   const { product } = props;
   return (
