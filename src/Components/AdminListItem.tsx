@@ -92,6 +92,12 @@ function AdminListItem(props: Props) {
             <div className={classes.propItem}>
               <Typography variant='body1' gutterBottom>
                 {size}
+                <IconButton
+                  onClick={() => productsContext.deleteSize(product, size)}
+                  size='small'
+                >
+                  <DeleteIcon fontSize='small' />
+                </IconButton>
               </Typography>
               <Typography variant='body1' gutterBottom>
                 ${price}

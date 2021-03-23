@@ -16,12 +16,14 @@ interface ProductsValue {
   list: Product[];
   deleteProduct: (product: Product) => void;
   deleteColor: (product: Product, color: string) => void;
+  deleteSize: (product: Product, size: string) => void;
 }
 
 export const ProductsContext = createContext<ProductsValue>({
   list: [],
   deleteProduct: () => {},
   deleteColor: () => {},
+  deleteSize: () => {},
 });
 
 const getDefaultProducts = () => {
@@ -60,12 +62,24 @@ const ProductsProvider: FC<{}> = ({ children }) => {
     setList(clonedList);
   };
 
+  const deleteSize = (product: Product, size: string) => {
+    const clonedList = cloneDeep(list);
+    const productIndex = clonedList.findIndex((p) => isEqual(p, product));
+    const sizeIndex = clonedList[productIndex].sizeProps.findIndex(
+      (p) => p.size === size
+    );
+
+    clonedList[productIndex].sizeProps.splice(sizeIndex, 1);
+    setList(clonedList);
+  };
+
   return (
     <ProductsContext.Provider
       value={{
         list,
         deleteProduct,
         deleteColor,
+        deleteSize,
       }}
     >
       {children}
