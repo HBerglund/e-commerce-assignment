@@ -1,6 +1,6 @@
 import { Grid, makeStyles, createStyles } from "@material-ui/core";
 import ProductCard from "./ProductCard";
-import Product from "../productTypes";
+import { Product } from "../Context/ProductListContext";
 
 interface Props {
   products: Product[];

@@ -1,32 +1,32 @@
 import ProductGrid from "../Components/ProductGrid";
-import json from "../products";
-import Product from "../productTypes";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import FilterButton from "../Components/FilterButton";
 import { createStyles, makeStyles } from "@material-ui/core";
-
-let products: Product[] = json.Sheet1;
-let filteredProducts = products;
-let catArr: string[] = [];
-for (const product of products) {
-  catArr.push(product.category);
-}
-const categories: string[] = [...new Set(catArr)];
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {},
-    flexWrapper: {
-      display: "flex",
-      marginBottom: "1rem",
-    },
-  })
-);
+import { ProductsContext, Product } from "../Context/ProductListContext";
 
 function Products() {
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
+  let filteredProducts = products;
+  let catArr: string[] = [];
+  for (const product of products) {
+    catArr.push(product.category);
+  }
+  const categories: string[] = [...new Set(catArr)];
+
+  const useStyles = makeStyles(() =>
+    createStyles({
+      root: {},
+      flexWrapper: {
+        display: "flex",
+        marginBottom: "1rem",
+      },
+    })
+  );
   const classes = useStyles();
   const [activeCategory, setActiveCategory] = useState("All");
 

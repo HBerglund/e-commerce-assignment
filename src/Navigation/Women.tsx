@@ -1,13 +1,14 @@
 import ProductGrid from "../Components/ProductGrid";
-import json from "../products";
-import Product from "../productTypes";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-
-let products: Product[] = json.Sheet1;
+import { useContext } from "react";
+import { ProductsContext, Product } from "../Context/ProductListContext";
 
 function WomensProducts() {
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
   const womensProducts = products.filter(
     (product: Product) => product.category === "Womens clothing"
   );
@@ -15,7 +16,7 @@ function WomensProducts() {
   return (
     <div>
       <Hero
-        label='Bhagwan Yoga'
+        label="Bhagwan Yoga"
         title={`Women's clothing`}
         bgImg={imageSources.womensPageHero}
         center

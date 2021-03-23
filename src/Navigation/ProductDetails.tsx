@@ -10,11 +10,10 @@ import {
 } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Link, useRouteMatch } from "react-router-dom";
-import json from "../products";
-import Product from "../productTypes";
 import Section from "../Components/Section";
 import { useContext, useState } from "react";
 import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
+import { ProductsContext, Product } from "../Context/ProductListContext";
 
 interface Params {
   id: string;
@@ -57,12 +56,12 @@ function ProductDetails() {
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
-
-  const shoppingCart = useContext(ShoppingCartContext);
-
   const classes = useStyles();
 
-  const products: Product[] = json.Sheet1;
+  const shoppingCart = useContext(ShoppingCartContext);
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
   const match = useRouteMatch<Params>();
   const product: Product | undefined = products.find(
     (p: Product) => p.id === match.params.id

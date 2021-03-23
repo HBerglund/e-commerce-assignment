@@ -9,27 +9,28 @@ import {
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-import json from "../products";
-import Product from "../productTypes";
 import ProductGrid from "../Components/ProductGrid";
-
-const products: Product[] = json.Sheet1;
-
-const getProducts = (
-  products: Product[],
-  fromIndex: number,
-  toIndex: number
-) => {
-  const productsToReturn = [];
-  for (let i = fromIndex; i <= toIndex; i++) {
-    productsToReturn.push(products[i]);
-  }
-  return productsToReturn;
-};
-
-const firstProducts = getProducts(products, 0, 3);
+import { useContext } from "react";
+import { ProductsContext, Product } from "../Context/ProductListContext";
 
 function About() {
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
+  const getProducts = (
+    products: Product[],
+    fromIndex: number,
+    toIndex: number
+  ) => {
+    const productsToReturn = [];
+    for (let i = fromIndex; i <= toIndex; i++) {
+      productsToReturn.push(products[i]);
+    }
+    return productsToReturn;
+  };
+
+  const firstProducts = getProducts(products, 0, 3);
+
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
   const smUp = useMediaQuery(theme.breakpoints.up("sm"));
@@ -72,8 +73,8 @@ function About() {
     <div className={classes.root}>
       <Hero
         bgImg={imageSources.aboutHero}
-        label='About us'
-        title='Our passion is yoga'
+        label="About us"
+        title="Our passion is yoga"
         lessHeight
       ></Hero>
       <Section>
@@ -81,13 +82,13 @@ function About() {
           <img
             className={classes.alternatingImg}
             src={imageSources.yogaGirl}
-            alt='Yoga girl'
+            alt="Yoga girl"
           />
           <Box className={classes.alternatingContent}>
-            <Typography gutterBottom variant='h4' component='h3'>
+            <Typography gutterBottom variant="h4" component="h3">
               High quality and always organic
             </Typography>
-            <Typography variant='body1' component='p'>
+            <Typography variant="body1" component="p">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -101,14 +102,14 @@ function About() {
           <img
             className={classes.alternatingImg}
             src={imageSources.mats}
-            alt='Yoga girl'
+            alt="Yoga girl"
           />
 
           <Box className={classes.alternatingContent}>
-            <Typography gutterBottom variant='h4' component='h3'>
+            <Typography gutterBottom variant="h4" component="h3">
               High quality and always organic
             </Typography>
-            <Typography variant='body1' component='p' gutterBottom>
+            <Typography variant="body1" component="p" gutterBottom>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -121,7 +122,7 @@ function About() {
       </Section>
       <Box className={classes.carouselSection}>
         <Section>
-          <Typography variant='h3' gutterBottom>
+          <Typography variant="h3" gutterBottom>
             Discover Our Yoga Essentials
           </Typography>
           <ProductGrid products={firstProducts} />
