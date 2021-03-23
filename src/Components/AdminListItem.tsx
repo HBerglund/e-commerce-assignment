@@ -25,11 +25,13 @@ function AdminListItem(props: Props) {
       propsWrapper: {
         maxWidth: "600px",
         display: "flex",
-        justifyContent: "space-between",
       },
       mapWrapper: {
         display: "flex",
         flexDirection: "column",
+      },
+      propItem: {
+        marginRight: "2rem",
       },
       image: {
         width: "80px",
@@ -67,11 +69,17 @@ function AdminListItem(props: Props) {
         </Typography>
         <div className={classes.propsWrapper}>
           {product.colorProps.map(({ color, img }) => (
-            <div>
+            <div className={classes.propItem}>
               <img src={img} alt={product.name} className={classes.image} />
               <Typography variant='body1' gutterBottom>
                 {color}
               </Typography>
+              <IconButton
+                onClick={() => productsContext.deleteColor(product, color)}
+                size='small'
+              >
+                <DeleteIcon fontSize='small' />
+              </IconButton>
             </div>
           ))}
         </div>
@@ -82,7 +90,7 @@ function AdminListItem(props: Props) {
         </Typography>
         <div className={classes.propsWrapper}>
           {product.sizeProps.map(({ size, price }) => (
-            <div>
+            <div className={classes.propItem}>
               <Typography variant='body1' gutterBottom>
                 {size}
               </Typography>
