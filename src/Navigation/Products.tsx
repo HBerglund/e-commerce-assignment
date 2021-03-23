@@ -2,16 +2,21 @@ import ProductGrid from "../Components/ProductGrid";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FilterButton from "../Components/FilterButton";
 import { createStyles, makeStyles } from "@material-ui/core";
 import { ProductsContext, Product } from "../Context/ProductListContext";
+
+let filteredProducts: any;
 
 function Products() {
   const productsContext = useContext(ProductsContext);
   const products: Product[] = productsContext.list;
 
-  let filteredProducts = products;
+  useEffect(() => {
+    filteredProducts = products;
+  }, []);
+
   let catArr: string[] = [];
   for (const product of products) {
     catArr.push(product.category);
@@ -64,7 +69,11 @@ function Products() {
             />
           ))}
         </div>
-        <ProductGrid products={filteredProducts} />
+        <ProductGrid
+          products={
+            filteredProducts === undefined ? products : filteredProducts
+          }
+        />
       </Section>
     </div>
   );
