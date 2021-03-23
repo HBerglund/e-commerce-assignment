@@ -1,20 +1,20 @@
 import ProductGrid from "./ProductGrid";
-import json from "../products";
-import Product from "../productTypes";
 import { Typography } from "@material-ui/core";
 import Section from "./Section";
-
-const products: Product[] = json.Sheet1;
-
-const latest = products.filter(
-  (product: Product) =>
-    product.id === "1" ||
-    product.id === "2" ||
-    product.id === "5" ||
-    product.id === "7"
-);
+import { ProductsContext, Product } from "../Context/ProductListContext";
+import { useContext } from "react";
 
 function LatestSection() {
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
+  const latest = products.filter(
+    (product: Product) =>
+      product.id === "1" ||
+      product.id === "2" ||
+      product.id === "5" ||
+      product.id === "7"
+  );
   return (
     <Section>
       <Typography variant="h3" component="h2" gutterBottom>

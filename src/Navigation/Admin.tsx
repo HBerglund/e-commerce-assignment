@@ -1,7 +1,12 @@
 import React from "react";
+import Section from "../Components/Section";
 
 function Admin() {
-  return <div></div>;
+  return (
+    <Section>
+      <div>hej hej</div>
+    </Section>
+  );
 }
 
 export default Admin;
