@@ -6,27 +6,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Section from "../Components/Section";
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    maxWidth: "500px",
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+import { ChangeEvent, useState } from "react";
+import { isEqual } from "lodash";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
   const [logInProgress, setLogInProgress] = useState("default");
@@ -36,9 +18,32 @@ export default function SignIn() {
   });
 
   const validUserDetails = {
-    username: "oscar" || "victor" || "herman",
+    username: "bhagwan",
     password: "bhaggy",
   };
+
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      maxWidth: "500px",
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+    errorText: {
+      color: "rgba(255, 0, 0, 0.7)",
+    },
+  }));
 
   const handleUserInputs = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -48,11 +53,15 @@ export default function SignIn() {
     });
   };
 
-  const validateLogin = () => {};
+  const validateLogin = () => {
+    if (isEqual(userInputs, validUserDetails)) {
+      setLogInProgress("success");
+    } else {
+      setLogInProgress("failure");
+    }
+  };
 
   const classes = useStyles();
-
-  console.log(userInputs);
 
   return (
     <Section>
@@ -61,42 +70,52 @@ export default function SignIn() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component='h1' variant='h5'>
+        <Typography component="h1" variant="h5">
           Sign in as Admin
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            variant='outlined'
-            margin='normal'
+            variant="outlined"
+            margin="normal"
             required
             fullWidth
-            id='username'
-            label='Username'
-            name='username'
-            autoComplete='username'
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
             onChange={handleUserInputs}
             value={userInputs.username}
           />
           <TextField
-            variant='outlined'
-            margin='normal'
+            variant="outlined"
+            margin="normal"
             required
             fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            id='password'
-            autoComplete='current-password'
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
             value={userInputs.password}
             onChange={handleUserInputs}
           />
+          {logInProgress === "failure" ? (
+            <Typography className={classes.errorText}>
+              Wrong username or password
+            </Typography>
+          ) : (
+            <div></div>
+          )}
+
           <Button
             onClick={validateLogin}
+            component={Link}
             fullWidth
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             className={classes.submit}
+            to={logInProgress === "success" ? "/admin" : "/signin"}
           >
             Sign In
           </Button>
