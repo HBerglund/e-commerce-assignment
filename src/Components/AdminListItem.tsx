@@ -87,7 +87,7 @@ function AdminListItem(props: Props) {
   return (
     <div className={classes.root}>
       <div>
-        <Typography variant='body2' color='primary' gutterBottom>
+        <Typography variant="body2" color="primary" gutterBottom>
           Product name
         </Typography>
         {editNameActive ? (
@@ -98,14 +98,14 @@ function AdminListItem(props: Props) {
             onBlur={handleNameFocusOut}
           />
         ) : (
-          <Typography variant='body1' gutterBottom>
+          <Typography variant="body1" gutterBottom>
             {product.name}
-            <IconButton onClick={handleEditNameClick} size='small'>
-              <EditIcon fontSize='small' />
+            <IconButton onClick={handleEditNameClick} size="small">
+              <EditIcon fontSize="small" />
             </IconButton>
           </Typography>
         )}
-        <Typography variant='body2' color='primary' gutterBottom>
+        <Typography variant="body2" color="primary" gutterBottom>
           Description
         </Typography>
         {editDescActive ? (
@@ -118,52 +118,52 @@ function AdminListItem(props: Props) {
             onBlur={handleDescFocusOut}
           />
         ) : (
-          <Typography variant='body1' gutterBottom>
+          <Typography variant="body1" gutterBottom>
             {product.description}
-            <IconButton onClick={handleEditDescClick} size='small'>
-              <EditIcon fontSize='small' />
+            <IconButton onClick={handleEditDescClick} size="small">
+              <EditIcon fontSize="small" />
             </IconButton>
           </Typography>
         )}
       </div>
       <div className={classes.mapWrapper}>
-        <Typography variant='body2' color='primary' gutterBottom>
+        <Typography variant="body2" color="primary" gutterBottom>
           Colors
         </Typography>
         <div className={classes.propsWrapper}>
           {product.colorProps.map(({ color, img }) => (
             <div className={classes.propItem}>
               <img src={img} alt={product.name} className={classes.image} />
-              <Typography variant='body1' gutterBottom>
+              <Typography variant="body1" gutterBottom>
                 {color}
               </Typography>
               <IconButton
                 onClick={() => productsContext.deleteColor(product, color)}
-                size='small'
+                size="small"
               >
-                <DeleteIcon fontSize='small' />
+                <DeleteIcon fontSize="small" />
               </IconButton>
             </div>
           ))}
         </div>
       </div>
       <div className={classes.mapWrapper}>
-        <Typography variant='body2' color='primary' gutterBottom>
+        <Typography variant="body2" color="primary" gutterBottom>
           Size and price
         </Typography>
         <div className={classes.propsWrapper}>
           {product.sizeProps.map(({ size, price }) => (
             <div className={classes.propItem}>
-              <Typography variant='body1' gutterBottom>
+              <Typography variant="body1" gutterBottom>
                 {size}
                 <IconButton
                   onClick={() => productsContext.deleteSize(product, size)}
-                  size='small'
+                  size="small"
                 >
-                  <DeleteIcon fontSize='small' />
+                  <DeleteIcon fontSize="small" />
                 </IconButton>
               </Typography>
-              <Typography variant='body1' gutterBottom>
+              <Typography variant="body1" gutterBottom>
                 ${price}
               </Typography>
             </div>
@@ -171,8 +171,8 @@ function AdminListItem(props: Props) {
         </div>
         <Button
           onClick={() => productsContext.deleteProduct(product)}
-          size='small'
-          color='primary'
+          size="small"
+          color="primary"
         >
           Delete Product
         </Button>
