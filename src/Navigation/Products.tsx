@@ -2,7 +2,7 @@ import ProductGrid from "../Components/ProductGrid";
 import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import FilterButton from "../Components/FilterButton";
 import { createStyles, makeStyles } from "@material-ui/core";
 import { ProductsContext, Product } from "../Context/ProductListContext";
@@ -47,15 +47,15 @@ function Products() {
   return (
     <div>
       <Hero
-        label="Bhagwan Yoga"
-        title="Explore our products"
+        label='Bhagwan Yoga'
+        title='Explore our products'
         bgImg={imageSources.productsPageHero}
         center
       />
       <Section>
         <div className={classes.flexWrapper}>
           <FilterButton
-            category="All"
+            category='All'
             activePage={activeCategory}
             onActiveCategoryClick={handleActivePage}
           />
