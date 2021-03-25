@@ -19,6 +19,7 @@ interface ProductsValue {
   deleteSize: (product: Product, size: string) => void;
   editProductName: (product: Product, name: string) => void;
   editProductDesc: (product: Product, description: string) => void;
+  addNewProduct: (product: Product) => void;
 }
 
 export const ProductsContext = createContext<ProductsValue>({
@@ -28,6 +29,7 @@ export const ProductsContext = createContext<ProductsValue>({
   deleteSize: () => {},
   editProductName: () => {},
   editProductDesc: () => {},
+  addNewProduct: () => {},
 });
 
 const getDefaultProducts = () => {
@@ -91,6 +93,11 @@ const ProductsProvider: FC<{}> = ({ children }) => {
     setList(clonedList);
   };
 
+  const addNewProduct = (product: Product) => {
+    const clonedList = cloneDeep(list);
+    setList([...clonedList, product]);
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -100,6 +107,7 @@ const ProductsProvider: FC<{}> = ({ children }) => {
         deleteSize,
         editProductName,
         editProductDesc,
+        addNewProduct,
       }}
     >
       {children}
