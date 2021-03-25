@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import Section from "../Components/Section";
 import { ProductsContext, Product } from "../Context/ProductListContext";
 import AdminListItem from "../Components/AdminListItem";
@@ -20,13 +20,13 @@ function Admin() {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [category, setCategory] = useState<string>(products[0].category);
 
-  let newProduct = {
+  let newProduct: Product = {
     id: String(products.length + 1),
     category: category,
     name: "",
     fabric: "",
-    colorProps: { img: "", color: "" },
-    sizeProps: { size: "", price: "" },
+    colorProps: [{ img: "", color: "" }],
+    sizeProps: [{ size: "", price: "" }],
     description: "",
   };
 
@@ -40,23 +40,29 @@ function Admin() {
 
   const handleNewColorInputs = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    const firstColor = newProduct.colorProps[0];
     newProduct = {
       ...newProduct,
-      colorProps: {
-        ...newProduct.colorProps,
-        [e.target.name]: value,
-      },
+      colorProps: [
+        {
+          ...firstColor,
+          [e.target.name]: value,
+        },
+      ],
     };
   };
 
   const handleNewSizeInputs = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+    const firstSize = newProduct.sizeProps[0];
     newProduct = {
       ...newProduct,
-      sizeProps: {
-        ...newProduct.sizeProps,
-        [e.target.name]: value,
-      },
+      sizeProps: [
+        {
+          ...firstSize,
+          [e.target.name]: value,
+        },
+      ],
     };
   };
 
@@ -72,6 +78,11 @@ function Admin() {
     const value = e.target.value as string;
     console.log(value);
     setCategory(value);
+  };
+
+  const handleAddNewProductClick = () => {
+    productsContext.addNewProduct(newProduct);
+    setShowForm(false);
   };
 
   return (
@@ -153,7 +164,7 @@ function Admin() {
             label="Description"
           />
           <Button
-            onClick={() => console.log(newProduct)}
+            onClick={handleAddNewProductClick}
             variant={"contained"}
             style={{ margin: "1rem 0" }}
           >
