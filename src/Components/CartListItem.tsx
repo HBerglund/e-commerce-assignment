@@ -31,7 +31,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-function SideBarCartItem(props: Props) {
+function CartListItem(props: Props) {
   const classes = useStyles();
   const shoppingCart = useContext(ShoppingCartContext);
 
@@ -60,4 +60,4 @@ function SideBarCartItem(props: Props) {
   );
 }
 
-export default SideBarCartItem;
+export default CartListItem;

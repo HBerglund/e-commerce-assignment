@@ -17,13 +17,13 @@ function Faq() {
     <div className={classes.root}>
       <Hero
         lessHeight
-        label=''
-        title='FAQ'
+        label=""
+        title="FAQ"
         bgImg={imageSources.faqPageHero}
         center
       />
       <Section>
-        <Typography variant='h5' component='h1' gutterBottom>
+        <Typography variant="h5" component="h1" gutterBottom>
           Frequently asked questions
         </Typography>
         {faqQuestions.map(({ id, question, answer }) => (

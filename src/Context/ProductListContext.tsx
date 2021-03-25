@@ -51,6 +51,11 @@ const ProductsProvider: FC<{}> = ({ children }) => {
   const deleteProduct = (product: Product) => {
     const clonedList = cloneDeep(list);
     const foundIndex = clonedList.findIndex((p) => isEqual(p, product));
+    if (clonedList.length === 1) {
+      setList([]);
+      return;
+    }
+
     const updatedList = clonedList.filter(
       (p) => clonedList.indexOf(p) !== foundIndex
     );
@@ -60,6 +65,10 @@ const ProductsProvider: FC<{}> = ({ children }) => {
   const deleteColor = (product: Product, color: string) => {
     const clonedList = cloneDeep(list);
     const productIndex = clonedList.findIndex((p) => isEqual(p, product));
+    if (clonedList[productIndex].colorProps.length === 1) {
+      alert("Product needs to have color props");
+      return;
+    }
     const colorIndex = clonedList[productIndex].colorProps.findIndex(
       (c) => c.color === color
     );
@@ -71,6 +80,11 @@ const ProductsProvider: FC<{}> = ({ children }) => {
   const deleteSize = (product: Product, size: string) => {
     const clonedList = cloneDeep(list);
     const productIndex = clonedList.findIndex((p) => isEqual(p, product));
+    if (clonedList[productIndex].sizeProps.length === 1) {
+      alert("Product needs to have size props");
+      return;
+    }
+
     const sizeIndex = clonedList[productIndex].sizeProps.findIndex(
       (p) => p.size === size
     );

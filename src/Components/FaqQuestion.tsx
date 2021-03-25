@@ -1,4 +1,5 @@
 import {
+  Collapse,
   createStyles,
   makeStyles,
   Typography,
@@ -38,13 +39,11 @@ function FaqQuestion(props: Props) {
       >
         {props.question}
       </Typography>
-      <Typography
-        variant="body2"
-        gutterBottom
-        style={{ display: showAnswer ? "block" : "none" }}
-      >
-        {props.answer}
-      </Typography>
+      <Collapse in={showAnswer}>
+        <Typography variant="body2" gutterBottom>
+          {props.answer}
+        </Typography>
+      </Collapse>
     </div>
   );
 }

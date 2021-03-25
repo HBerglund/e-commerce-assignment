@@ -17,7 +17,7 @@ function LatestSection() {
   );
   return (
     <Section>
-      <Typography variant="h3" component="h2" gutterBottom>
+      <Typography variant="h4" component="h2" gutterBottom>
         Latest products
       </Typography>
       <ProductGrid products={latest} />
