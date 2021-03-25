@@ -7,18 +7,14 @@ import FilterButton from "../Components/FilterButton";
 import { createStyles, makeStyles } from "@material-ui/core";
 import { ProductsContext, Product } from "../Context/ProductListContext";
 
-let filteredProducts: any;
-
 function Products() {
   const productsContext = useContext(ProductsContext);
-  const products: Product[] = productsContext.list;
-
-  useEffect(() => {
-    filteredProducts = products;
-  }, []);
+  const [filteredProducts, setFilteredProducts] = useState(
+    productsContext.list
+  );
 
   let catArr: string[] = [];
-  for (const product of products) {
+  for (const product of productsContext.list) {
     catArr.push(product.category);
   }
   const categories: string[] = [...new Set(catArr)];
@@ -37,11 +33,13 @@ function Products() {
 
   const handleActivePage = (category: string) => {
     if (category !== "All") {
-      filteredProducts = products.filter(
-        (product: Product) => product.category === category
+      setFilteredProducts(
+        productsContext.list.filter(
+          (product: Product) => product.category === category
+        )
       );
     } else {
-      filteredProducts = products;
+      setFilteredProducts(productsContext.list);
     }
     setActiveCategory(category);
   };
@@ -69,11 +67,7 @@ function Products() {
             />
           ))}
         </div>
-        <ProductGrid
-          products={
-            filteredProducts === undefined ? products : filteredProducts
-          }
-        />
+        <ProductGrid products={filteredProducts} />
       </Section>
     </div>
   );

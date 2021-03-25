@@ -110,6 +110,7 @@ export default function SignIn() {
 
           <Button
             onClick={validateLogin}
+            //måste ha ett onclick där vi sköter rerouting med react router
             component={Link}
             fullWidth
             variant="contained"

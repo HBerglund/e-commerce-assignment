@@ -18,24 +18,21 @@ const useStyles = makeStyles(() =>
 function ProductGrid(props: Props) {
   const classes = useStyles();
 
-  if (props.products) {
-    return (
-      <div className={classes.root}>
-        <Grid container spacing={4}>
-          {props.products.map((product: Product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              imgUrl={product.colorProps[0].img}
-              price={product.sizeProps[0].price}
-            />
-          ))}
-        </Grid>
-      </div>
-    );
-  }
-  return null;
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={4}>
+        {props.products.map((product: Product) => (
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            imgUrl={product.colorProps[0].img}
+            price={product.sizeProps[0].price}
+          />
+        ))}
+      </Grid>
+    </div>
+  );
 }
 
 export default ProductGrid;
