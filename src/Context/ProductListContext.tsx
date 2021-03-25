@@ -18,6 +18,7 @@ interface ProductsValue {
   deleteColor: (product: Product, color: string) => void;
   deleteSize: (product: Product, size: string) => void;
   editProductName: (product: Product, name: string) => void;
+  editProductDesc: (product: Product, description: string) => void;
 }
 
 export const ProductsContext = createContext<ProductsValue>({
@@ -26,6 +27,7 @@ export const ProductsContext = createContext<ProductsValue>({
   deleteColor: () => {},
   deleteSize: () => {},
   editProductName: () => {},
+  editProductDesc: () => {},
 });
 
 const getDefaultProducts = () => {
@@ -76,7 +78,17 @@ const ProductsProvider: FC<{}> = ({ children }) => {
   };
 
   const editProductName = (product: Product, name: string) => {
-    console.log("edit");
+    const clonedList = cloneDeep(list);
+    const productIndex = clonedList.findIndex((p) => isEqual(p, product));
+    clonedList[productIndex].name = name;
+    setList(clonedList);
+  };
+
+  const editProductDesc = (product: Product, description: string) => {
+    const clonedList = cloneDeep(list);
+    const productIndex = clonedList.findIndex((p) => isEqual(p, product));
+    clonedList[productIndex].description = description;
+    setList(clonedList);
   };
 
   return (
@@ -87,6 +99,7 @@ const ProductsProvider: FC<{}> = ({ children }) => {
         deleteColor,
         deleteSize,
         editProductName,
+        editProductDesc,
       }}
     >
       {children}

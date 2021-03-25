@@ -18,7 +18,10 @@ interface Props {
 
 function AdminListItem(props: Props) {
   const [editNameActive, setEditNameActive] = useState(false);
-  const [productName, setProductName] = useState(props.product.name);
+  const [productName, setProductName] = useState(props.product.description);
+  const [editDescActive, setEditDescActive] = useState(false);
+  const [productDesc, setProductDesc] = useState(props.product.description);
+
   const useStyles = makeStyles(() =>
     createStyles({
       root: {
@@ -50,15 +53,34 @@ function AdminListItem(props: Props) {
     setEditNameActive(true);
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleNameInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setProductName(value);
   };
 
-  const handleFocusOut = (e: FocusEvent<HTMLInputElement>) => {
+  const handleNameFocusOut = (e: FocusEvent<HTMLInputElement>) => {
     setEditNameActive(false);
-    product.name = productName;
-    console.log(productName);
+    productsContext.editProductName(product, productName);
+  };
+
+  // window.addEventListener("keydown", (e) => {
+  //   if (e.key === "Enter") {
+  //     setEditNameActive(false);
+  //   }
+  // });
+
+  const handleEditDescClick = () => {
+    setEditDescActive(true);
+  };
+
+  const handleDescInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setProductDesc(value);
+  };
+
+  const handleDescFocusOut = (e: FocusEvent<HTMLInputElement>) => {
+    setEditDescActive(false);
+    productsContext.editProductDesc(product, productDesc);
   };
 
   const { product } = props;
@@ -70,10 +92,10 @@ function AdminListItem(props: Props) {
         </Typography>
         {editNameActive ? (
           <TextField
-            onChange={handleInputChange}
+            onChange={handleNameInputChange}
             value={productName}
             autoFocus
-            onBlur={handleFocusOut}
+            onBlur={handleNameFocusOut}
           />
         ) : (
           <Typography variant='body1' gutterBottom>
@@ -86,12 +108,23 @@ function AdminListItem(props: Props) {
         <Typography variant='body2' color='primary' gutterBottom>
           Description
         </Typography>
-        <Typography variant='body1' gutterBottom>
-          {product.description}
-          <IconButton size='small'>
-            <EditIcon fontSize='small' />
-          </IconButton>
-        </Typography>
+        {editDescActive ? (
+          <TextField
+            multiline
+            style={{ width: "100%" }}
+            onChange={handleDescInputChange}
+            value={productDesc}
+            autoFocus
+            onBlur={handleDescFocusOut}
+          />
+        ) : (
+          <Typography variant='body1' gutterBottom>
+            {product.description}
+            <IconButton onClick={handleEditDescClick} size='small'>
+              <EditIcon fontSize='small' />
+            </IconButton>
+          </Typography>
+        )}
       </div>
       <div className={classes.mapWrapper}>
         <Typography variant='body2' color='primary' gutterBottom>
