@@ -17,6 +17,7 @@ interface ProductsValue {
   deleteProduct: (product: Product) => void;
   deleteColor: (product: Product, color: string) => void;
   deleteSize: (product: Product, size: string) => void;
+  editProductName: (product: Product, name: string) => void;
 }
 
 export const ProductsContext = createContext<ProductsValue>({
@@ -24,6 +25,7 @@ export const ProductsContext = createContext<ProductsValue>({
   deleteProduct: () => {},
   deleteColor: () => {},
   deleteSize: () => {},
+  editProductName: () => {},
 });
 
 const getDefaultProducts = () => {
@@ -73,6 +75,10 @@ const ProductsProvider: FC<{}> = ({ children }) => {
     setList(clonedList);
   };
 
+  const editProductName = (product: Product, name: string) => {
+    console.log("edit");
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -80,6 +86,7 @@ const ProductsProvider: FC<{}> = ({ children }) => {
         deleteProduct,
         deleteColor,
         deleteSize,
+        editProductName,
       }}
     >
       {children}

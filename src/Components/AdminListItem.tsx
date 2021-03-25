@@ -1,20 +1,24 @@
 import {
+  Button,
   createStyles,
   Divider,
   IconButton,
   makeStyles,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import { Product, ProductsContext } from "../Context/ProductListContext";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useContext } from "react";
+import { ChangeEvent, FocusEvent, useContext, useState } from "react";
 
 interface Props {
   product: Product;
 }
 
 function AdminListItem(props: Props) {
+  const [editNameActive, setEditNameActive] = useState(false);
+  const [productName, setProductName] = useState(props.product.name);
   const useStyles = makeStyles(() =>
     createStyles({
       root: {
@@ -42,18 +46,45 @@ function AdminListItem(props: Props) {
 
   const productsContext = useContext(ProductsContext);
 
+  const handleEditNameClick = () => {
+    setEditNameActive(true);
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setProductName(value);
+  };
+
+  const handleFocusOut = (e: FocusEvent<HTMLInputElement>) => {
+    setEditNameActive(false);
+    product.name = productName;
+    console.log(productName);
+  };
+
   const { product } = props;
   return (
     <div className={classes.root}>
       <div>
-        <Typography variant='h6'>
-          {product.name}
-          <IconButton
-            onClick={() => productsContext.deleteProduct(product)}
-            size='small'
-          >
-            <DeleteIcon fontSize='small' />
-          </IconButton>
+        <Typography variant='body2' color='primary' gutterBottom>
+          Product name
+        </Typography>
+        {editNameActive ? (
+          <TextField
+            onChange={handleInputChange}
+            value={productName}
+            autoFocus
+            onBlur={handleFocusOut}
+          />
+        ) : (
+          <Typography variant='body1' gutterBottom>
+            {product.name}
+            <IconButton onClick={handleEditNameClick} size='small'>
+              <EditIcon fontSize='small' />
+            </IconButton>
+          </Typography>
+        )}
+        <Typography variant='body2' color='primary' gutterBottom>
+          Description
         </Typography>
         <Typography variant='body1' gutterBottom>
           {product.description}
@@ -63,7 +94,7 @@ function AdminListItem(props: Props) {
         </Typography>
       </div>
       <div className={classes.mapWrapper}>
-        <Typography variant='body2' gutterBottom>
+        <Typography variant='body2' color='primary' gutterBottom>
           Colors
         </Typography>
         <div className={classes.propsWrapper}>
@@ -84,7 +115,7 @@ function AdminListItem(props: Props) {
         </div>
       </div>
       <div className={classes.mapWrapper}>
-        <Typography variant='body2' gutterBottom>
+        <Typography variant='body2' color='primary' gutterBottom>
           Size and price
         </Typography>
         <div className={classes.propsWrapper}>
@@ -105,6 +136,13 @@ function AdminListItem(props: Props) {
             </div>
           ))}
         </div>
+        <Button
+          onClick={() => productsContext.deleteProduct(product)}
+          size='small'
+          color='primary'
+        >
+          Delete Product
+        </Button>
       </div>
       <Divider />
     </div>

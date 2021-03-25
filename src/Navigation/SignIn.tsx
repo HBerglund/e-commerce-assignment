@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Section from "../Components/Section";
 import { ChangeEvent, useState } from "react";
 import { isEqual } from "lodash";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function SignIn() {
   const [logInProgress, setLogInProgress] = useState("default");
@@ -53,13 +53,21 @@ export default function SignIn() {
     });
   };
 
+  const history = useHistory();
+
   const validateLogin = () => {
     if (isEqual(userInputs, validUserDetails)) {
-      setLogInProgress("success");
+      history.push("/admin");
     } else {
       setLogInProgress("failure");
     }
   };
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      validateLogin();
+    }
+  });
 
   const classes = useStyles();
 
@@ -70,33 +78,33 @@ export default function SignIn() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
           Sign in as Admin
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
+            id='username'
+            label='Username'
+            name='username'
+            autoComplete='username'
             autoFocus
             onChange={handleUserInputs}
             value={userInputs.username}
           />
           <TextField
-            variant="outlined"
-            margin="normal"
+            variant='outlined'
+            margin='normal'
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            name='password'
+            label='Password'
+            type='password'
+            id='password'
+            autoComplete='current-password'
             value={userInputs.password}
             onChange={handleUserInputs}
           />
@@ -110,13 +118,10 @@ export default function SignIn() {
 
           <Button
             onClick={validateLogin}
-            //måste ha ett onclick där vi sköter rerouting med react router
-            component={Link}
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.submit}
-            to={logInProgress === "success" ? "/admin" : "/signin"}
           >
             Sign In
           </Button>
