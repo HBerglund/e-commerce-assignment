@@ -3,9 +3,7 @@ import { useContext } from "react";
 import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 import ShippingSelect from "./ShippingSelect";
 
-interface Props {}
-
-function ShippingDetails(props: Props) {
+function ShippingDetails() {
   const order = useContext(OrderDetailsContext);
   const useStyles = makeStyles({
     flexColumn: {
