@@ -1,16 +1,7 @@
-import {
-  Button,
-  Collapse,
-  makeStyles,
-  TextField,
-  Typography,
-} from "@material-ui/core";
-import { useContext, useState } from "react";
-import { OrderDetailsContext } from "../Context/OrderDetailsContext";
-import ShippingSelect from "./ShippingSelect";
+import { Button, Collapse, makeStyles, TextField } from "@material-ui/core";
+import { useState } from "react";
 
 function PaymentDetails() {
-  const order = useContext(OrderDetailsContext);
   const [showCard, setShowCard] = useState<boolean>(false);
   const [showSwish, setShowSwish] = useState<boolean>(false);
   const [showInvoice, setShowInvoice] = useState<boolean>(false);
