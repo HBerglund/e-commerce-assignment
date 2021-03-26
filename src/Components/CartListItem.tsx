@@ -31,7 +31,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-function SideBarCartItem(props: Props) {
+function CartListItem(props: Props) {
   const classes = useStyles();
   const shoppingCart = useContext(ShoppingCartContext);
 
@@ -39,7 +39,7 @@ function SideBarCartItem(props: Props) {
     shoppingCart.removeFromCart(cartItem);
   };
 
-  const { name, image, color, size } = props.item.product;
+  const { name, image, color, size, price } = props.item.product;
 
   return (
     <div className={classes.root}>
@@ -52,6 +52,9 @@ function SideBarCartItem(props: Props) {
           <Typography>{color}</Typography>
           <Typography>{size}</Typography>
           <Typography>Quantity: {props.item.quantity}</Typography>
+          <Typography>
+            Price: {(Number(price) * props.item.quantity).toFixed(2)}
+          </Typography>
         </div>
       </div>
       <Button onClick={() => handleRemoveItem(props.item)}>Remove item</Button>
@@ -60,4 +63,4 @@ function SideBarCartItem(props: Props) {
   );
 }
 
-export default SideBarCartItem;
+export default CartListItem;

@@ -1,4 +1,4 @@
-import { Grid, makeStyles, createStyles } from "@material-ui/core";
+import { Grid, makeStyles, createStyles, Typography } from "@material-ui/core";
 import ProductCard from "./ProductCard";
 import { Product } from "../Context/ProductListContext";
 
@@ -16,23 +16,32 @@ const useStyles = makeStyles(() =>
 );
 
 function ProductGrid(props: Props) {
+  console.log(props.products.length);
   const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={4}>
-        {props.products.map((product: Product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            imgUrl={product.colorProps[0].img}
-            price={product.sizeProps[0].price}
-          />
-        ))}
-      </Grid>
-    </div>
-  );
+  if (props.products.length > 0) {
+    return (
+      <div className={classes.root}>
+        <Grid container spacing={4}>
+          {props.products.map((product: Product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              imgUrl={product.colorProps[0].img}
+              price={product.sizeProps[0].price}
+            />
+          ))}
+        </Grid>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Typography>No products available, please come again.</Typography>
+      </div>
+    );
+  }
 }
 
 export default ProductGrid;

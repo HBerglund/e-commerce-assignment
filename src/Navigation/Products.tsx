@@ -47,15 +47,15 @@ function Products() {
   return (
     <div>
       <Hero
-        label='Bhagwan Yoga'
-        title='Explore our products'
+        label="Bhagwan Yoga"
+        title="Explore our products"
         bgImg={imageSources.productsPageHero}
         center
       />
       <Section>
         <div className={classes.flexWrapper}>
           <FilterButton
-            category='All'
+            category="All"
             activePage={activeCategory}
             onActiveCategoryClick={handleActivePage}
           />

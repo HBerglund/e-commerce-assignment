@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
-import SideBarCartItem from "./SideBarCartItem";
+import CartListItem from "./CartListItem";
 import { useContext } from "react";
 
 interface Props {
@@ -70,8 +70,9 @@ function CheckoutDrawer(props: Props) {
           {cart.length > 0 ? (
             <div>
               {cart.map((item) => (
-                <SideBarCartItem item={item} />
+                <CartListItem item={item} />
               ))}
+              <Typography>Total price: {shoppingCart.totalPrice}</Typography>
             </div>
           ) : (
             <div>No items in cart yet</div>

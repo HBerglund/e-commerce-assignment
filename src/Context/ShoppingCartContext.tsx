@@ -17,12 +17,14 @@ export interface CartItem {
 
 interface ShoppingCartValue {
   cart: CartItem[];
+  totalPrice: number;
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartValue>({
   cart: [],
+  totalPrice: 0,
   addToCart: () => {},
   removeFromCart: () => {},
 });
@@ -31,6 +33,11 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(
     JSON.parse(localStorage.getItem("cart") || "[]")
   );
+
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    setTotalPrice(getTotalPrice());
+  }, [cart]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -64,10 +71,19 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
     setCart(updatedCart);
   };
 
+  let price: number = 0;
+  const getTotalPrice = () => {
+    for (let i = 0; i < cart.length; i++) {
+      price += parseFloat(cart[i].product.price) * cart[i].quantity;
+    }
+    return Number(price.toFixed(2));
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
         cart,
+        totalPrice,
         addToCart,
         removeFromCart,
       }}

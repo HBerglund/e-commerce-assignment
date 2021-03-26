@@ -15,13 +15,16 @@ import { ProductsContext, Product } from "../Context/ProductListContext";
 
 function About() {
   const productsContext = useContext(ProductsContext);
-  const products: Product[] = productsContext.list;
+  const products: Product[] = productsContext.list || [];
 
   const getProducts = (
     products: Product[],
     fromIndex: number,
     toIndex: number
   ) => {
+    if (products.length < 1) {
+      return [];
+    }
     const productsToReturn = [];
     for (let i = fromIndex; i <= toIndex; i++) {
       productsToReturn.push(products[i]);
