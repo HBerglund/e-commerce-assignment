@@ -72,6 +72,7 @@ function CheckoutDrawer(props: Props) {
               {cart.map((item) => (
                 <CartListItem item={item} />
               ))}
+              <Typography>Total price: {shoppingCart.totalPrice}</Typography>
             </div>
           ) : (
             <div>No items in cart yet</div>

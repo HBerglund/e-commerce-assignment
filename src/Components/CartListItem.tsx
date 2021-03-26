@@ -39,7 +39,7 @@ function CartListItem(props: Props) {
     shoppingCart.removeFromCart(cartItem);
   };
 
-  const { name, image, color, size } = props.item.product;
+  const { name, image, color, size, price } = props.item.product;
 
   return (
     <div className={classes.root}>
@@ -52,6 +52,9 @@ function CartListItem(props: Props) {
           <Typography>{color}</Typography>
           <Typography>{size}</Typography>
           <Typography>Quantity: {props.item.quantity}</Typography>
+          <Typography>
+            Price: {(Number(price) * props.item.quantity).toFixed(2)}
+          </Typography>
         </div>
       </div>
       <Button onClick={() => handleRemoveItem(props.item)}>Remove item</Button>
