@@ -188,7 +188,11 @@ function ProductDetails() {
                 />
               ))}
             </Box>
-            <Button onClick={handleAddToCartClick} variant="outlined">
+            <Button
+              onClick={handleAddToCartClick}
+              variant="contained"
+              color="primary"
+            >
               Add to cart
             </Button>
           </Box>
@@ -196,8 +200,22 @@ function ProductDetails() {
             <Typography variant="body1" gutterBottom>
               Need help?
             </Typography>
-            <Link to={"/faq"}>Visit our FAQ</Link>
-            <Link to={"/faq"}>Contact Us</Link>
+            <Button
+              variant="outlined"
+              component={Link}
+              style={{ color: "black" }}
+              to={"/faq"}
+            >
+              Visit our FAQ
+            </Button>
+            <Button
+              variant="outlined"
+              component={Link}
+              style={{ color: "black" }}
+              to={"/contact"}
+            >
+              Contact Us
+            </Button>
           </Box>
         </Box>
       </div>
