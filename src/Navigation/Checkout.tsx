@@ -10,11 +10,14 @@ import {
   Stepper,
   Typography,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CheckoutProductList from "../Components/CheckoutProductList";
 import Section from "../Components/Section";
 import ShippingDetails from "../Components/ShippingDetails";
-import OrderDetailsProvider from "../Context/OrderDetailsContext";
+import OrderDetailsProvider, {
+  OrderDetails,
+  OrderDetailsContext,
+} from "../Context/OrderDetailsContext";
 
 function getSteps() {
   return [
@@ -26,33 +29,34 @@ function getSteps() {
 }
 
 function Checkout() {
+  const orderDetails = useContext(OrderDetailsContext);
+  const [order, setOrder] = useState<OrderDetails>({
+    name: "",
+    phone: "",
+    email: "",
+    street: "",
+    postal: "",
+    city: "",
+    country: "",
+    deliveryOption: "",
+  });
+
   const useStyles = makeStyles(() =>
     createStyles({
       root: {},
     })
   );
 
-  const [orderDetails, setOrderDetails] = useState({
-    personalDetails: {
-      name: "",
-      phone: "",
-      email: "",
-    },
-    adressDetails: {
-      street: "",
-      postal: "",
-      city: "",
-      country: "",
-    },
-    deliveryOption: "",
-    paymentConfirmed: false,
-  });
-
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
 
+  const getOrder = (order: OrderDetails) => {
+    setOrder(order);
+  };
+
   const handleNext = () => {
+    console.log(order);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 

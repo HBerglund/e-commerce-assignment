@@ -1,65 +1,63 @@
 import { cloneDeep, isEqual } from "lodash";
-import { createContext, FC, useState, useEffect } from "react";
+import { createContext, FC, useState, useEffect, ChangeEvent } from "react";
 
-interface OrderDetails {
-  personalDetails: {
-    name: string;
-    phone: string;
-    email: string;
-  };
-  adressDetails: {
-    street: string;
-    postal: string;
-    city: string;
-    country: string;
-  };
+export interface OrderDetails {
+  name: string;
+  phone: string;
+  email: string;
+  street: string;
+  postal: string;
+  city: string;
+  country: string;
   deliveryOption: string;
-  paymentConfirmed: boolean;
 }
 
 interface OrderDetailsValue {
   orderDetails: OrderDetails;
+  setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const OrderDetailsContext = createContext<OrderDetailsValue>({
   orderDetails: {
-    personalDetails: {
-      name: "",
-      phone: "",
-      email: "",
-    },
-    adressDetails: {
-      street: "",
-      postal: "",
-      city: "",
-      country: "",
-    },
+    name: "",
+    phone: "",
+    email: "",
+    street: "",
+    postal: "",
+    city: "",
+    country: "",
     deliveryOption: "",
-    paymentConfirmed: false,
   },
+  setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => {},
 });
 
 const OrderDetailsProvider: FC<{}> = ({ children }) => {
   const [orderDetails, setOrderDetails] = useState<OrderDetails>({
-    personalDetails: {
-      name: "",
-      phone: "",
-      email: "",
-    },
-    adressDetails: {
-      street: "",
-      postal: "",
-      city: "",
-      country: "",
-    },
+    name: "",
+    phone: "",
+    email: "",
+    street: "",
+    postal: "",
+    city: "",
+    country: "",
     deliveryOption: "",
-    paymentConfirmed: false,
   });
+
+  const setNewOrderDetails = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setOrderDetails({
+      ...orderDetails,
+      [e.target.name]: value,
+    });
+  };
+
+  console.log(orderDetails);
 
   return (
     <OrderDetailsContext.Provider
       value={{
         orderDetails,
+        setNewOrderDetails,
       }}
     >
       {children}

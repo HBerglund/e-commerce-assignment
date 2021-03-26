@@ -1,26 +1,22 @@
-import React from "react";
+import React, { ChangeEvent, useContext } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { Typography } from "@material-ui/core";
+import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 
 function ShippingSelect() {
-  const [value, setValue] = React.useState("female");
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-  };
+  const order = useContext(OrderDetailsContext);
 
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Delivery options</FormLabel>
       <RadioGroup
         aria-label="vendor"
-        name="delivery-options"
-        value={value}
-        onChange={handleChange}
+        name="deliveryOption"
+        onChange={order.setNewOrderDetails}
       >
         <FormControlLabel value="DHL" control={<Radio />} label="DHL" />
         <Typography>Delivery time: 6-10 business days</Typography>
