@@ -1,9 +1,6 @@
 import { makeStyles, TextField, Typography } from "@material-ui/core";
-import { ChangeEvent, useContext } from "react";
-import {
-  OrderDetailsContext,
-  OrderDetails,
-} from "../Context/OrderDetailsContext";
+import { useContext } from "react";
+import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 import ShippingSelect from "./ShippingSelect";
 
 interface Props {}

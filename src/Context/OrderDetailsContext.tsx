@@ -1,5 +1,4 @@
-import { cloneDeep, isEqual } from "lodash";
-import { createContext, FC, useState, useEffect, ChangeEvent } from "react";
+import { createContext, FC, useState, ChangeEvent } from "react";
 
 export interface OrderDetails {
   name: string;
