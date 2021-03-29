@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import Section from "../Components/Section";
 import { useContext, useState } from "react";
 import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
@@ -114,113 +114,122 @@ function ProductDetails() {
     }
   };
 
-  if (!product) {
+  const history = useHistory();
+
+  if (product) {
+    return (
+      <Section>
+        <Button
+          onClick={history.goBack}
+          startIcon={<ArrowBackIosIcon fontSize="small" />}
+        >
+          Go back
+        </Button>
+        <div className={classes.root}>
+          <img
+            className={classes.productImage}
+            src={selectedProps.img}
+            alt={product.name}
+          />
+          <Box className={classes.infoContainer}>
+            <Box>
+              <Typography variant="body1" component="h2" gutterBottom>
+                {product.category}
+              </Typography>
+              <Typography variant="h4" component="h1" gutterBottom>
+                {product.name}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                $ {selectedProps.price}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                {product.description}
+              </Typography>
+              <Box className={classes.propsContainer}>
+                <Typography variant="body1" gutterBottom>
+                  Available sizes
+                </Typography>
+                {product.sizeProps.map(({ size, price }) => (
+                  <Button
+                    key={size}
+                    style={{
+                      border:
+                        selectedProps.size === size
+                          ? "1px solid black"
+                          : "none",
+                    }}
+                    onClick={() =>
+                      setSelectedProps((prevState) => {
+                        return { ...prevState, size: size, price: price };
+                      })
+                    }
+                  >
+                    {size}
+                  </Button>
+                ))}
+              </Box>
+              <Box className={classes.propsContainer}>
+                <Typography variant="body1" gutterBottom>
+                  Available colors
+                </Typography>
+                {product.colorProps.map(({ img, color }) => (
+                  <IconButton
+                    key={color}
+                    style={{
+                      border:
+                        selectedProps.color === color
+                          ? "1px solid black"
+                          : "none",
+                      backgroundColor: selectedColor(color),
+                      borderRadius: "50%",
+                      height: "50px",
+                      width: "50px",
+                      marginRight: ".5rem",
+                    }}
+                    onClick={() =>
+                      setSelectedProps((prevState) => {
+                        return { ...prevState, img: img, color: color };
+                      })
+                    }
+                  />
+                ))}
+              </Box>
+              <Button
+                onClick={handleAddToCartClick}
+                variant="contained"
+                color="primary"
+              >
+                Add to cart
+              </Button>
+            </Box>
+            <Box className={classes.helpContainer}>
+              <Typography variant="body1" gutterBottom>
+                Need help?
+              </Typography>
+              <Button
+                variant="outlined"
+                component={Link}
+                style={{ color: "black" }}
+                to={"/faq"}
+              >
+                Visit our FAQ
+              </Button>
+              <Button
+                variant="outlined"
+                component={Link}
+                style={{ color: "black" }}
+                to={"/contact"}
+              >
+                Contact Us
+              </Button>
+            </Box>
+          </Box>
+        </div>
+      </Section>
+    );
+  } else {
     return <div> Produkten du letar efter finns inte...</div>;
   }
-
-  return (
-    <Section>
-      <Button startIcon={<ArrowBackIosIcon fontSize="small" />}>Go back</Button>
-      <div className={classes.root}>
-        <img
-          className={classes.productImage}
-          src={selectedProps.img}
-          alt={product.name}
-        />
-        <Box className={classes.infoContainer}>
-          <Box>
-            <Typography variant="body1" component="h2" gutterBottom>
-              {product.category}
-            </Typography>
-            <Typography variant="h4" component="h1" gutterBottom>
-              {product.name}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              $ {selectedProps.price}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              {product.description}
-            </Typography>
-            <Box className={classes.propsContainer}>
-              <Typography variant="body1" gutterBottom>
-                Available sizes
-              </Typography>
-              {product.sizeProps.map(({ size, price }) => (
-                <Button
-                  key={size}
-                  style={{
-                    border:
-                      selectedProps.size === size ? "1px solid black" : "none",
-                  }}
-                  onClick={() =>
-                    setSelectedProps((prevState) => {
-                      return { ...prevState, size: size, price: price };
-                    })
-                  }
-                >
-                  {size}
-                </Button>
-              ))}
-            </Box>
-            <Box className={classes.propsContainer}>
-              <Typography variant="body1" gutterBottom>
-                Available colors
-              </Typography>
-              {product.colorProps.map(({ img, color }) => (
-                <IconButton
-                  key={color}
-                  style={{
-                    border:
-                      selectedProps.color === color
-                        ? "1px solid black"
-                        : "none",
-                    backgroundColor: selectedColor(color),
-                    borderRadius: "50%",
-                    height: "50px",
-                    width: "50px",
-                    marginRight: ".5rem",
-                  }}
-                  onClick={() =>
-                    setSelectedProps((prevState) => {
-                      return { ...prevState, img: img, color: color };
-                    })
-                  }
-                />
-              ))}
-            </Box>
-            <Button
-              onClick={handleAddToCartClick}
-              variant="contained"
-              color="primary"
-            >
-              Add to cart
-            </Button>
-          </Box>
-          <Box className={classes.helpContainer}>
-            <Typography variant="body1" gutterBottom>
-              Need help?
-            </Typography>
-            <Button
-              variant="outlined"
-              component={Link}
-              style={{ color: "black" }}
-              to={"/faq"}
-            >
-              Visit our FAQ
-            </Button>
-            <Button
-              variant="outlined"
-              component={Link}
-              style={{ color: "black" }}
-              to={"/contact"}
-            >
-              Contact Us
-            </Button>
-          </Box>
-        </Box>
-      </div>
-    </Section>
-  );
 }
 
 export default ProductDetails;
