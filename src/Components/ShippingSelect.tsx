@@ -4,34 +4,66 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import { Typography } from "@material-ui/core";
+import {
+  createStyles,
+  makeStyles,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core";
 import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 
 function ShippingSelect() {
   const order = useContext(OrderDetailsContext);
+  const theme = useTheme();
+  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
+
+  const useStyles = makeStyles(() =>
+    createStyles({
+      flexWrapper: {
+        display: "flex",
+        justifyContent: "space-between",
+        width: "100%",
+        flexDirection: matchesSm ? "row" : "column",
+      },
+      vertical: {
+        display: "flex",
+        flexDirection: "column",
+      },
+    })
+  );
+
+  const classes = useStyles();
 
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">Delivery options</FormLabel>
+    <FormControl style={{ width: "100%" }} component="fieldset">
+      <Typography>Delivery options</Typography>
       <RadioGroup
         aria-label="vendor"
         name="deliveryOption"
         onChange={order.setNewOrderDetails}
       >
-        <FormControlLabel value="DHL" control={<Radio />} label="DHL" />
-        <Typography>Delivery time: 6-10 business days</Typography>
-        <Typography>Free shipping</Typography>
-        <FormControlLabel
-          value="Postnord"
-          control={<Radio />}
-          label="Postnord"
-        />
-        <Typography>Delivery time: 3-5 business days</Typography>
-        <Typography>$4.99</Typography>
-
-        <FormControlLabel value="Bring" control={<Radio />} label="Bring" />
-        <Typography>Delivery time: 1-3 business days</Typography>
-        <Typography>$9.99</Typography>
+        <div className={classes.flexWrapper}>
+          <div className={classes.vertical}>
+            <FormControlLabel value="DHL" control={<Radio />} label="DHL" />
+            <Typography>Delivery in 6-10 business days</Typography>
+            <Typography>Free shipping</Typography>
+          </div>
+          <div className={classes.vertical}>
+            <FormControlLabel
+              value="Postnord"
+              control={<Radio />}
+              label="Postnord"
+            />
+            <Typography>Delivery in 3-5 business days</Typography>
+            <Typography>$4.99</Typography>
+          </div>
+          <div className={classes.vertical}>
+            <FormControlLabel value="Bring" control={<Radio />} label="Bring" />
+            <Typography>Delivery in 1-3 business days</Typography>
+            <Typography>$9.99</Typography>
+          </div>
+        </div>
       </RadioGroup>
     </FormControl>
   );

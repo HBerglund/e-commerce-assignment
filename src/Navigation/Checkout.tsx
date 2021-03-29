@@ -18,14 +18,12 @@ import ShippingDetails from "../Components/ShippingDetails";
 import OrderDetailsProvider, {
   OrderDetailsContext,
 } from "../Context/OrderDetailsContext";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import DoneIcon from "@material-ui/icons/Done";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 function getSteps() {
-  return [
-    "Your cart",
-    "Shipping details",
-    "Payment details",
-    "Order confirmation",
-  ];
+  return ["Your cart", "Shipping details", "Payment details", "Order summary"];
 }
 
 function Checkout() {
@@ -34,6 +32,7 @@ function Checkout() {
   const useStyles = makeStyles(() =>
     createStyles({
       root: {},
+      stepperRoot: {},
     })
   );
 
@@ -76,7 +75,11 @@ function Checkout() {
         </Typography>
         <Divider />
 
-        <Stepper activeStep={activeStep} orientation="vertical">
+        <Stepper
+          className={classes.stepperRoot}
+          activeStep={activeStep}
+          orientation="vertical"
+        >
           {steps.map((label, index) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
@@ -84,15 +87,30 @@ function Checkout() {
                 <Typography>{getStepContent(index)}</Typography>
                 <div>
                   <div>
-                    <Button disabled={activeStep === 0} onClick={handleBack}>
+                    <Button
+                      endIcon={<ExpandLessIcon />}
+                      disabled={activeStep === 0}
+                      onClick={handleBack}
+                    >
                       Back
                     </Button>
                     <Button
+                      endIcon={
+                        activeStep === steps.length - 1 ? (
+                          <DoneIcon />
+                        ) : (
+                          <ArrowDropDownIcon />
+                        )
+                      }
                       variant="contained"
-                      color="primary"
+                      color={
+                        activeStep === steps.length - 1
+                          ? "secondary"
+                          : "primary"
+                      }
                       onClick={handleNext}
                     >
-                      {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                      {activeStep === steps.length - 1 ? "Place order" : "Next"}
                     </Button>
                   </div>
                 </div>
