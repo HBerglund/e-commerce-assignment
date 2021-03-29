@@ -27,7 +27,6 @@ function PaymentDetails() {
           <TextField label="Card number" variant="outlined" />
           <TextField label="Y/M" variant="outlined" />
           <TextField label="CCV" variant="outlined" />
-          <Button variant="outlined">Validate</Button>
         </Collapse>
       </div>
       <div>
@@ -37,7 +36,6 @@ function PaymentDetails() {
         <Collapse in={showSwish}>
           <TextField label="Name" variant="outlined" />
           <TextField label="Phone number" variant="outlined" />
-          <Button>Validate</Button>
         </Collapse>
       </div>
       <div>
