@@ -20,6 +20,7 @@ interface ShoppingCartValue {
   totalPrice: number;
   addToCart: (item: CartItem) => void;
   removeFromCart: (item: CartItem) => void;
+  emptyCart: () => void;
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartValue>({
@@ -27,6 +28,7 @@ export const ShoppingCartContext = createContext<ShoppingCartValue>({
   totalPrice: 0,
   addToCart: () => {},
   removeFromCart: () => {},
+  emptyCart: () => {},
 });
 
 const ShoppingCartProvider: FC<{}> = ({ children }) => {
@@ -71,6 +73,11 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
     setCart(updatedCart);
   };
 
+  const emptyCart = () => {
+    const emptyCart: CartItem[] = [];
+    setCart(emptyCart);
+  };
+
   let price: number = 0;
   const getTotalPrice = () => {
     for (let i = 0; i < cart.length; i++) {
@@ -86,6 +93,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
         totalPrice,
         addToCart,
         removeFromCart,
+        emptyCart,
       }}
     >
       {children}

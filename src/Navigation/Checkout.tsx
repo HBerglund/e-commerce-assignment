@@ -10,26 +10,22 @@ import {
   Stepper,
   Typography,
 } from "@material-ui/core";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import CheckoutProductList from "../Components/CheckoutProductList";
 import PaymentDetails from "../Components/PaymentDetails";
 import Section from "../Components/Section";
 import ShippingDetails from "../Components/ShippingDetails";
-import OrderDetailsProvider, {
-  OrderDetailsContext,
-} from "../Context/OrderDetailsContext";
+import OrderDetailsProvider from "../Context/OrderDetailsContext";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import DoneIcon from "@material-ui/icons/Done";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import OrderSummary from "../Components/OrderSummary";
+import PlaceOrder from "../Components/PlaceOrder";
 
 function getSteps() {
   return ["Your cart", "Shipping details", "Payment details", "Order summary"];
 }
 
 function Checkout() {
-  const orderDetails = useContext(OrderDetailsContext);
-
   const useStyles = makeStyles(() =>
     createStyles({
       root: {},
@@ -71,7 +67,7 @@ function Checkout() {
   return (
     <OrderDetailsProvider>
       <Section>
-        <Typography variant='h3' component='h1' gutterBottom>
+        <Typography variant="h3" component="h1" gutterBottom>
           Checkout
         </Typography>
         <Divider />
@@ -79,7 +75,7 @@ function Checkout() {
         <Stepper
           className={classes.stepperRoot}
           activeStep={activeStep}
-          orientation='vertical'
+          orientation="vertical"
         >
           {steps.map((label, index) => (
             <Step key={label}>
@@ -98,12 +94,12 @@ function Checkout() {
                     <Button
                       endIcon={
                         activeStep === steps.length - 1 ? (
-                          <DoneIcon />
+                          <PlaceOrder />
                         ) : (
                           <ArrowDropDownIcon />
                         )
                       }
-                      variant='contained'
+                      variant="contained"
                       color={
                         activeStep === steps.length - 1
                           ? "secondary"

@@ -18,6 +18,8 @@ interface OrderDetailsValue {
   orderDetails: OrderDetails;
   setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => void;
   getShippingPrice: (delivery: string) => number;
+  getDeliveryDay: (delivery: string) => string;
+  emptyOrderDetails: () => void;
 }
 
 export const OrderDetailsContext = createContext<OrderDetailsValue>({
@@ -35,6 +37,8 @@ export const OrderDetailsContext = createContext<OrderDetailsValue>({
   },
   setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => {},
   getShippingPrice: (delivery: string) => 0,
+  getDeliveryDay: (delivery: string) => "",
+  emptyOrderDetails: () => {},
 });
 
 const OrderDetailsProvider: FC<{}> = ({ children }) => {
@@ -60,8 +64,6 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
     });
   };
 
-  console.log(orderDetails);
-
   const getShippingPrice = (delivery: string): number => {
     switch (delivery) {
       case "DHL":
@@ -78,12 +80,73 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
     }
   };
 
+  const getDeliveryDay = (delivery: string): string => {
+    const dhlDate = new Date();
+    const postnordDate = new Date();
+    const bringDate = new Date();
+
+    dhlDate.setDate(dhlDate.getDate() + 7);
+    postnordDate.setDate(postnordDate.getDate() + 5);
+    bringDate.setDate(bringDate.getDate() + 3);
+
+    const dhlDeliveryDay =
+      dhlDate.getDate() +
+      "/" +
+      (dhlDate.getMonth() + 1) +
+      "/" +
+      dhlDate.getFullYear();
+    const postnordDeliveryDay =
+      postnordDate.getDate() +
+      "/" +
+      (postnordDate.getMonth() + 1) +
+      "/" +
+      postnordDate.getFullYear();
+    const bringDeliveryDay =
+      bringDate.getDate() +
+      "/" +
+      (bringDate.getMonth() + 1) +
+      "/" +
+      bringDate.getFullYear();
+
+    switch (delivery) {
+      case "DHL":
+        return dhlDeliveryDay;
+
+      case "Postnord":
+        return postnordDeliveryDay;
+
+      case "Bring":
+        return bringDeliveryDay;
+
+      default:
+        return "";
+    }
+  };
+
+  const emptyOrderDetails = () => {
+    const emptyDetails: OrderDetails = {
+      products: [],
+      name: "",
+      phone: "",
+      email: "",
+      street: "",
+      postal: "",
+      city: "",
+      country: "",
+      deliveryOption: "",
+      paymentOption: "",
+    };
+    setOrderDetails(emptyDetails);
+  };
+
   return (
     <OrderDetailsContext.Provider
       value={{
         orderDetails,
         setNewOrderDetails,
         getShippingPrice,
+        getDeliveryDay,
+        emptyOrderDetails,
       }}
     >
       {children}

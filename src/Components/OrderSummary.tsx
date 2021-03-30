@@ -48,55 +48,59 @@ function OrderSummary() {
       <div className={classes.root}>
         <div className={classes.summary}>
           <div>
-            <Typography variant='h6' gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Personal details
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.name}
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.phone}
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.email}
             </Typography>
           </div>
           <div>
-            <Typography variant='h6' gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Address
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.street}
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.postal}
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.city}
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.country}
             </Typography>
           </div>
           <div>
-            <Typography variant='h6' gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Delivery
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.deliveryOption}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              Delivered at:{" "}
+              {order.getDeliveryDay(order.orderDetails.deliveryOption)}
             </Typography>
           </div>
           <div>
-            <Typography variant='h6' gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Payment
             </Typography>
-            <Typography variant='body2' gutterBottom>
+            <Typography variant="body2" gutterBottom>
               {order.orderDetails.paymentOption}
             </Typography>
           </div>
         </div>
         <div className={classes.products}>
-          <Typography variant='h6' gutterBottom>
+          <Typography variant="h6" gutterBottom>
             Products
           </Typography>
           <div>
@@ -112,7 +116,7 @@ function OrderSummary() {
           </div>
         </div>
       </div>
-      <Typography style={{ margin: "2rem 0" }} variant='h5' gutterBottom>
+      <Typography style={{ margin: "2rem 0" }} variant="h5" gutterBottom>
         Total price incl shipping: $
         {shoppingCart.totalPrice +
           order.getShippingPrice(order.orderDetails.deliveryOption)}
