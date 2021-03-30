@@ -5,7 +5,6 @@ import ShippingSelect from "./ShippingSelect";
 
 function ShippingDetails() {
   const order = useContext(OrderDetailsContext);
-  // const [showError, setShowError] = useState(false);
   const [showErrorName, setShowErrorName] = useState(false);
   const [showErrorPhone, setShowErrorPhone] = useState(false);
   const [showErrorEmail, setShowErrorEmail] = useState(false);

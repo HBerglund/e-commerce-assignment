@@ -89,68 +89,69 @@ function PaymentDetails() {
   return (
     <div className={classes.root}>
       <div className={classes.selectWrapper}>
-        <FormControl component='fieldset'>
+        <FormControl component="fieldset">
           <RadioGroup
-            name='paymentOption'
+            name="paymentOption"
             value={paymentValue}
             onChange={handlePaymentChange}
           >
             <FormControlLabel
-              value='Credit card'
+              value="Credit card"
               control={<Radio />}
-              label='Credit card'
+              label="Credit card"
             />
             <Collapse className={classes.inputWrapper} in={showCard}>
               <TextField
-                label='Card name holder'
-                variant='outlined'
+                defaultValue={order.orderDetails.name}
+                label="Card name holder"
+                variant="outlined"
                 className={classes.inputField}
               />
               <TextField
-                label='Card number'
-                variant='outlined'
+                label="Card number"
+                variant="outlined"
                 className={classes.inputField}
               />
               <TextField
-                label='Y/M'
-                variant='outlined'
+                label="Y/M"
+                variant="outlined"
                 className={classes.inputField}
               />
               <TextField
-                label='CCV'
-                variant='outlined'
+                label="CCV"
+                variant="outlined"
                 className={classes.inputField}
               />
             </Collapse>
-            <FormControlLabel value='Swish' control={<Radio />} label='Swish' />
+            <FormControlLabel value="Swish" control={<Radio />} label="Swish" />
             <Collapse className={classes.inputWrapper} in={showSwish}>
               <TextField
-                value={order.orderDetails.phone}
-                label='Phone number'
-                variant='outlined'
+                defaultValue={order.orderDetails.phone}
+                label="Phone number"
+                variant="outlined"
               />
             </Collapse>
             <FormControlLabel
-              value='Invoice'
+              value="Invoice"
               control={<Radio />}
-              label='Invoice'
+              label="Invoice"
             />
             <Collapse className={classes.inputWrapper} in={showInvoice}>
-              <FormControl component='fieldset'>
+              <FormControl component="fieldset">
                 <RadioGroup
-                  name='invoice'
+                  name="invoice"
                   value={invoiceValue}
                   onChange={handleInvoiceChange}
                 >
                   <FormControlLabel
-                    value='home'
+                    value="home"
                     control={<Radio />}
-                    label='Send invoice to home address'
+                    label="Send invoice to home address"
                   />
                   <FormControlLabel
-                    value='other'
+                    value="other"
                     control={<Radio />}
-                    label='Send invoice to another address'
+                    label="Send invoice to another address"
                   />
                 </RadioGroup>
               </FormControl>
@@ -158,27 +159,27 @@ function PaymentDetails() {
                 <div>
                   <TextField
                     value={order.orderDetails.name}
-                    label='Name'
-                    variant='outlined'
+                    label="Name"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     style={{ minWidth: "300px" }}
                     value={order.orderDetails.street}
-                    label='Street'
-                    variant='outlined'
+                    label="Street"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     value={order.orderDetails.postal}
-                    label='Postal code'
-                    variant='outlined'
+                    label="Postal code"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     value={order.orderDetails.city}
-                    label='City'
-                    variant='outlined'
+                    label="City"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                 </div>
@@ -186,24 +187,24 @@ function PaymentDetails() {
               <Collapse className={classes.inputWrapper} in={showOtherAddress}>
                 <div>
                   <TextField
-                    label='Name'
-                    variant='outlined'
+                    label="Name"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     style={{ minWidth: "300px" }}
-                    label='Address'
-                    variant='outlined'
+                    label="Address"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
-                    label='Postal code'
-                    variant='outlined'
+                    label="Postal code"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
-                    label='City'
-                    variant='outlined'
+                    label="City"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                 </div>
