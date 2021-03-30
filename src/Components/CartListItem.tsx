@@ -1,11 +1,9 @@
 import {
-  Button,
   createStyles,
   Divider,
   IconButton,
   makeStyles,
   Typography,
-  useTheme,
 } from "@material-ui/core";
 import { useContext } from "react";
 import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
@@ -70,7 +68,6 @@ function CartListItem(props: Props) {
     })
   );
 
-  const theme = useTheme();
   const classes = useStyles();
 
   const { name, image, color, size, price } = props.item.product;
