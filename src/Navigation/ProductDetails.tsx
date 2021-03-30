@@ -12,7 +12,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import Section from "../Components/Section";
 import { useContext, useState } from "react";
-import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
+import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 import { ProductsContext, Product } from "../Context/ProductListContext";
 
 interface Params {
@@ -46,9 +46,13 @@ function ProductDetails() {
       helpContainer: {
         display: "flex",
         flexDirection: "column",
+        marginTop: "4rem",
       },
       propsContainer: {
         margin: "1rem 0",
+      },
+      goBack: {
+        marginBottom: "1rem",
       },
     })
   );
@@ -76,7 +80,7 @@ function ProductDetails() {
     color: product ? product.colorProps[0].color : "",
   });
 
-  const selectedColor = (color: string) => {
+  const getSelectedColor = (color: string) => {
     switch (color) {
       case "Blueberry Blue": {
         return "#5a6fa4";
@@ -98,7 +102,7 @@ function ProductDetails() {
 
   const handleAddToCartClick = () => {
     if (product) {
-      const item: CartItem = {
+      cart.add({
         quantity: 1,
         product: {
           id: product.id,
@@ -108,8 +112,7 @@ function ProductDetails() {
           price: selectedProps.price,
           image: selectedProps.img,
         },
-      };
-      cart.add(item);
+      });
     }
   };
 
@@ -119,6 +122,7 @@ function ProductDetails() {
     return (
       <Section>
         <Button
+          className={classes.goBack}
           onClick={history.goBack}
           startIcon={<ArrowBackIosIcon fontSize="small" />}
         >
@@ -138,14 +142,14 @@ function ProductDetails() {
               <Typography variant="h4" component="h1" gutterBottom>
                 {product.name}
               </Typography>
-              <Typography variant="body1" gutterBottom>
+              <Typography variant="h6" gutterBottom>
                 $ {selectedProps.price}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 {product.description}
               </Typography>
               <Box className={classes.propsContainer}>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="body2" gutterBottom>
                   Available sizes
                 </Typography>
                 {product.sizeProps.map(({ size, price }) => (
@@ -168,7 +172,7 @@ function ProductDetails() {
                 ))}
               </Box>
               <Box className={classes.propsContainer}>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="body2" gutterBottom>
                   Available colors
                 </Typography>
                 {product.colorProps.map(({ img, color }) => (
@@ -179,7 +183,7 @@ function ProductDetails() {
                         selectedProps.color === color
                           ? "1px solid black"
                           : "none",
-                      backgroundColor: selectedColor(color),
+                      backgroundColor: getSelectedColor(color),
                       borderRadius: "50%",
                       height: "50px",
                       width: "50px",
@@ -197,24 +201,19 @@ function ProductDetails() {
                 onClick={handleAddToCartClick}
                 variant="contained"
                 color="primary"
+                size="large"
               >
                 Add to cart
               </Button>
             </Box>
             <Box className={classes.helpContainer}>
-              <Typography variant="body1" gutterBottom>
+              <Typography variant="body2" gutterBottom>
                 Need help?
               </Typography>
-              <Button
-                variant="outlined"
-                component={Link}
-                style={{ color: "black" }}
-                to={"/faq"}
-              >
+              <Button component={Link} style={{ color: "black" }} to={"/faq"}>
                 Visit our FAQ
               </Button>
               <Button
-                variant="outlined"
                 component={Link}
                 style={{ color: "black" }}
                 to={"/contact"}
@@ -227,7 +226,7 @@ function ProductDetails() {
       </Section>
     );
   } else {
-    return <div> Produkten du letar efter finns inte...</div>;
+    return <div>Produkten du letar efter finns inte...</div>;
   }
 }
 
