@@ -3,7 +3,6 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 import {
   createStyles,
   makeStyles,
@@ -36,30 +35,30 @@ function ShippingSelect() {
   const classes = useStyles();
 
   return (
-    <FormControl style={{ width: "100%" }} component="fieldset">
+    <FormControl style={{ width: "100%" }} component='fieldset'>
       <Typography>Delivery options</Typography>
       <RadioGroup
-        aria-label="vendor"
-        name="deliveryOption"
+        aria-label='vendor'
+        name='deliveryOption'
         onChange={order.setNewOrderDetails}
       >
         <div className={classes.flexWrapper}>
           <div className={classes.vertical}>
-            <FormControlLabel value="DHL" control={<Radio />} label="DHL" />
+            <FormControlLabel value='DHL' control={<Radio />} label='DHL' />
             <Typography>Delivery in 6-10 business days</Typography>
             <Typography>Free shipping</Typography>
           </div>
           <div className={classes.vertical}>
             <FormControlLabel
-              value="Postnord"
+              value='Postnord'
               control={<Radio />}
-              label="Postnord"
+              label='Postnord'
             />
             <Typography>Delivery in 3-5 business days</Typography>
             <Typography>$4.99</Typography>
           </div>
           <div className={classes.vertical}>
-            <FormControlLabel value="Bring" control={<Radio />} label="Bring" />
+            <FormControlLabel value='Bring' control={<Radio />} label='Bring' />
             <Typography>Delivery in 1-3 business days</Typography>
             <Typography>$9.99</Typography>
           </div>
