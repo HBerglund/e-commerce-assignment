@@ -58,7 +58,7 @@ function ProductDetails() {
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
   const classes = useStyles();
 
-  const shoppingCart = useContext(ShoppingCartContext);
+  const cart = useContext(ShoppingCartContext);
   const productsContext = useContext(ProductsContext);
   const products: Product[] = productsContext.list;
 
@@ -98,7 +98,7 @@ function ProductDetails() {
 
   const handleAddToCartClick = () => {
     if (product) {
-      const itemToAdd: CartItem = {
+      const item: CartItem = {
         quantity: 1,
         product: {
           id: product.id,
@@ -109,8 +109,7 @@ function ProductDetails() {
           image: selectedProps.img,
         },
       };
-
-      shoppingCart.addToCart(itemToAdd);
+      cart.add(item);
     }
   };
 

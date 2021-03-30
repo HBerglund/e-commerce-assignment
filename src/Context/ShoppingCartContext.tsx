@@ -18,15 +18,17 @@ export interface CartItem {
 interface ShoppingCartValue {
   cart: CartItem[];
   totalPrice: number;
-  addToCart: (item: CartItem) => void;
-  removeFromCart: (item: CartItem) => void;
+  add: (item: CartItem) => void;
+  remove: (item: CartItem) => void;
+  changeQuantity: (item: CartItem, action: "increase" | "decrease") => void;
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartValue>({
   cart: [],
   totalPrice: 0,
-  addToCart: () => {},
-  removeFromCart: () => {},
+  add: () => {},
+  remove: () => {},
+  changeQuantity: () => {},
 });
 
 const ShoppingCartProvider: FC<{}> = ({ children }) => {
@@ -43,7 +45,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item: CartItem) => {
+  const add = (item: CartItem) => {
     const clonedCart = cloneDeep(cart);
 
     const foundIndex = clonedCart.findIndex((p) =>
@@ -60,7 +62,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
     setCart(updatedCart);
   };
 
-  const removeFromCart = (item: CartItem) => {
+  const remove = (item: CartItem) => {
     const clonedCart = cloneDeep(cart);
     const foundIndex = clonedCart.findIndex((p) =>
       isEqual(p.product, item.product)
@@ -79,13 +81,30 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
     return Number(price.toFixed(2));
   };
 
+  const changeQuantity = (item: CartItem, action: "increase" | "decrease") => {
+    const clonedCart = cloneDeep(cart);
+    const foundIndex = clonedCart.findIndex((p) =>
+      isEqual(p.product, item.product)
+    );
+    if (action === "increase") {
+      clonedCart[foundIndex].quantity += 1;
+      setCart(clonedCart);
+    } else if (action === "decrease" && clonedCart[foundIndex].quantity > 1) {
+      clonedCart[foundIndex].quantity -= 1;
+      setCart(clonedCart);
+    } else if (action === "decrease" && clonedCart[foundIndex].quantity === 1) {
+      remove(item);
+    }
+  };
+
   return (
     <ShoppingCartContext.Provider
       value={{
         cart,
         totalPrice,
-        addToCart,
-        removeFromCart,
+        add,
+        remove,
+        changeQuantity,
       }}
     >
       {children}
