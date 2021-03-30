@@ -16,6 +16,7 @@ function CartButton() {
     createStyles({
       root: {
         position: "relative",
+        margin: "0 .5rem",
       },
       productNumber: {
         display: "flex",

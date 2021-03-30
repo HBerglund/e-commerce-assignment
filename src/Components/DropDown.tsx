@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Menu, IconButton } from "@material-ui/core";
+import { Menu, IconButton, makeStyles, createStyles } from "@material-ui/core";
 import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
 
 function DropDown() {
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const useStyles = makeStyles(() =>
+    createStyles({
+      root: {
+        margin: "0 1rem",
+      },
+    })
+  );
   const dropDownRoutes = routes.slice(1, routes.length);
 
   const handleClose = (event: any) => {
@@ -17,8 +23,10 @@ function DropDown() {
     setAnchorEl(event.currentTarget);
   };
 
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.root}>
       <MenuIcon
         onClick={openMenu}
         aria-haspopup="true"

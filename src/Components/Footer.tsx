@@ -65,7 +65,7 @@ function Footer() {
                 Menu
               </Typography>
               {routes.map(({ name, path }) => {
-                if (name !== "Men" && name !== "Women") {
+                if (name !== "Men" && name !== "Women" && name !== "Checkout") {
                   return (
                     <Link className={classes.links} key={name} to={path}>
                       {name}
