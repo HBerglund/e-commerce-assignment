@@ -71,7 +71,7 @@ function Checkout() {
   return (
     <OrderDetailsProvider>
       <Section>
-        <Typography variant='h3' component='h1' gutterBottom>
+        <Typography variant="h3" component="h1" gutterBottom>
           Checkout
         </Typography>
         <Divider />
@@ -79,7 +79,7 @@ function Checkout() {
         <Stepper
           className={classes.stepperRoot}
           activeStep={activeStep}
-          orientation='vertical'
+          orientation="vertical"
         >
           {steps.map((label, index) => (
             <Step key={label}>
@@ -103,7 +103,7 @@ function Checkout() {
                           <ArrowDropDownIcon />
                         )
                       }
-                      variant='contained'
+                      variant="contained"
                       color={
                         activeStep === steps.length - 1
                           ? "secondary"
