@@ -93,7 +93,7 @@ function CheckoutDrawer(props: Props) {
           {cart.length ? (
             <div className={classes.checkoutButton}>
               <Button
-                color="secondary"
+                color="primary"
                 variant="contained"
                 onClick={handleDrawerExit}
                 component={Link}

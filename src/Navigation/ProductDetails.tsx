@@ -11,7 +11,7 @@ import {
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import Section from "../Components/Section";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 import { ProductsContext, Product } from "../Context/ProductListContext";
 
@@ -20,6 +20,10 @@ interface Params {
 }
 
 function ProductDetails() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const useStyles = makeStyles(() =>
     createStyles({
       root: {
@@ -100,6 +104,9 @@ function ProductDetails() {
       case "Birch White": {
         return "#E2E2E2";
       }
+      case "Black": {
+        return "#1D2224";
+      }
     }
   };
 
@@ -161,6 +168,7 @@ function ProductDetails() {
                 </Typography>
                 {product.sizeProps.map(({ size, price }) => (
                   <Button
+                    size="large"
                     key={size}
                     style={{
                       opacity: selectedProps.size === size ? 1 : 0.4,
@@ -184,6 +192,10 @@ function ProductDetails() {
                     key={color}
                     style={{
                       opacity: selectedProps.color === color ? 1 : 0.3,
+                      border:
+                        selectedProps.color === color
+                          ? "1px solid lightgrey"
+                          : "none",
                       backgroundColor: getSelectedColor(color),
                       borderRadius: "50%",
                       height: "50px",

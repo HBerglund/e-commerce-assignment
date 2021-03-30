@@ -11,6 +11,7 @@ import CheckoutDrawer from "./CheckoutDrawer";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 
 function CartButton() {
+  const shoppingCart = useContext(ShoppingCartContext);
   const theme = useTheme();
   const useStyles = makeStyles(() =>
     createStyles({
@@ -19,7 +20,7 @@ function CartButton() {
         margin: "0 .5rem",
       },
       productNumber: {
-        display: "flex",
+        display: shoppingCart.cart.length !== 0 ? "flex" : "none",
         justifyContent: "center",
         alignItems: "center",
         position: "absolute",
@@ -28,13 +29,12 @@ function CartButton() {
         width: "20px",
         height: "20px",
         borderRadius: "50%",
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.secondary.main,
         color: "white",
       },
     })
   );
 
-  const shoppingCart = useContext(ShoppingCartContext);
   const { cart } = shoppingCart;
 
   const numberOfItems = cart.length;
