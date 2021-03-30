@@ -25,20 +25,29 @@ const useStyles = makeStyles({
     boxShadow: "none",
     margin: "5rem 1rem 1rem 1rem",
   },
-  buttonsWrapper: {
+  itemsWrapper: {
+    margin: "2rem 0",
+  },
+  checkoutButton: {
     display: "flex",
     flexDirection: "column",
+    margin: "2rem 0",
   },
   paper: {
-    width: "40%",
+    width: "30%",
+    minWidth: "500px",
   },
   header: {
-    width: "40%",
+    width: "30%",
+    minWidth: "500px",
     position: "fixed",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     padding: "1rem",
+  },
+  totalPrice: {
+    marginTop: "1rem",
   },
 });
 
@@ -55,12 +64,12 @@ function CheckoutDrawer(props: Props) {
   return (
     <div>
       <Drawer
-        anchor='right'
+        anchor="right"
         open={props.isOpen}
         classes={{ paper: classes.paper }}
       >
         <Paper className={classes.header}>
-          <Typography variant='h5'>Your cart</Typography>
+          <Typography variant="h5">Your cart</Typography>
           <IconButton onClick={handleDrawerExit}>
             <CloseIcon />
           </IconButton>
@@ -68,21 +77,32 @@ function CheckoutDrawer(props: Props) {
         <div className={classes.root}>
           <Divider />
           {cart.length > 0 ? (
-            <div>
+            <div className={classes.itemsWrapper}>
               {cart.map((item) => (
-                <CartListItem item={item} showRemoveButton={true} />
+                <CartListItem item={item} mutable={true} />
               ))}
-              <Typography>Total price: {shoppingCart.totalPrice}</Typography>
+              <Typography className={classes.totalPrice} variant="h6">
+                Total price: ${shoppingCart.totalPrice}
+              </Typography>
             </div>
           ) : (
-            <div>No items in cart yet</div>
+            <div style={{ textAlign: "center", padding: "2rem" }}>
+              <Typography variant="h6">No items in your cart yet!</Typography>
+            </div>
           )}
-
-          <div className={classes.buttonsWrapper}>
-            <Button onClick={handleDrawerExit} component={Link} to='/checkout'>
-              Checkout
-            </Button>
-          </div>
+          {cart.length ? (
+            <div className={classes.checkoutButton}>
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={handleDrawerExit}
+                component={Link}
+                to="/checkout"
+              >
+                Checkout
+              </Button>
+            </div>
+          ) : null}
         </div>
       </Drawer>
     </div>
