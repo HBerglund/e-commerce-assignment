@@ -1,24 +1,24 @@
 import {
-  Button,
   Collapse,
   FormControl,
   FormControlLabel,
-  FormLabel,
   makeStyles,
   Radio,
   RadioGroup,
   TextField,
 } from "@material-ui/core";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 
 function PaymentDetails() {
-  const [paymentValue, setPaymentValue] = useState("card");
+  const [paymentValue, setPaymentValue] = useState("Credit card");
   const [invoiceValue, setInvoiceValue] = useState("home");
   const [showCard, setShowCard] = useState<boolean>(false);
   const [showSwish, setShowSwish] = useState<boolean>(false);
   const [showInvoice, setShowInvoice] = useState<boolean>(false);
   const [showHomeAddress, setShowHomeAddress] = useState<boolean>(false);
   const [showOtherAddress, setShowOtherAddress] = useState<boolean>(false);
+  const order = useContext(OrderDetailsContext);
 
   const useStyles = makeStyles({
     root: {
@@ -37,21 +37,24 @@ function PaymentDetails() {
     selectButton: {
       margin: "1rem",
     },
+    inputField: {
+      margin: ".5rem",
+    },
   });
 
   useEffect(() => {
     switch (paymentValue) {
-      case "card":
+      case "Credit card":
         setShowCard((prev) => !prev);
         setShowInvoice(false);
         setShowSwish(false);
         break;
-      case "swish":
+      case "Swish":
         setShowSwish((prev) => !prev);
         setShowInvoice(false);
         setShowCard(false);
         break;
-      case "invoice":
+      case "Invoice":
         setShowInvoice((prev) => !prev);
         setShowSwish(false);
         setShowCard(false);
@@ -73,6 +76,7 @@ function PaymentDetails() {
   }, [invoiceValue]);
 
   const handlePaymentChange = (event: ChangeEvent<HTMLInputElement>) => {
+    order.setNewOrderDetails(event);
     setPaymentValue((event.target as HTMLInputElement).value);
   };
 
@@ -85,86 +89,123 @@ function PaymentDetails() {
   return (
     <div className={classes.root}>
       <div className={classes.selectWrapper}>
-        <FormControl component="fieldset">
+        <FormControl component='fieldset'>
           <RadioGroup
-            name="payment"
+            name='paymentOption'
             value={paymentValue}
             onChange={handlePaymentChange}
           >
             <FormControlLabel
-              value="card"
+              value='Credit card'
               control={<Radio />}
-              label="Credit card"
+              label='Credit card'
             />
             <Collapse className={classes.inputWrapper} in={showCard}>
-              <TextField label="Card name holder" variant="outlined" />
-              <TextField label="Card number" variant="outlined" />
-              <TextField label="Y/M" variant="outlined" />
-              <TextField label="CCV" variant="outlined" />
+              <TextField
+                label='Card name holder'
+                variant='outlined'
+                className={classes.inputField}
+              />
+              <TextField
+                label='Card number'
+                variant='outlined'
+                className={classes.inputField}
+              />
+              <TextField
+                label='Y/M'
+                variant='outlined'
+                className={classes.inputField}
+              />
+              <TextField
+                label='CCV'
+                variant='outlined'
+                className={classes.inputField}
+              />
             </Collapse>
-            <FormControlLabel value="swish" control={<Radio />} label="Swish" />
+            <FormControlLabel value='Swish' control={<Radio />} label='Swish' />
             <Collapse className={classes.inputWrapper} in={showSwish}>
-              <TextField label="Phone number" variant="outlined" />
+              <TextField
+                value={order.orderDetails.phone}
+                label='Phone number'
+                variant='outlined'
+              />
             </Collapse>
             <FormControlLabel
-              value="invoice"
+              value='Invoice'
               control={<Radio />}
-              label="Invoice"
+              label='Invoice'
             />
             <Collapse className={classes.inputWrapper} in={showInvoice}>
-              <FormControl component="fieldset">
+              <FormControl component='fieldset'>
                 <RadioGroup
-                  name="invoice"
+                  name='invoice'
                   value={invoiceValue}
                   onChange={handleInvoiceChange}
                 >
                   <FormControlLabel
-                    value="home"
+                    value='home'
                     control={<Radio />}
-                    label="Send invoice to home address"
+                    label='Send invoice to home address'
                   />
                   <FormControlLabel
-                    value="other"
+                    value='other'
                     control={<Radio />}
-                    label="Send invoice to another address"
+                    label='Send invoice to another address'
                   />
                 </RadioGroup>
               </FormControl>
               <Collapse className={classes.inputWrapper} in={showHomeAddress}>
                 <div>
                   <TextField
-                    value="Victor Wikström"
-                    label="Name"
-                    variant="outlined"
+                    value={order.orderDetails.name}
+                    label='Name'
+                    variant='outlined'
+                    className={classes.inputField}
                   />
                   <TextField
                     style={{ minWidth: "300px" }}
-                    value="Jenny Lindsgatan 4B"
-                    label="Address"
-                    variant="outlined"
+                    value={order.orderDetails.street}
+                    label='Street'
+                    variant='outlined'
+                    className={classes.inputField}
                   />
                   <TextField
-                    value="41662"
-                    label="Postal code"
-                    variant="outlined"
+                    value={order.orderDetails.postal}
+                    label='Postal code'
+                    variant='outlined'
+                    className={classes.inputField}
                   />
                   <TextField
-                    value="Gothenburg"
-                    label="City"
-                    variant="outlined"
+                    value={order.orderDetails.city}
+                    label='City'
+                    variant='outlined'
+                    className={classes.inputField}
                   />
                 </div>
               </Collapse>
               <Collapse className={classes.inputWrapper} in={showOtherAddress}>
                 <div>
-                  <TextField label="Name" variant="outlined" />
+                  <TextField
+                    label='Name'
+                    variant='outlined'
+                    className={classes.inputField}
+                  />
                   <TextField
                     style={{ minWidth: "300px" }}
-                    label="Address"
-                    variant="outlined"
+                    label='Address'
+                    variant='outlined'
+                    className={classes.inputField}
                   />
-                  <TextField label="Postal code" variant="outlined" />
-                  <TextField label="City" variant="outlined" />
+                  <TextField
+                    label='Postal code'
+                    variant='outlined'
+                    className={classes.inputField}
+                  />
+                  <TextField
+                    label='City'
+                    variant='outlined'
+                    className={classes.inputField}
+                  />
                 </div>
               </Collapse>
             </Collapse>

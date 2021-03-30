@@ -21,6 +21,7 @@ import OrderDetailsProvider, {
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import DoneIcon from "@material-ui/icons/Done";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
+import OrderSummary from "../Components/OrderSummary";
 
 function getSteps() {
   return ["Your cart", "Shipping details", "Payment details", "Order summary"];
@@ -61,7 +62,7 @@ function Checkout() {
       case 2:
         return <PaymentDetails />;
       case 3:
-        return "hejhej";
+        return <OrderSummary />;
       default:
         return "Unknown step";
     }
@@ -70,7 +71,7 @@ function Checkout() {
   return (
     <OrderDetailsProvider>
       <Section>
-        <Typography variant="h3" component="h1" gutterBottom>
+        <Typography variant='h3' component='h1' gutterBottom>
           Checkout
         </Typography>
         <Divider />
@@ -78,7 +79,7 @@ function Checkout() {
         <Stepper
           className={classes.stepperRoot}
           activeStep={activeStep}
-          orientation="vertical"
+          orientation='vertical'
         >
           {steps.map((label, index) => (
             <Step key={label}>
@@ -102,7 +103,7 @@ function Checkout() {
                           <ArrowDropDownIcon />
                         )
                       }
-                      variant="contained"
+                      variant='contained'
                       color={
                         activeStep === steps.length - 1
                           ? "secondary"

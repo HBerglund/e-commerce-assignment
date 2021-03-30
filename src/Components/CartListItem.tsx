@@ -10,6 +10,7 @@ import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
 
 interface Props {
   item: CartItem;
+  showRemoveButton: boolean;
 }
 
 const useStyles = makeStyles(() =>
@@ -48,16 +49,23 @@ function CartListItem(props: Props) {
           <img className={classes.productImg} src={image} alt={name} />
         </div>
         <div className={classes.productInfo}>
-          <Typography variant="h6">{name}</Typography>
-          <Typography>{color}</Typography>
-          <Typography>{size}</Typography>
-          <Typography>Quantity: {props.item.quantity}</Typography>
-          <Typography>
-            Price: {(Number(price) * props.item.quantity).toFixed(2)}
+          <Typography>{name}</Typography>
+          <Typography variant='body2'>{color}</Typography>
+          <Typography variant='body2'>{size}</Typography>
+          <Typography variant='body2'>
+            Quantity: {props.item.quantity}
+          </Typography>
+          <Typography variant='body2'>
+            ${(Number(price) * props.item.quantity).toFixed(2)}
           </Typography>
         </div>
       </div>
-      <Button onClick={() => handleRemoveItem(props.item)}>Remove item</Button>
+      {props.showRemoveButton ? (
+        <Button onClick={() => handleRemoveItem(props.item)}>
+          Remove item
+        </Button>
+      ) : null}
+
       <Divider />
     </div>
   );

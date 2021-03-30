@@ -12,7 +12,7 @@ function CheckoutProductList() {
       {cart.length > 0 ? (
         <div>
           {cart.map((item) => (
-            <CartListItem item={item} />
+            <CartListItem item={item} showRemoveButton={true} />
           ))}
         </div>
       ) : (
