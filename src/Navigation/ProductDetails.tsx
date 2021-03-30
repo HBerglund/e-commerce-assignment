@@ -145,10 +145,14 @@ function ProductDetails() {
               <Typography variant="h4" component="h1" gutterBottom>
                 {product.name}
               </Typography>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h5" gutterBottom>
                 $ {selectedProps.price}
               </Typography>
-              <Typography variant="body1" gutterBottom>
+              <Typography
+                style={{ margin: "1rem 0" }}
+                variant="body1"
+                gutterBottom
+              >
                 {product.description}
               </Typography>
               <Box className={classes.propsContainer}>
@@ -159,10 +163,6 @@ function ProductDetails() {
                   <Button
                     key={size}
                     style={{
-                      border:
-                        selectedProps.size === size
-                          ? `1px solid ${theme.palette.grey[500]}`
-                          : "none",
                       opacity: selectedProps.size === size ? 1 : 0.4,
                     }}
                     onClick={() =>
