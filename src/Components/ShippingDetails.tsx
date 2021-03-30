@@ -5,7 +5,14 @@ import ShippingSelect from "./ShippingSelect";
 
 function ShippingDetails() {
   const order = useContext(OrderDetailsContext);
-  const [showError, setShowError] = useState(false);
+  // const [showError, setShowError] = useState(false);
+  const [showErrorName, setShowErrorName] = useState(false);
+  const [showErrorPhone, setShowErrorPhone] = useState(false);
+  const [showErrorEmail, setShowErrorEmail] = useState(false);
+  const [showErrorStreet, setShowErrorStreet] = useState(false);
+  const [showErrorPostalCode, setShowErrorPostalCode] = useState(false);
+  const [showErrorCity, setShowErrorCity] = useState(false);
+  const [showErrorCountry, setShowErrorCountry] = useState(false);
 
   const useStyles = makeStyles({
     flexColumn: {
@@ -18,10 +25,68 @@ function ShippingDetails() {
 
   const validateName = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.value.match(/^([^0-9]*)$/)) {
-      console.log("Invalid name");
-      setShowError(true);
+      setShowErrorName(true);
     } else {
-      setShowError(false);
+      setShowErrorName(false);
+      order.setNewOrderDetails(e);
+    }
+  };
+
+  const validatePhone = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/^\d{10}$/)) {
+      setShowErrorPhone(true);
+    } else {
+      setShowErrorPhone(false);
+      order.setNewOrderDetails(e);
+    }
+  };
+
+  const validateEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    if (
+      !e.target.value.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setShowErrorEmail(true);
+    } else {
+      setShowErrorEmail(false);
+      order.setNewOrderDetails(e);
+    }
+  };
+
+  const validateStreet = (e: ChangeEvent<HTMLInputElement>) => {
+    // TODO - FIND REGEX
+    if (!e.target.value.match(/^\s*\S+(?:\s+\S+){2}/)) {
+      setShowErrorStreet(true);
+    } else {
+      setShowErrorStreet(false);
+      order.setNewOrderDetails(e);
+    }
+  };
+
+  const validatePostalCode = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match("^\\d{3}\\s*\\d{2}$")) {
+      setShowErrorPostalCode(true);
+    } else {
+      setShowErrorPostalCode(false);
+      order.setNewOrderDetails(e);
+    }
+  };
+
+  const validateCity = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/^([^0-9]*)$/)) {
+      setShowErrorCity(true);
+    } else {
+      setShowErrorCity(false);
+      order.setNewOrderDetails(e);
+    }
+  };
+
+  const validateCountry = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/^([^0-9]*)$/)) {
+      setShowErrorCountry(true);
+    } else {
+      setShowErrorCountry(false);
       order.setNewOrderDetails(e);
     }
   };
@@ -35,71 +100,61 @@ function ShippingDetails() {
           name="name"
           label="Name"
           required
-          error={showError}
-          helperText={showError ? "Please enter name" : " "}
+          error={showErrorName}
+          helperText={showErrorName ? "Please enter name" : " "}
         />
         <TextField
-          onChange={order.setNewOrderDetails}
+          onChange={validatePhone}
           name="phone"
           label="Phone number"
           required
-          error={order.orderDetails.phone === ""}
+          error={showErrorPhone}
           helperText={
-            order.orderDetails.phone === "" ? "Please enter phone number" : " "
+            showErrorPhone ? "Please enter a 10 digit phone number" : " "
           }
         />
         <TextField
-          onChange={order.setNewOrderDetails}
+          onChange={validateEmail}
           name="email"
           label="Email"
           required
-          error={order.orderDetails.email === ""}
-          helperText={
-            order.orderDetails.email === "" ? "Please enter email address" : " "
-          }
+          error={showErrorEmail}
+          helperText={showErrorEmail ? "Please enter email address" : " "}
         />
       </div>
       <div className={classes.flexColumn} style={{ margin: "1rem 0" }}>
         <Typography>Adress</Typography>
         <TextField
-          onChange={order.setNewOrderDetails}
+          onChange={validateStreet}
           name="street"
           label="Street name"
           required
-          error={order.orderDetails.street === ""}
-          helperText={
-            order.orderDetails.street === "" ? "Please enter street name" : " "
-          }
+          error={showErrorStreet}
+          helperText={showErrorStreet ? "Please enter street name" : " "}
         />
         <TextField
-          onChange={order.setNewOrderDetails}
+          onChange={validatePostalCode}
           name="postal"
           label="Postal code"
           required
-          error={order.orderDetails.postal === ""}
-          helperText={
-            order.orderDetails.postal === "" ? "Please enter postal code" : " "
-          }
+          error={showErrorPostalCode}
+          helperText={showErrorPostalCode ? "Please enter postal code" : " "}
         />
         <TextField
-          onChange={order.setNewOrderDetails}
+          onChange={validateCity}
           name="city"
           label="City"
           required
-          error={order.orderDetails.city === ""}
-          helperText={
-            order.orderDetails.city === "" ? "Please enter city" : " "
-          }
+          error={showErrorCity}
+          helperText={showErrorCity ? "Please enter city" : " "}
         />
         <TextField
-          onChange={order.setNewOrderDetails}
+          onChange={validateCountry}
           name="country"
           label="Country"
           required
-          error={order.orderDetails.country === ""}
-          helperText={
-            order.orderDetails.country === "" ? "Please enter country" : " "
-          }
+          error={showErrorCountry}
+          helperText={showErrorCountry ? "Please enter country" : " "}
         />
       </div>
       <div style={{ margin: "1rem" }}>
