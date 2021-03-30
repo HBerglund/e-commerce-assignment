@@ -52,7 +52,10 @@ function ProductDetails() {
         margin: "1rem 0",
       },
       goBack: {
-        marginBottom: "1rem",
+        margin: "0 -4rem 1rem 0",
+      },
+      addToCart: {
+        marginTop: "1rem",
       },
     })
   );
@@ -158,8 +161,9 @@ function ProductDetails() {
                     style={{
                       border:
                         selectedProps.size === size
-                          ? "1px solid black"
+                          ? `1px solid ${theme.palette.grey[500]}`
                           : "none",
+                      opacity: selectedProps.size === size ? 1 : 0.4,
                     }}
                     onClick={() =>
                       setSelectedProps((prevState) => {
@@ -179,10 +183,7 @@ function ProductDetails() {
                   <IconButton
                     key={color}
                     style={{
-                      border:
-                        selectedProps.color === color
-                          ? "1px solid black"
-                          : "none",
+                      opacity: selectedProps.color === color ? 1 : 0.3,
                       backgroundColor: getSelectedColor(color),
                       borderRadius: "50%",
                       height: "50px",
@@ -198,6 +199,7 @@ function ProductDetails() {
                 ))}
               </Box>
               <Button
+                className={classes.addToCart}
                 onClick={handleAddToCartClick}
                 variant="contained"
                 color="primary"
