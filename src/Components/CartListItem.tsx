@@ -26,7 +26,6 @@ function CartListItem(props: Props) {
       root: {
         display: "flex",
         flexDirection: "column",
-        margin: "1rem",
       },
       wrapper: {
         display: "flex",
@@ -36,6 +35,7 @@ function CartListItem(props: Props) {
       },
       productImg: {
         width: "80px",
+        objectFit: "cover",
       },
       productInfo: {
         margin: "0 0 1rem 1rem",
@@ -87,7 +87,7 @@ function CartListItem(props: Props) {
             </Typography>
             <Typography variant="body2">{color}</Typography>
             <Typography variant="body2" gutterBottom>
-              Size: {size}
+              {size}
             </Typography>
             <Typography variant="body1">
               ${(Number(price) * props.item.quantity).toFixed(2)}
