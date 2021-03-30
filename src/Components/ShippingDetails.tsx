@@ -55,7 +55,6 @@ function ShippingDetails() {
   };
 
   const validateStreet = (e: ChangeEvent<HTMLInputElement>) => {
-    // TODO - FIND REGEX
     if (!e.target.value.match(/^\s*\S+(?:\s+\S+){2}/)) {
       setShowErrorStreet(true);
     } else {
