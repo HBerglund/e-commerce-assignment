@@ -10,7 +10,7 @@ import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 interface Props {
   item: CartItem;
@@ -80,15 +80,14 @@ function CartListItem(props: Props) {
   const history = useHistory();
 
   const goToProduct = () => {
-    console.log("click");
     const destination = `/products/${props.item.product.id}`;
-    handleDrawerExit();
     history.push(destination);
+    handleDrawerExit();
   };
 
   const classes = useStyles();
 
-  const { name, image, color, size, price, id } = props.item.product;
+  const { name, image, color, size, price } = props.item.product;
 
   return (
     <div className={classes.root}>
@@ -98,13 +97,14 @@ function CartListItem(props: Props) {
 
           <div className={classes.productInfo}>
             <Typography
-              style={{ cursor: "pointer", color: "black" }}
               onClick={goToProduct}
+              style={{ cursor: "pointer", color: "black" }}
               variant="h6"
               gutterBottom
             >
               {name}
             </Typography>
+
             <Typography variant="body2">{color}</Typography>
             <Typography variant="body2" gutterBottom>
               {size}

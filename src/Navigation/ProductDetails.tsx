@@ -20,6 +20,20 @@ interface Params {
 }
 
 function ProductDetails() {
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
+  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const history = useHistory();
+
+  const cart = useContext(ShoppingCartContext);
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
+  const match = useRouteMatch<Params>();
+  let product: Product | undefined = products.find(
+    (p: Product) => p.id === match.params.id
+  );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -64,51 +78,16 @@ function ProductDetails() {
     })
   );
 
-  const theme = useTheme();
-  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
-  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
-  const classes = useStyles();
-
-  const cart = useContext(ShoppingCartContext);
-  const productsContext = useContext(ProductsContext);
-  const products: Product[] = productsContext.list;
-
-  const match = useRouteMatch<Params>();
-  const product: Product | undefined = products.find(
-    (p: Product) => p.id === match.params.id
-  );
-
-  const [selectedProps, setSelectedProps] = useState({
+  const initialProductProps = {
     price: product ? product.sizeProps[0].price : "",
     size: product ? product.sizeProps[0].size : "",
     img: product
       ? product.colorProps[0].img
       : "https://images.unsplash.com/photo-1532630571098-79a3d222b00d",
     color: product ? product.colorProps[0].color : "",
-  });
-
-  const getSelectedColor = (color: string) => {
-    switch (color) {
-      case "Blueberry Blue": {
-        return "#5a6fa4";
-      }
-      case "Moss Green": {
-        return "#78A5AB";
-      }
-      case "Heather Pink": {
-        return "#E0C5D4";
-      }
-      case "Silver Grey": {
-        return "#D5DADE";
-      }
-      case "Birch White": {
-        return "#E2E2E2";
-      }
-      case "Black": {
-        return "#1D2224";
-      }
-    }
   };
+
+  const [selectedProps, setSelectedProps] = useState(initialProductProps);
 
   const handleAddToCartClick = () => {
     if (product) {
@@ -126,7 +105,7 @@ function ProductDetails() {
     }
   };
 
-  const history = useHistory();
+  const classes = useStyles();
 
   if (product) {
     return (
@@ -243,5 +222,28 @@ function ProductDetails() {
     return <div>Produkten du letar efter finns inte...</div>;
   }
 }
+
+const getSelectedColor = (color: string) => {
+  switch (color) {
+    case "Blueberry Blue": {
+      return "#5a6fa4";
+    }
+    case "Moss Green": {
+      return "#78A5AB";
+    }
+    case "Heather Pink": {
+      return "#E0C5D4";
+    }
+    case "Silver Grey": {
+      return "#D5DADE";
+    }
+    case "Birch White": {
+      return "#E2E2E2";
+    }
+    case "Black": {
+      return "#1D2224";
+    }
+  }
+};
 
 export default ProductDetails;

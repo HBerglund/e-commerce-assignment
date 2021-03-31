@@ -54,6 +54,7 @@ function CheckoutDrawer(props: Props) {
       alignItems: "center",
       justifyContent: "space-between",
       padding: "1rem",
+      zIndex: 100,
     },
     totalPrice: {
       marginTop: "1rem",
