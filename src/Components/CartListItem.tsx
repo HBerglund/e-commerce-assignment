@@ -10,12 +10,13 @@ import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { Link, useHistory } from "react-router-dom";
-import { HistoryOutlined } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   item: CartItem;
   mutable: boolean;
+  handleExit?: (drawerOpen: boolean) => void;
+  drawerOpen?: boolean;
 }
 
 function CartListItem(props: Props) {
@@ -70,11 +71,18 @@ function CartListItem(props: Props) {
     })
   );
 
+  const handleDrawerExit = () => {
+    if (props.drawerOpen && props.handleExit) {
+      props.handleExit(!props.drawerOpen);
+    }
+  };
+
   const history = useHistory();
 
   const goToProduct = () => {
     console.log("click");
     const destination = `/products/${props.item.product.id}`;
+    handleDrawerExit();
     history.push(destination);
   };
 

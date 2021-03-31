@@ -84,7 +84,12 @@ function CheckoutDrawer(props: Props) {
           {cart.length > 0 ? (
             <div className={classes.itemsWrapper}>
               {cart.map((item) => (
-                <CartListItem item={item} mutable={true} />
+                <CartListItem
+                  item={item}
+                  mutable={true}
+                  handleExit={handleDrawerExit}
+                  drawerOpen={props.isOpen}
+                />
               ))}
               <Typography className={classes.totalPrice} variant="h6">
                 Total price: ${shoppingCart.totalPrice}
