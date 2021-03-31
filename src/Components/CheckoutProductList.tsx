@@ -8,7 +8,7 @@ function CheckoutProductList() {
   const { cart } = shoppingCart;
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       {cart.length > 0 ? (
         <div>
           {cart.map((item) => (
@@ -18,8 +18,12 @@ function CheckoutProductList() {
       ) : (
         <div style={{ marginTop: "1rem" }}>No items in cart yet</div>
       )}
-      <Typography gutterBottom>
-        Total price: ${shoppingCart.totalPrice}
+      <Typography
+        variant="h6"
+        style={{ margin: "2rem 0", textAlign: "right" }}
+        gutterBottom
+      >
+        Total: ${shoppingCart.totalPrice}
       </Typography>
     </div>
   );

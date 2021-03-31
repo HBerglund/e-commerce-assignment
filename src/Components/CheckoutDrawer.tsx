@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {
   Divider,
@@ -6,6 +6,7 @@ import {
   IconButton,
   Paper,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
@@ -18,42 +19,49 @@ interface Props {
   handleExit: (isOpen: boolean) => void;
 }
 
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: "white",
-    textColor: "black",
-    boxShadow: "none",
-    margin: "5rem 1rem 1rem 1rem",
-  },
-  itemsWrapper: {
-    margin: "2rem 0",
-  },
-  checkoutButton: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "2rem 0",
-  },
-  paper: {
-    width: "30%",
-    minWidth: "500px",
-  },
-  header: {
-    width: "30%",
-    minWidth: "500px",
-    position: "fixed",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "1rem",
-  },
-  totalPrice: {
-    marginTop: "1rem",
-  },
-});
-
 function CheckoutDrawer(props: Props) {
   const shoppingCart = useContext(ShoppingCartContext);
   const { cart } = shoppingCart;
+
+  const theme = useTheme();
+  const mdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const smUp = useMediaQuery(theme.breakpoints.up("sm"));
+
+  const useStyles = makeStyles({
+    root: {
+      backgroundColor: "white",
+      textColor: "black",
+      boxShadow: "none",
+      margin: "5rem 1rem 1rem 1rem",
+      padding: "0 1rem",
+    },
+    itemsWrapper: {
+      margin: "2rem 0",
+    },
+    checkoutButton: {
+      display: "flex",
+      flexDirection: "column",
+      margin: "2rem 0",
+    },
+    paper: {
+      width: mdUp ? "30%" : "60%" && smUp ? "60%" : "90%",
+      minWidth: mdUp ? "500px" : "none",
+    },
+    header: {
+      width: mdUp ? "30%" : "60%" && smUp ? "60%" : "90%",
+      minWidth: mdUp ? "500px" : "none",
+      position: "fixed",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "1rem",
+      zIndex: 100,
+    },
+    totalPrice: {
+      marginTop: "1rem",
+      textAlign: "right",
+    },
+  });
 
   const classes = useStyles();
 
@@ -79,7 +87,12 @@ function CheckoutDrawer(props: Props) {
           {cart.length > 0 ? (
             <div className={classes.itemsWrapper}>
               {cart.map((item) => (
-                <CartListItem item={item} mutable={true} />
+                <CartListItem
+                  item={item}
+                  mutable={true}
+                  handleExit={handleDrawerExit}
+                  drawerOpen={props.isOpen}
+                />
               ))}
               <Typography className={classes.totalPrice} variant="h6">
                 Total price: ${shoppingCart.totalPrice}
@@ -93,7 +106,7 @@ function CheckoutDrawer(props: Props) {
           {cart.length ? (
             <div className={classes.checkoutButton}>
               <Button
-                color="secondary"
+                color="primary"
                 variant="contained"
                 onClick={handleDrawerExit}
                 component={Link}

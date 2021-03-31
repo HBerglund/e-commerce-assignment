@@ -11,8 +11,8 @@ import {
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import Section from "../Components/Section";
-import { useContext, useState } from "react";
-import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
+import { useContext, useEffect, useState } from "react";
+import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 import { ProductsContext, Product } from "../Context/ProductListContext";
 
 interface Params {
@@ -20,6 +20,24 @@ interface Params {
 }
 
 function ProductDetails() {
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
+  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const history = useHistory();
+
+  const cart = useContext(ShoppingCartContext);
+  const productsContext = useContext(ProductsContext);
+  const products: Product[] = productsContext.list;
+
+  const match = useRouteMatch<Params>();
+  let product: Product | undefined = products.find(
+    (p: Product) => p.id === match.params.id
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const useStyles = makeStyles(() =>
     createStyles({
       root: {
@@ -46,59 +64,38 @@ function ProductDetails() {
       helpContainer: {
         display: "flex",
         flexDirection: "column",
+        marginTop: "4rem",
       },
       propsContainer: {
         margin: "1rem 0",
       },
+      goBack: {
+        margin: "0 -4rem 1rem 0",
+      },
+      addToCart: {
+        marginTop: "1rem",
+      },
     })
   );
 
-  const theme = useTheme();
-  const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
-  const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
-  const classes = useStyles();
-
-  const cart = useContext(ShoppingCartContext);
-  const productsContext = useContext(ProductsContext);
-  const products: Product[] = productsContext.list;
-
-  const match = useRouteMatch<Params>();
-  const product: Product | undefined = products.find(
-    (p: Product) => p.id === match.params.id
-  );
-
-  const [selectedProps, setSelectedProps] = useState({
+  const initialProductProps = {
     price: product ? product.sizeProps[0].price : "",
     size: product ? product.sizeProps[0].size : "",
     img: product
       ? product.colorProps[0].img
       : "https://images.unsplash.com/photo-1532630571098-79a3d222b00d",
     color: product ? product.colorProps[0].color : "",
-  });
-
-  const selectedColor = (color: string) => {
-    switch (color) {
-      case "Blueberry Blue": {
-        return "#5a6fa4";
-      }
-      case "Moss Green": {
-        return "#78A5AB";
-      }
-      case "Heather Pink": {
-        return "#E0C5D4";
-      }
-      case "Silver Grey": {
-        return "#D5DADE";
-      }
-      case "Birch White": {
-        return "#E2E2E2";
-      }
-    }
   };
+
+  const [selectedProps, setSelectedProps] = useState(initialProductProps);
+
+  useEffect(() => {
+    setSelectedProps(initialProductProps);
+  }, [match]);
 
   const handleAddToCartClick = () => {
     if (product) {
-      const item: CartItem = {
+      cart.add({
         quantity: 1,
         product: {
           id: product.id,
@@ -108,17 +105,17 @@ function ProductDetails() {
           price: selectedProps.price,
           image: selectedProps.img,
         },
-      };
-      cart.add(item);
+      });
     }
   };
 
-  const history = useHistory();
+  const classes = useStyles();
 
   if (product) {
     return (
       <Section>
         <Button
+          className={classes.goBack}
           onClick={history.goBack}
           startIcon={<ArrowBackIosIcon fontSize="small" />}
         >
@@ -138,24 +135,26 @@ function ProductDetails() {
               <Typography variant="h4" component="h1" gutterBottom>
                 {product.name}
               </Typography>
-              <Typography variant="body1" gutterBottom>
+              <Typography variant="h5" gutterBottom>
                 $ {selectedProps.price}
               </Typography>
-              <Typography variant="body1" gutterBottom>
+              <Typography
+                style={{ margin: "1rem 0" }}
+                variant="body1"
+                gutterBottom
+              >
                 {product.description}
               </Typography>
               <Box className={classes.propsContainer}>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="body2" gutterBottom>
                   Available sizes
                 </Typography>
                 {product.sizeProps.map(({ size, price }) => (
                   <Button
+                    size="large"
                     key={size}
                     style={{
-                      border:
-                        selectedProps.size === size
-                          ? "1px solid black"
-                          : "none",
+                      opacity: selectedProps.size === size ? 1 : 0.4,
                     }}
                     onClick={() =>
                       setSelectedProps((prevState) => {
@@ -168,18 +167,19 @@ function ProductDetails() {
                 ))}
               </Box>
               <Box className={classes.propsContainer}>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="body2" gutterBottom>
                   Available colors
                 </Typography>
                 {product.colorProps.map(({ img, color }) => (
                   <IconButton
                     key={color}
                     style={{
+                      opacity: selectedProps.color === color ? 1 : 0.3,
                       border:
                         selectedProps.color === color
-                          ? "1px solid black"
+                          ? "1px solid lightgrey"
                           : "none",
-                      backgroundColor: selectedColor(color),
+                      backgroundColor: getSelectedColor(color),
                       borderRadius: "50%",
                       height: "50px",
                       width: "50px",
@@ -194,27 +194,23 @@ function ProductDetails() {
                 ))}
               </Box>
               <Button
+                className={classes.addToCart}
                 onClick={handleAddToCartClick}
                 variant="contained"
                 color="primary"
+                size="large"
               >
                 Add to cart
               </Button>
             </Box>
             <Box className={classes.helpContainer}>
-              <Typography variant="body1" gutterBottom>
+              <Typography variant="body2" gutterBottom>
                 Need help?
               </Typography>
-              <Button
-                variant="outlined"
-                component={Link}
-                style={{ color: "black" }}
-                to={"/faq"}
-              >
+              <Button component={Link} style={{ color: "black" }} to={"/faq"}>
                 Visit our FAQ
               </Button>
               <Button
-                variant="outlined"
                 component={Link}
                 style={{ color: "black" }}
                 to={"/contact"}
@@ -227,8 +223,31 @@ function ProductDetails() {
       </Section>
     );
   } else {
-    return <div> Produkten du letar efter finns inte...</div>;
+    return <div>Produkten du letar efter finns inte...</div>;
   }
 }
+
+const getSelectedColor = (color: string) => {
+  switch (color) {
+    case "Blueberry Blue": {
+      return "#5a6fa4";
+    }
+    case "Moss Green": {
+      return "#78A5AB";
+    }
+    case "Heather Pink": {
+      return "#E0C5D4";
+    }
+    case "Silver Grey": {
+      return "#D5DADE";
+    }
+    case "Birch White": {
+      return "#E2E2E2";
+    }
+    case "Black": {
+      return "#1D2224";
+    }
+  }
+};
 
 export default ProductDetails;
