@@ -53,7 +53,8 @@ function CartListItem(props: Props) {
       },
       quantityWrapper: {
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column",
+        alignItems: "flex-end",
         margin: "1rem 0",
       },
       rightWrapper: {
@@ -109,31 +110,34 @@ function CartListItem(props: Props) {
             <Typography variant="body2" gutterBottom>
               {size}
             </Typography>
-            <Typography variant="body1">
-              ${(Number(price) * props.item.quantity).toFixed(2)}
-            </Typography>
+            <Typography variant="body2">${price}</Typography>
           </div>
         </div>
         <div className={classes.rightWrapper}>
           {props.mutable ? (
             <div className={classes.flexEnd}>
               <IconButton size="small" onClick={() => cart.remove(props.item)}>
-                <DeleteIcon />
+                <DeleteIcon style={{ fontSize: "1.2rem" }} />
               </IconButton>
               <div className={classes.quantityWrapper}>
-                <IconButton
-                  size="small"
-                  onClick={() => cart.changeQuantity(props.item, "decrease")}
-                >
-                  <RemoveIcon />
-                </IconButton>
-                <Typography variant="body1">{props.item.quantity}</Typography>
-                <IconButton
-                  size="small"
-                  onClick={() => cart.changeQuantity(props.item, "increase")}
-                >
-                  <AddIcon />
-                </IconButton>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <IconButton
+                    size="small"
+                    onClick={() => cart.changeQuantity(props.item, "decrease")}
+                  >
+                    <RemoveIcon style={{ fontSize: "1rem" }} />
+                  </IconButton>
+                  <Typography variant="body1">{props.item.quantity}</Typography>
+                  <IconButton
+                    size="small"
+                    onClick={() => cart.changeQuantity(props.item, "increase")}
+                  >
+                    <AddIcon style={{ fontSize: "1rem" }} />
+                  </IconButton>
+                </div>
+                <Typography style={{ marginTop: "1rem" }} variant="body2">
+                  Total: ${(Number(price) * props.item.quantity).toFixed(2)}
+                </Typography>
               </div>
             </div>
           ) : null}

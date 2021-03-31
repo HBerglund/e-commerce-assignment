@@ -89,6 +89,10 @@ function ProductDetails() {
 
   const [selectedProps, setSelectedProps] = useState(initialProductProps);
 
+  useEffect(() => {
+    setSelectedProps(initialProductProps);
+  }, [match]);
+
   const handleAddToCartClick = () => {
     if (product) {
       cart.add({
