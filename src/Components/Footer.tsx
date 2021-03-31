@@ -1,15 +1,17 @@
 import {
   createStyles,
   Hidden,
+  IconButton,
   makeStyles,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
-import React from "react";
 import Section from "./Section";
 import { routes } from "../Navigation/routes";
 import { Link } from "react-router-dom";
+import Logo from "../assets/bhagwanlogo3-white.svg";
+import { Facebook, Instagram, LinkedIn, Twitter } from "@material-ui/icons";
 
 function Footer() {
   const theme = useTheme();
@@ -43,6 +45,11 @@ function Footer() {
         color: "white",
         padding: ".3rem 0",
       },
+      logo: {
+        height: "90px",
+        marginBottom: "1rem",
+        marginTop: "-1rem",
+      },
     })
   );
   const classes = useStyles();
@@ -53,9 +60,30 @@ function Footer() {
         <div className={classes.wrapper}>
           <Hidden xsDown>
             <div className={classes.sentence}>
-              <Typography component="h4" variant="h5">
+              <IconButton
+                component={Link}
+                to={"/"}
+                disableRipple
+                style={{
+                  backgroundColor: "transparent",
+                }}
+              >
+                <img className={classes.logo} src={Logo} alt="logo" />
+              </IconButton>
+              <Typography
+                style={{ marginBottom: "2rem" }}
+                component="h6"
+                variant="body1"
+              >
                 Bhagwan Yoga provides you with the latest yoga equipment
-                available...
+                available. Make sure to connect via our social media channels.
+              </Typography>
+
+              <Typography variant="body1">
+                <Facebook style={{ marginRight: ".5rem" }} fontSize="large" />
+                <Twitter style={{ marginRight: ".5rem" }} fontSize="large" />
+                <LinkedIn style={{ marginRight: ".5rem" }} fontSize="large" />
+                <Instagram style={{ marginRight: ".5rem" }} fontSize="large" />
               </Typography>
             </div>
           </Hidden>
@@ -65,7 +93,7 @@ function Footer() {
                 Menu
               </Typography>
               {routes.map(({ name, path }) => {
-                if (name !== "Men" && name !== "Women") {
+                if (name !== "Men" && name !== "Women" && name !== "Checkout") {
                   return (
                     <Link className={classes.links} key={name} to={path}>
                       {name}

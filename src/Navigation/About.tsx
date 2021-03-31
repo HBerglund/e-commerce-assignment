@@ -10,12 +10,16 @@ import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
 import ProductGrid from "../Components/ProductGrid";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductsContext, Product } from "../Context/ProductListContext";
 
 function About() {
   const productsContext = useContext(ProductsContext);
   const products: Product[] = productsContext.list || [];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const getProducts = (
     products: Product[],

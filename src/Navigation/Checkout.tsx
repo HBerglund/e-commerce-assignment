@@ -10,7 +10,7 @@ import {
   Stepper,
   Typography,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CheckoutProductList from "../Components/CheckoutProductList";
 import PaymentDetails from "../Components/PaymentDetails";
 import Section from "../Components/Section";
@@ -36,6 +36,10 @@ function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -100,11 +104,7 @@ function Checkout() {
                         )
                       }
                       variant="contained"
-                      color={
-                        activeStep === steps.length - 1
-                          ? "secondary"
-                          : "primary"
-                      }
+                      color="primary"
                       onClick={handleNext}
                     >
                       {activeStep === steps.length - 1 ? "Place order" : "Next"}

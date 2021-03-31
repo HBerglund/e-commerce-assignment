@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {
   Divider,
@@ -6,6 +6,7 @@ import {
   IconButton,
   Paper,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import CloseIcon from "@material-ui/icons/Close";
@@ -18,33 +19,49 @@ interface Props {
   handleExit: (isOpen: boolean) => void;
 }
 
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: "white",
-    textColor: "black",
-    boxShadow: "none",
-    margin: "5rem 1rem 1rem 1rem",
-  },
-  buttonsWrapper: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  paper: {
-    width: "40%",
-  },
-  header: {
-    width: "40%",
-    position: "fixed",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "1rem",
-  },
-});
-
 function CheckoutDrawer(props: Props) {
   const shoppingCart = useContext(ShoppingCartContext);
   const { cart } = shoppingCart;
+
+  const theme = useTheme();
+  const mdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const smUp = useMediaQuery(theme.breakpoints.up("sm"));
+
+  const useStyles = makeStyles({
+    root: {
+      backgroundColor: "white",
+      textColor: "black",
+      boxShadow: "none",
+      margin: "5rem 1rem 1rem 1rem",
+      padding: "0 1rem",
+    },
+    itemsWrapper: {
+      margin: "2rem 0",
+    },
+    checkoutButton: {
+      display: "flex",
+      flexDirection: "column",
+      margin: "2rem 0",
+    },
+    paper: {
+      width: mdUp ? "30%" : "60%" && smUp ? "60%" : "90%",
+      minWidth: mdUp ? "500px" : "none",
+    },
+    header: {
+      width: mdUp ? "30%" : "60%" && smUp ? "60%" : "90%",
+      minWidth: mdUp ? "500px" : "none",
+      position: "fixed",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "1rem",
+      zIndex: 100,
+    },
+    totalPrice: {
+      marginTop: "1rem",
+      textAlign: "right",
+    },
+  });
 
   const classes = useStyles();
 
@@ -55,12 +72,12 @@ function CheckoutDrawer(props: Props) {
   return (
     <div>
       <Drawer
-        anchor='right'
+        anchor="right"
         open={props.isOpen}
         classes={{ paper: classes.paper }}
       >
         <Paper className={classes.header}>
-          <Typography variant='h5'>Your cart</Typography>
+          <Typography variant="h5">Your cart</Typography>
           <IconButton onClick={handleDrawerExit}>
             <CloseIcon />
           </IconButton>
@@ -68,21 +85,37 @@ function CheckoutDrawer(props: Props) {
         <div className={classes.root}>
           <Divider />
           {cart.length > 0 ? (
-            <div>
+            <div className={classes.itemsWrapper}>
               {cart.map((item) => (
-                <CartListItem item={item} showRemoveButton={true} />
+                <CartListItem
+                  item={item}
+                  mutable={true}
+                  handleExit={handleDrawerExit}
+                  drawerOpen={props.isOpen}
+                />
               ))}
-              <Typography>Total price: {shoppingCart.totalPrice}</Typography>
+              <Typography className={classes.totalPrice} variant="h6">
+                Total price: ${shoppingCart.totalPrice}
+              </Typography>
             </div>
           ) : (
-            <div>No items in cart yet</div>
+            <div style={{ textAlign: "center", padding: "2rem" }}>
+              <Typography variant="h6">No items in your cart yet!</Typography>
+            </div>
           )}
-
-          <div className={classes.buttonsWrapper}>
-            <Button onClick={handleDrawerExit} component={Link} to='/checkout'>
-              Checkout
-            </Button>
-          </div>
+          {cart.length ? (
+            <div className={classes.checkoutButton}>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={handleDrawerExit}
+                component={Link}
+                to="/checkout"
+              >
+                Checkout
+              </Button>
+            </div>
+          ) : null}
         </div>
       </Drawer>
     </div>

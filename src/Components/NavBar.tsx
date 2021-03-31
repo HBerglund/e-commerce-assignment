@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { AppBar, Toolbar, IconButton, Hidden } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Hidden,
+  Divider,
+} from "@material-ui/core";
 import Logo from "../assets/bhagwanlogo3.svg";
 import { makeStyles } from "@material-ui/styles";
 import { routes } from "../Navigation/routes";
@@ -36,7 +42,6 @@ function NavBar() {
   const classes = useStyles();
   const firstNavItems = routes.slice(1, 4);
   const lastNavItems = routes.slice(4, routes.length - 1);
-  const checkOutNavItem = routes.slice(routes.length - 1, routes.length);
 
   const handleActivePage = (name: string) => {
     setActivePage(name);
@@ -69,32 +74,29 @@ function NavBar() {
               ))}
             </div>
             <div className={classes.buttonWrapper}>
-              {lastNavItems.map(({ name, path }) => (
-                <NavButton
-                  name={name}
-                  path={path}
-                  activePage={activePage}
-                  onActivePageClick={handleActivePage}
-                />
-              ))}
-              {checkOutNavItem.map(({ path, name }) => (
-                <IconButton
-                  key={name}
-                  disableRipple
-                  style={{
-                    backgroundColor: "transparent",
-                    marginBottom: "0.5rem",
-                  }}
-                  onClick={() => handleActivePage(name)}
-                >
-                  <CartButton />
-                </IconButton>
-              ))}
+              {lastNavItems.map(({ name, path }) => {
+                if (name !== "Checkout" && name !== "Privacy") {
+                  return (
+                    <NavButton
+                      name={name}
+                      path={path}
+                      activePage={activePage}
+                      onActivePageClick={handleActivePage}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              })}
+              <Divider flexItem orientation="vertical" />
+              <CartButton />
             </div>
           </Hidden>
         </div>
         <Hidden mdUp>
           <DropDown />
+          <Divider flexItem orientation="vertical" />
+          <CartButton />
         </Hidden>
       </Toolbar>
     </AppBar>

@@ -4,6 +4,7 @@ import faqQuestions from "../faqQuestions";
 import FaqQuestion from "../Components/FaqQuestion";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
+import { useEffect } from "react";
 
 function Faq() {
   const useStyles = makeStyles(() =>
@@ -11,6 +12,11 @@ function Faq() {
       root: {},
     })
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const classes = useStyles();
 
   return (

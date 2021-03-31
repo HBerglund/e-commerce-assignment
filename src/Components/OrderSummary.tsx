@@ -107,7 +107,7 @@ function OrderSummary() {
             {cart.length > 0 ? (
               <div>
                 {cart.map((item) => (
-                  <CartListItem item={item} showRemoveButton={false} />
+                  <CartListItem item={item} mutable={false} />
                 ))}
               </div>
             ) : (
