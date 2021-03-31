@@ -10,20 +10,26 @@ import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 
 function PlaceOrder() {
   const history = useHistory();
-
   const orderDetails = useContext(OrderDetailsContext);
-  const [disableButton, setDisableButton] = useState(false);
   const shoppingCart = useContext(ShoppingCartContext);
+
+  const [disableButton, setDisableButton] = useState(false);
+
+  const navigateToOrderConfirmation = () => {
+    history.push("/orderconfirmation");
+    shoppingCart.emptyCart();
+    orderDetails.emptyOrderDetails();
+  };
 
   const handlePlaceOrderClick = async () => {
     setDisableButton(true);
     const response = await mockApi(orderDetails.orderDetails);
+    console.log(response);
     navigateToOrderConfirmation();
   };
 
   async function mockApi(orderDetails: OrderDetails) {
     await timeOut();
-    console.log(orderDetails);
     return true;
   }
 
@@ -32,14 +38,6 @@ function PlaceOrder() {
       setTimeout(resolve, 2000);
     });
   }
-
-  const navigateToOrderConfirmation = () => {
-    history.push("/orderconfirmation");
-    shoppingCart.emptyCart();
-
-    // check why this doesn't work
-    // orderDetails.emptyOrderDetails();
-  };
 
   return (
     <IconButton disabled={disableButton} onClick={handlePlaceOrderClick}>

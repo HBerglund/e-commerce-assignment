@@ -78,12 +78,15 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
     setCart(emptyCart);
   };
 
-  let price: number = 0;
   const getTotalPrice = () => {
-    for (let i = 0; i < cart.length; i++) {
-      price += parseFloat(cart[i].product.price) * cart[i].quantity;
+    let price = 0;
+    if (cart.length) {
+      for (let i = 0; i < cart.length; i++) {
+        price += parseFloat(cart[i].product.price) * cart[i].quantity;
+      }
+      return Number(price.toFixed(2));
     }
-    return Number(price.toFixed(2));
+    return 0;
   };
 
   return (
