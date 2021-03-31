@@ -42,6 +42,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     setTotalPrice(getTotalPrice());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   useEffect(() => {

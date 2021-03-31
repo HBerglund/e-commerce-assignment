@@ -33,7 +33,7 @@ function Faq() {
           Frequently asked questions
         </Typography>
         {faqQuestions.map(({ id, question, answer }) => (
-          <FaqQuestion id={id} question={question} answer={answer} />
+          <FaqQuestion key={id} id={id} question={question} answer={answer} />
         ))}
       </Section>
     </div>

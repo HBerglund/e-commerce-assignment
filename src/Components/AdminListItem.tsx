@@ -132,7 +132,7 @@ function AdminListItem(props: Props) {
         </Typography>
         <div className={classes.propsWrapper}>
           {product.colorProps.map(({ color, img }) => (
-            <div className={classes.propItem}>
+            <div className={classes.propItem} key={color}>
               <img src={img} alt={product.name} className={classes.image} />
               <Typography variant="body1" gutterBottom>
                 {color}
@@ -153,7 +153,7 @@ function AdminListItem(props: Props) {
         </Typography>
         <div className={classes.propsWrapper}>
           {product.sizeProps.map(({ size, price }) => (
-            <div className={classes.propItem}>
+            <div className={classes.propItem} key={size}>
               <Typography variant="body1" gutterBottom>
                 {size}
                 <IconButton
