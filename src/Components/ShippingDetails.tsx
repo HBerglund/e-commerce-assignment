@@ -5,13 +5,15 @@ import ShippingSelect from "./ShippingSelect";
 
 function ShippingDetails() {
   const order = useContext(OrderDetailsContext);
-  const [showErrorName, setShowErrorName] = useState(false);
-  const [showErrorPhone, setShowErrorPhone] = useState(false);
-  const [showErrorEmail, setShowErrorEmail] = useState(false);
-  const [showErrorStreet, setShowErrorStreet] = useState(false);
-  const [showErrorPostalCode, setShowErrorPostalCode] = useState(false);
-  const [showErrorCity, setShowErrorCity] = useState(false);
-  const [showErrorCountry, setShowErrorCountry] = useState(false);
+  const [showErrorName, setShowErrorName] = useState<boolean>(false);
+  const [showErrorPhone, setShowErrorPhone] = useState<boolean>(false);
+  const [showErrorEmail, setShowErrorEmail] = useState<boolean>(false);
+  const [showErrorStreet, setShowErrorStreet] = useState<boolean>(false);
+  const [showErrorPostalCode, setShowErrorPostalCode] = useState<boolean>(
+    false
+  );
+  const [showErrorCity, setShowErrorCity] = useState<boolean>(false);
+  const [showErrorCountry, setShowErrorCountry] = useState<boolean>(false);
 
   const useStyles = makeStyles({
     flexColumn: {

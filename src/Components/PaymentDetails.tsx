@@ -11,6 +11,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 
 function PaymentDetails() {
+  const order = useContext(OrderDetailsContext);
   const [paymentValue, setPaymentValue] = useState("Credit card");
   const [invoiceValue, setInvoiceValue] = useState("home");
   const [showCard, setShowCard] = useState<boolean>(false);
@@ -18,7 +19,11 @@ function PaymentDetails() {
   const [showInvoice, setShowInvoice] = useState<boolean>(false);
   const [showHomeAddress, setShowHomeAddress] = useState<boolean>(false);
   const [showOtherAddress, setShowOtherAddress] = useState<boolean>(false);
-  const order = useContext(OrderDetailsContext);
+
+  const [showErrorName, setShowErrorName] = useState(false);
+  const [showErrorCardNumber, setShowErrorCardNumber] = useState(false);
+  const [showErrorYearMonth, setShowErrorYearMonth] = useState(false);
+  const [showErrorCVV, setShowErrorCVV] = useState(false);
 
   const useStyles = makeStyles({
     root: {
@@ -41,6 +46,8 @@ function PaymentDetails() {
       margin: ".5rem",
     },
   });
+
+  const classes = useStyles();
 
   useEffect(() => {
     switch (paymentValue) {
@@ -84,7 +91,38 @@ function PaymentDetails() {
     setInvoiceValue((event.target as HTMLInputElement).value);
   };
 
-  const classes = useStyles();
+  const validateName = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/^([^0-9]*)$/)) {
+      setShowErrorName(true);
+    } else {
+      setShowErrorName(false);
+    }
+  };
+
+  const validateCardNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    const creditCard = /[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4}/;
+    if (!e.target.value.match(creditCard)) {
+      setShowErrorCardNumber(true);
+    } else {
+      setShowErrorCardNumber(false);
+    }
+  };
+
+  const validateYearMonth = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/[0-9]{4}/)) {
+      setShowErrorYearMonth(true);
+    } else {
+      setShowErrorYearMonth(false);
+    }
+  };
+
+  const validateCVV = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/[0-9]{3}/)) {
+      setShowErrorCVV(true);
+    } else {
+      setShowErrorCVV(false);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -106,21 +144,41 @@ function PaymentDetails() {
                 label="Card name holder"
                 variant="outlined"
                 className={classes.inputField}
+                onChange={validateName}
+                required
+                error={showErrorName}
+                helperText={showErrorName ? "Please enter name" : " "}
               />
               <TextField
                 label="Card number"
                 variant="outlined"
                 className={classes.inputField}
+                onChange={validateCardNumber}
+                required
+                error={showErrorCardNumber}
+                helperText={
+                  showErrorCardNumber ? "Please enter a valid card number" : " "
+                }
               />
               <TextField
-                label="Y/M"
+                label="YYMM"
                 variant="outlined"
                 className={classes.inputField}
+                onChange={validateYearMonth}
+                required
+                error={showErrorYearMonth}
+                helperText={
+                  showErrorYearMonth ? "Please enter expiry date" : " "
+                }
               />
               <TextField
-                label="CCV"
+                label="CVV"
                 variant="outlined"
                 className={classes.inputField}
+                onChange={validateCVV}
+                required
+                error={showErrorCVV}
+                helperText={showErrorCVV ? "Please enter a valid CVV" : " "}
               />
             </Collapse>
             <FormControlLabel value="Swish" control={<Radio />} label="Swish" />
