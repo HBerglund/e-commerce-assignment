@@ -33,6 +33,7 @@ function CheckoutDrawer(props: Props) {
       textColor: "black",
       boxShadow: "none",
       margin: "5rem 1rem 1rem 1rem",
+      padding: "0 1rem",
     },
     itemsWrapper: {
       margin: "2rem 0",
@@ -58,6 +59,7 @@ function CheckoutDrawer(props: Props) {
     },
     totalPrice: {
       marginTop: "1rem",
+      textAlign: "right",
     },
   });
 
