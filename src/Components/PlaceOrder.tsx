@@ -4,7 +4,7 @@ import {
   OrderDetails,
   OrderDetailsContext,
 } from "../Context/OrderDetailsContext";
-import { IconButton } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { ShoppingCartContext } from "../Context/ShoppingCartContext";
 
@@ -16,33 +16,38 @@ function PlaceOrder() {
   const [disableButton, setDisableButton] = useState(false);
 
   const navigateToOrderConfirmation = () => {
+    console.log("navigate To next page");
     history.push("/orderconfirmation");
     shoppingCart.emptyCart();
-    orderDetails.emptyOrderDetails();
+    console.log(orderDetails.orderDetails);
   };
 
   const handlePlaceOrderClick = async () => {
+    console.log("button is clicked");
     setDisableButton(true);
     const response = await mockApi(orderDetails.orderDetails);
-    console.log(response);
+    console.log("we have a response: " + response);
+    console.log(orderDetails.orderDetails);
     navigateToOrderConfirmation();
   };
 
   async function mockApi(orderDetails: OrderDetails) {
+    console.log("mockAPI is in play");
     await timeOut();
     return true;
   }
 
   async function timeOut() {
+    console.log("timeOut is in play");
     return new Promise((resolve) => {
       setTimeout(resolve, 2000);
     });
   }
 
   return (
-    <IconButton disabled={disableButton} onClick={handlePlaceOrderClick}>
+    <Button disabled={disableButton} onClick={handlePlaceOrderClick}>
       <DoneIcon />
-    </IconButton>
+    </Button>
   );
 }
 

@@ -9,6 +9,7 @@ import {
   StepLabel,
   Stepper,
   Typography,
+  CircularProgress,
 } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import CheckoutProductList from "../Components/CheckoutProductList";
@@ -116,9 +117,8 @@ function Checkout() {
           ))}
         </Stepper>
         {activeStep === steps.length && (
-          <Paper square elevation={0}>
-            <Typography>All steps completed - you're finished</Typography>
-            <Button onClick={handleReset}>Reset</Button>
+          <Paper square elevation={0} style={{ paddingLeft: "3rem" }}>
+            <CircularProgress />
           </Paper>
         )}
       </Section>

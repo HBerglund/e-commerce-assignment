@@ -95,7 +95,7 @@ function About() {
             <Typography gutterBottom variant="h4" component="h3">
               High quality and always organic
             </Typography>
-            <Typography variant="body1" component="p">
+            <Typography variant="body1" component="span">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -116,7 +116,7 @@ function About() {
             <Typography gutterBottom variant="h4" component="h3">
               High quality and always organic
             </Typography>
-            <Typography variant="body1" component="p" gutterBottom>
+            <Typography variant="body1" component="span" gutterBottom>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
