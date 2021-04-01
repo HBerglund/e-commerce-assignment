@@ -91,6 +91,7 @@ function ProductDetails() {
 
   useEffect(() => {
     setSelectedProps(initialProductProps);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match]);
 
   const handleAddToCartClick = () => {

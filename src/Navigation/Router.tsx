@@ -14,6 +14,7 @@ import Contact from "./Contact";
 import Footer from "../Components/Footer";
 import SignIn from "./SignIn";
 import Admin from "./Admin";
+import OrderConfirmation from "./OrderConfirmation";
 
 function Router() {
   return (
@@ -32,6 +33,7 @@ function Router() {
         <Route path="/checkout" component={Checkout} />
         <Route path="/admin" component={Admin} />
         <Route path="/signin" component={SignIn} />
+        <Route path="/orderconfirmation" component={OrderConfirmation} />
       </Switch>
       <Footer />
     </BrowserRouter>

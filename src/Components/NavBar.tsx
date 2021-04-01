@@ -66,6 +66,7 @@ function NavBar() {
             <div className={classes.buttonWrapper}>
               {firstNavItems.map(({ name, path }) => (
                 <NavButton
+                  key={name}
                   name={name}
                   path={path}
                   activePage={activePage}
@@ -78,6 +79,7 @@ function NavBar() {
                 if (name !== "Checkout" && name !== "Privacy") {
                   return (
                     <NavButton
+                      key={name}
                       name={name}
                       path={path}
                       activePage={activePage}

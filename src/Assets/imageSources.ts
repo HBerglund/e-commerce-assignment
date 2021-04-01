@@ -16,6 +16,8 @@ const imageSources = {
   aboutHero: "https://images.unsplash.com/photo-1524863479829-916d8e77f114",
   yogaGirl: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3",
   mats: "https://images.unsplash.com/photo-1592432678016-e910b452f9a2",
+  orderConfirmation:
+    "https://images.unsplash.com/photo-1551892589-865f69869476",
 };
 
 export default imageSources;
