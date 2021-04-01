@@ -63,12 +63,6 @@ function AdminListItem(props: Props) {
     productsContext.editProductName(product, productName);
   };
 
-  // window.addEventListener("keydown", (e) => {
-  //   if (e.key === "Enter") {
-  //     setEditNameActive(false);
-  //   }
-  // });
-
   const handleEditDescClick = () => {
     setEditDescActive(true);
   };

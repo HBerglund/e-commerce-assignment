@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -77,10 +77,6 @@ function ShippingSelect() {
         break;
     }
   }, [deliveryValue]);
-
-  const handleDeliveryOption = (e: ChangeEvent<HTMLInputElement>) => {
-    order.setNewOrderDetails(e);
-  };
 
   return (
     <FormControl style={{ width: "100%" }} component="fieldset">

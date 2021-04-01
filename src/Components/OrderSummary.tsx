@@ -118,8 +118,10 @@ function OrderSummary() {
       </div>
       <Typography style={{ margin: "2rem 0" }} variant="h5" gutterBottom>
         Total price incl shipping: $
-        {shoppingCart.totalPrice +
-          order.getShippingPrice(order.orderDetails.deliveryOption)}
+        {(
+          shoppingCart.totalPrice +
+          order.getShippingPrice(order.orderDetails.deliveryOption)
+        ).toFixed(2)}
       </Typography>
     </div>
   );

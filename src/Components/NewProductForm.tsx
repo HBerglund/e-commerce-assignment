@@ -19,7 +19,7 @@ function NewProductForm() {
   );
 
   let newProduct: Product = {
-    id: String(products.length + 1),
+    id: String(products.length + 2),
     category: category,
     name: "",
     fabric: "",

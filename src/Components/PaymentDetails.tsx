@@ -47,6 +47,36 @@ function PaymentDetails() {
     },
   });
 
+  const hasError =
+    showErrorName || showErrorCardNumber || showErrorYearMonth || showErrorCVV;
+
+  const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
+    switch (e.target.name) {
+      case "name": {
+        validateName(e);
+        break;
+      }
+      case "number": {
+        validateCardNumber(e);
+        break;
+      }
+      case "expiry": {
+        validateYearMonth(e);
+        break;
+      }
+      case "cvv": {
+        validateCVV(e);
+        break;
+      }
+    }
+
+    if (hasError) {
+      order.validateOrder(false);
+    } else {
+      order.validateOrder(true);
+    }
+  };
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -141,19 +171,21 @@ function PaymentDetails() {
             <Collapse className={classes.inputWrapper} in={showCard}>
               <TextField
                 defaultValue={order.orderDetails.name}
+                name="name"
                 label="Card name holder"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateName}
+                onChange={handleFieldChange}
                 required
                 error={showErrorName}
                 helperText={showErrorName ? "Please enter name" : " "}
               />
               <TextField
+                name="number"
                 label="Card number"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateCardNumber}
+                onChange={handleFieldChange}
                 required
                 error={showErrorCardNumber}
                 helperText={
@@ -161,10 +193,11 @@ function PaymentDetails() {
                 }
               />
               <TextField
+                name="expiry"
                 label="YYMM"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateYearMonth}
+                onChange={handleFieldChange}
                 required
                 error={showErrorYearMonth}
                 helperText={
@@ -172,10 +205,11 @@ function PaymentDetails() {
                 }
               />
               <TextField
+                name="cvv"
                 label="CVV"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateCVV}
+                onChange={handleFieldChange}
                 required
                 error={showErrorCVV}
                 helperText={showErrorCVV ? "Please enter a valid CVV" : " "}

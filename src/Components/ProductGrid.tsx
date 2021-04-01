@@ -24,7 +24,7 @@ function ProductGrid(props: Props) {
         <Grid container spacing={4}>
           {props.products.map((product: Product) => (
             <ProductCard
-              key={product.id}
+              key={product.name}
               id={product.id}
               name={product.name}
               imgUrl={product.colorProps[0].img}

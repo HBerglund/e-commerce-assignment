@@ -1,4 +1,11 @@
-import { createContext, FC, useState, ChangeEvent, useContext } from "react";
+import {
+  createContext,
+  FC,
+  useState,
+  ChangeEvent,
+  useContext,
+  useEffect,
+} from "react";
 import { CartItem, ShoppingCartContext } from "./ShoppingCartContext";
 
 export interface OrderDetails {
@@ -56,14 +63,28 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
     postal: "",
     city: "",
     country: "",
-    deliveryOption: "",
-    paymentOption: "",
+    deliveryOption: "DHL",
+    paymentOption: "Credit card",
   });
+
+  useEffect(() => {
+    setOrderDetails({
+      products: cart.cart,
+      name: "",
+      phone: "",
+      email: "",
+      street: "",
+      postal: "",
+      city: "",
+      country: "",
+      deliveryOption: "DHL",
+      paymentOption: "Credit card",
+    });
+  }, [cart.cart]);
 
   const [orderIsValidated, setOrderIsValidated] = useState(false);
 
   const validateOrder = (validated: boolean) => {
-    console.log("Validated? " + orderIsValidated);
     setOrderIsValidated(validated);
   };
 
