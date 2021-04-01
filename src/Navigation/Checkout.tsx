@@ -29,7 +29,9 @@ function getSteps() {
 }
 
 function Checkout() {
-  const { orderDetails, orderIsValidated } = useContext(OrderDetailsContext);
+  const { orderDetails, orderIsValidated, validateOrder } = useContext(
+    OrderDetailsContext
+  );
 
   const useStyles = makeStyles(() =>
     createStyles({
@@ -37,6 +39,10 @@ function Checkout() {
       stepperRoot: {},
     })
   );
+
+  useEffect(() => {
+    validateOrder(false);
+  }, []);
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
