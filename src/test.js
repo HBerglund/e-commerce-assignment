@@ -10,7 +10,6 @@ const getTotalPrice = (cart) => {
 };
 
 test("that a number is returned", () => {
-  // 1. Definera start tillståndet
   const cart = [
     {
       price: "25",
@@ -25,9 +24,7 @@ test("that a number is returned", () => {
       quantity: 5,
     },
   ];
-  // 2. Kör funktionen
   const totalPrice = getTotalPrice(cart);
-  // 3. Validera resultatet
   expect(typeof totalPrice).toBe("number");
 });
 
