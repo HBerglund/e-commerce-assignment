@@ -24,6 +24,7 @@ function PlaceOrder() {
   const handlePlaceOrderClick = async () => {
     setDisableButton(true);
     const response = await mockApi(orderDetails.orderDetails);
+    console.log(response);
     navigateToOrderConfirmation();
   };
 
@@ -39,8 +40,13 @@ function PlaceOrder() {
   }
 
   return (
-    <Button disabled={disableButton} onClick={handlePlaceOrderClick}>
-      <DoneIcon />
+    <Button
+      disabled={disableButton}
+      onClick={handlePlaceOrderClick}
+      color="secondary"
+      variant="contained"
+    >
+      Place order <DoneIcon />
     </Button>
   );
 }

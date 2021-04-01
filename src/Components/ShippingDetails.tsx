@@ -1,5 +1,5 @@
 import { makeStyles, TextField, Typography } from "@material-ui/core";
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 import ShippingSelect from "./ShippingSelect";
 
@@ -165,16 +165,6 @@ function ShippingDetails() {
       setShowErrorCountry(true);
     }
   };
-
-  const {
-    name,
-    phone,
-    email,
-    street,
-    postal,
-    city,
-    country,
-  } = order.orderDetails;
 
   return (
     <div className={classes.flexColumn}>

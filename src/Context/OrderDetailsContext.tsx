@@ -56,8 +56,8 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
     postal: "",
     city: "",
     country: "",
-    deliveryOption: "",
-    paymentOption: "",
+    deliveryOption: "DHL",
+    paymentOption: "Credit card",
   });
 
   const [orderIsValidated, setOrderIsValidated] = useState(false);

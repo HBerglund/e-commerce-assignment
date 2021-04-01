@@ -25,6 +25,11 @@ function PaymentDetails() {
   const [showErrorYearMonth, setShowErrorYearMonth] = useState(false);
   const [showErrorCVV, setShowErrorCVV] = useState(false);
 
+  const [nameInput, setNameInput] = useState({ value: "" });
+  const [cardInput, setCardInput] = useState({ value: "" });
+  const [expiryInput, setExpiryInput] = useState({ value: "" });
+  const [cvvInput, setCvvInput] = useState({ value: "" });
+
   const useStyles = makeStyles({
     root: {
       width: "100%",
@@ -46,6 +51,46 @@ function PaymentDetails() {
       margin: ".5rem",
     },
   });
+
+  const hasError =
+    showErrorName || showErrorCardNumber || showErrorYearMonth || showErrorCVV;
+
+  const hasMissingInfo: boolean =
+    nameInput.value === "" ||
+    cardInput.value === "" ||
+    expiryInput.value === "" ||
+    cvvInput.value === "";
+
+  const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
+    switch (e.target.name) {
+      case "name": {
+        setNameInput({ value: e.target.value });
+        validateName(e);
+        break;
+      }
+      case "number": {
+        setCardInput({ value: e.target.value });
+        validateCardNumber(e);
+        break;
+      }
+      case "expiry": {
+        setExpiryInput({ value: e.target.value });
+        validateYearMonth(e);
+        break;
+      }
+      case "cvv": {
+        setCvvInput({ value: e.target.value });
+        validateCVV(e);
+        break;
+      }
+    }
+
+    if (hasError || hasMissingInfo) {
+      order.validateOrder(false);
+    } else {
+      order.validateOrder(true);
+    }
+  };
 
   const classes = useStyles();
 
@@ -141,19 +186,21 @@ function PaymentDetails() {
             <Collapse className={classes.inputWrapper} in={showCard}>
               <TextField
                 defaultValue={order.orderDetails.name}
+                name="name"
                 label="Card name holder"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateName}
+                onChange={handleFieldChange}
                 required
                 error={showErrorName}
                 helperText={showErrorName ? "Please enter name" : " "}
               />
               <TextField
+                name="number"
                 label="Card number"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateCardNumber}
+                onChange={handleFieldChange}
                 required
                 error={showErrorCardNumber}
                 helperText={
@@ -161,10 +208,11 @@ function PaymentDetails() {
                 }
               />
               <TextField
+                name="expiry"
                 label="YYMM"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateYearMonth}
+                onChange={handleFieldChange}
                 required
                 error={showErrorYearMonth}
                 helperText={
@@ -172,10 +220,11 @@ function PaymentDetails() {
                 }
               />
               <TextField
+                name="cvv"
                 label="CVV"
                 variant="outlined"
                 className={classes.inputField}
-                onChange={validateCVV}
+                onChange={handleFieldChange}
                 required
                 error={showErrorCVV}
                 helperText={showErrorCVV ? "Please enter a valid CVV" : " "}
