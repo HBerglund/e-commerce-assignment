@@ -7,5 +7,8 @@ Design system: https://material-ui.com/
 To run:
 npm install & npm start
 
+Deployed at: 
+https://bhagwanyoga.netlify.app
+
 Created by:
 Oscar Andersson, Herman Berglund, Victor Wikström
