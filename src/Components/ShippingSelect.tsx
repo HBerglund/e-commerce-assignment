@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -14,6 +14,9 @@ import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 
 function ShippingSelect() {
   const order = useContext(OrderDetailsContext);
+
+  const [deliveryValue, setDeliveryValue] = useState("");
+
   const theme = useTheme();
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -60,6 +63,24 @@ function ShippingSelect() {
   );
 
   const classes = useStyles();
+
+  useEffect(() => {
+    switch (deliveryValue) {
+      case "DHL":
+        setDeliveryValue("DHL");
+        break;
+      case "Postnord":
+        setDeliveryValue("Postnord");
+        break;
+      case "Bring":
+        setDeliveryValue("Bring");
+        break;
+    }
+  }, [deliveryValue]);
+
+  const handleDeliveryOption = (e: ChangeEvent<HTMLInputElement>) => {
+    order.setNewOrderDetails(e);
+  };
 
   return (
     <FormControl style={{ width: "100%" }} component="fieldset">

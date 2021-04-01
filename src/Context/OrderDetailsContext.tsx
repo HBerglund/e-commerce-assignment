@@ -18,6 +18,8 @@ interface OrderDetailsValue {
   orderDetails: OrderDetails;
   setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => void;
   getShippingPrice: (delivery: string) => number;
+  orderIsValidated: boolean;
+  validateOrder: (validated: boolean) => void;
   getDeliveryDay: (delivery: string) => string;
   emptyOrderDetails: () => void;
 }
@@ -37,6 +39,8 @@ export const OrderDetailsContext = createContext<OrderDetailsValue>({
   },
   setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => {},
   getShippingPrice: (delivery: string) => 0,
+  orderIsValidated: false,
+  validateOrder: (validated: boolean) => {},
   getDeliveryDay: (delivery: string) => "",
   emptyOrderDetails: () => {},
 });
@@ -55,6 +59,13 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
     deliveryOption: "",
     paymentOption: "",
   });
+
+  const [orderIsValidated, setOrderIsValidated] = useState(false);
+
+  const validateOrder = (validated: boolean) => {
+    console.log("Validated" + orderIsValidated);
+    setOrderIsValidated(validated);
+  };
 
   const setNewOrderDetails = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -145,6 +156,8 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
         orderDetails,
         setNewOrderDetails,
         getShippingPrice,
+        orderIsValidated,
+        validateOrder,
         getDeliveryDay,
         emptyOrderDetails,
       }}

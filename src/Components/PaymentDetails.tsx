@@ -11,6 +11,7 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 
 function PaymentDetails() {
+  const order = useContext(OrderDetailsContext);
   const [paymentValue, setPaymentValue] = useState("Credit card");
   const [invoiceValue, setInvoiceValue] = useState("home");
   const [showCard, setShowCard] = useState<boolean>(false);
@@ -18,7 +19,11 @@ function PaymentDetails() {
   const [showInvoice, setShowInvoice] = useState<boolean>(false);
   const [showHomeAddress, setShowHomeAddress] = useState<boolean>(false);
   const [showOtherAddress, setShowOtherAddress] = useState<boolean>(false);
-  const order = useContext(OrderDetailsContext);
+
+  const [showErrorName, setShowErrorName] = useState(false);
+  const [showErrorCardNumber, setShowErrorCardNumber] = useState(false);
+  const [showErrorYearMonth, setShowErrorYearMonth] = useState(false);
+  const [showErrorCVV, setShowErrorCVV] = useState(false);
 
   const useStyles = makeStyles({
     root: {
@@ -41,6 +46,8 @@ function PaymentDetails() {
       margin: ".5rem",
     },
   });
+
+  const classes = useStyles();
 
   useEffect(() => {
     switch (paymentValue) {
@@ -84,73 +91,125 @@ function PaymentDetails() {
     setInvoiceValue((event.target as HTMLInputElement).value);
   };
 
-  const classes = useStyles();
+  const validateName = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/^([^0-9]*)$/)) {
+      setShowErrorName(true);
+    } else {
+      setShowErrorName(false);
+    }
+  };
+
+  const validateCardNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    const creditCard = /[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4}/;
+    if (!e.target.value.match(creditCard)) {
+      setShowErrorCardNumber(true);
+    } else {
+      setShowErrorCardNumber(false);
+    }
+  };
+
+  const validateYearMonth = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/[0-9]{4}/)) {
+      setShowErrorYearMonth(true);
+    } else {
+      setShowErrorYearMonth(false);
+    }
+  };
+
+  const validateCVV = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value.match(/[0-9]{3}/)) {
+      setShowErrorCVV(true);
+    } else {
+      setShowErrorCVV(false);
+    }
+  };
 
   return (
     <div className={classes.root}>
       <div className={classes.selectWrapper}>
-        <FormControl component='fieldset'>
+        <FormControl component="fieldset">
           <RadioGroup
-            name='paymentOption'
+            name="paymentOption"
             value={paymentValue}
             onChange={handlePaymentChange}
           >
             <FormControlLabel
-              value='Credit card'
+              value="Credit card"
               control={<Radio />}
-              label='Credit card'
+              label="Credit card"
             />
             <Collapse className={classes.inputWrapper} in={showCard}>
               <TextField
-                label='Card name holder'
-                variant='outlined'
+                defaultValue={order.orderDetails.name}
+                label="Card name holder"
+                variant="outlined"
                 className={classes.inputField}
+                onChange={validateName}
+                required
+                error={showErrorName}
+                helperText={showErrorName ? "Please enter name" : " "}
               />
               <TextField
-                label='Card number'
-                variant='outlined'
+                label="Card number"
+                variant="outlined"
                 className={classes.inputField}
+                onChange={validateCardNumber}
+                required
+                error={showErrorCardNumber}
+                helperText={
+                  showErrorCardNumber ? "Please enter a valid card number" : " "
+                }
               />
               <TextField
-                label='Y/M'
-                variant='outlined'
+                label="YYMM"
+                variant="outlined"
                 className={classes.inputField}
+                onChange={validateYearMonth}
+                required
+                error={showErrorYearMonth}
+                helperText={
+                  showErrorYearMonth ? "Please enter expiry date" : " "
+                }
               />
               <TextField
-                label='CCV'
-                variant='outlined'
+                label="CVV"
+                variant="outlined"
                 className={classes.inputField}
+                onChange={validateCVV}
+                required
+                error={showErrorCVV}
+                helperText={showErrorCVV ? "Please enter a valid CVV" : " "}
               />
             </Collapse>
-            <FormControlLabel value='Swish' control={<Radio />} label='Swish' />
+            <FormControlLabel value="Swish" control={<Radio />} label="Swish" />
             <Collapse className={classes.inputWrapper} in={showSwish}>
               <TextField
-                value={order.orderDetails.phone}
-                label='Phone number'
-                variant='outlined'
+                defaultValue={order.orderDetails.phone}
+                label="Phone number"
+                variant="outlined"
               />
             </Collapse>
             <FormControlLabel
-              value='Invoice'
+              value="Invoice"
               control={<Radio />}
-              label='Invoice'
+              label="Invoice"
             />
             <Collapse className={classes.inputWrapper} in={showInvoice}>
-              <FormControl component='fieldset'>
+              <FormControl component="fieldset">
                 <RadioGroup
-                  name='invoice'
+                  name="invoice"
                   value={invoiceValue}
                   onChange={handleInvoiceChange}
                 >
                   <FormControlLabel
-                    value='home'
+                    value="home"
                     control={<Radio />}
-                    label='Send invoice to home address'
+                    label="Send invoice to home address"
                   />
                   <FormControlLabel
-                    value='other'
+                    value="other"
                     control={<Radio />}
-                    label='Send invoice to another address'
+                    label="Send invoice to another address"
                   />
                 </RadioGroup>
               </FormControl>
@@ -158,27 +217,27 @@ function PaymentDetails() {
                 <div>
                   <TextField
                     value={order.orderDetails.name}
-                    label='Name'
-                    variant='outlined'
+                    label="Name"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     style={{ minWidth: "300px" }}
                     value={order.orderDetails.street}
-                    label='Street'
-                    variant='outlined'
+                    label="Street"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     value={order.orderDetails.postal}
-                    label='Postal code'
-                    variant='outlined'
+                    label="Postal code"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     value={order.orderDetails.city}
-                    label='City'
-                    variant='outlined'
+                    label="City"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                 </div>
@@ -186,24 +245,24 @@ function PaymentDetails() {
               <Collapse className={classes.inputWrapper} in={showOtherAddress}>
                 <div>
                   <TextField
-                    label='Name'
-                    variant='outlined'
+                    label="Name"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
                     style={{ minWidth: "300px" }}
-                    label='Address'
-                    variant='outlined'
+                    label="Address"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
-                    label='Postal code'
-                    variant='outlined'
+                    label="Postal code"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                   <TextField
-                    label='City'
-                    variant='outlined'
+                    label="City"
+                    variant="outlined"
                     className={classes.inputField}
                   />
                 </div>
