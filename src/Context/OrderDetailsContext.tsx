@@ -63,7 +63,7 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
   const [orderIsValidated, setOrderIsValidated] = useState(false);
 
   const validateOrder = (validated: boolean) => {
-    console.log("Validated" + orderIsValidated);
+    console.log("Validated? " + orderIsValidated);
     setOrderIsValidated(validated);
   };
 

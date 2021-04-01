@@ -25,50 +25,67 @@ function ShippingDetails() {
   const classes = useStyles();
 
   const hasMissingInfo = () => {
-    const {
-      name,
-      phone,
-      email,
-      street,
-      postal,
-      city,
-      country,
-    } = order.orderDetails;
-    if (name && phone && email && street && postal && city && country) {
-      return true;
-    } else {
-      return false;
+    const values = Object.values(order.orderDetails);
+    console.log(values);
+    for (let value of values.slice(1, 7)) {
+      if (value === "") {
+        console.log("has missing string");
+        return true;
+      }
     }
+    return false;
   };
 
-  useEffect(() => {
-    console.log("useeffect " + order.orderIsValidated);
-    const hasError =
-      showErrorName ||
-      showErrorPhone ||
-      showErrorEmail ||
-      showErrorStreet ||
-      showErrorPostalCode ||
-      showErrorCity ||
-      showErrorCountry;
-    if (hasError || hasMissingInfo) {
+  const hasError =
+    showErrorName ||
+    showErrorPhone ||
+    showErrorEmail ||
+    showErrorStreet ||
+    showErrorPostalCode ||
+    showErrorCity ||
+    showErrorCountry;
+
+  const handleFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
+    switch (e.target.name) {
+      case "name": {
+        validateName(e);
+        break;
+      }
+      case "phone": {
+        validatePhone(e);
+        break;
+      }
+      case "email": {
+        validateEmail(e);
+        break;
+      }
+      case "street": {
+        validateStreet(e);
+        break;
+      }
+      case "postal": {
+        validatePostalCode(e);
+        break;
+      }
+      case "city": {
+        validateCity(e);
+        break;
+      }
+      case "country": {
+        validateCountry(e);
+        break;
+      }
+    }
+
+    if (hasError || hasMissingInfo()) {
       order.validateOrder(false);
     } else {
       order.validateOrder(true);
     }
-  }, [
-    showErrorName,
-    showErrorPhone,
-    showErrorEmail,
-    showErrorStreet,
-    showErrorPostalCode,
-    showErrorCity,
-    showErrorCountry,
-  ]);
+  };
 
   const validateName = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.match(/[a-ö][A-Ö]/)) {
-      console.log(e.target.value);
       setShowErrorName(false);
       order.setNewOrderDetails(e);
     } else {
@@ -134,12 +151,23 @@ function ShippingDetails() {
     }
   };
 
+  const {
+    name,
+    phone,
+    email,
+    street,
+    postal,
+    city,
+    country,
+  } = order.orderDetails;
+
   return (
     <div className={classes.flexColumn}>
       <div className={classes.flexColumn} style={{ margin: "1rem 0" }}>
         <Typography>Personal details</Typography>
         <TextField
-          onChange={validateName}
+          value={name}
+          onChange={handleFieldChange}
           name="name"
           label="Name"
           required
@@ -147,7 +175,8 @@ function ShippingDetails() {
           helperText={showErrorName ? "Please enter name" : " "}
         />
         <TextField
-          onChange={validatePhone}
+          value={phone}
+          onChange={handleFieldChange}
           name="phone"
           label="Phone number"
           required
@@ -157,7 +186,8 @@ function ShippingDetails() {
           }
         />
         <TextField
-          onChange={validateEmail}
+          value={email}
+          onChange={handleFieldChange}
           name="email"
           label="Email"
           required
@@ -168,7 +198,8 @@ function ShippingDetails() {
       <div className={classes.flexColumn} style={{ margin: "1rem 0" }}>
         <Typography>Adress</Typography>
         <TextField
-          onChange={validateStreet}
+          value={street}
+          onChange={handleFieldChange}
           name="street"
           label="Street name"
           required
@@ -176,7 +207,8 @@ function ShippingDetails() {
           helperText={showErrorStreet ? "Please enter street name" : " "}
         />
         <TextField
-          onChange={validatePostalCode}
+          value={postal}
+          onChange={handleFieldChange}
           name="postal"
           label="Postal code"
           required
@@ -184,7 +216,8 @@ function ShippingDetails() {
           helperText={showErrorPostalCode ? "Please enter postal code" : " "}
         />
         <TextField
-          onChange={validateCity}
+          value={city}
+          onChange={handleFieldChange}
           name="city"
           label="City"
           required
@@ -192,7 +225,8 @@ function ShippingDetails() {
           helperText={showErrorCity ? "Please enter city" : " "}
         />
         <TextField
-          onChange={validateCountry}
+          value={country}
+          onChange={handleFieldChange}
           name="country"
           label="Country"
           required
