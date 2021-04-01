@@ -9,6 +9,7 @@ import {
   StepLabel,
   Stepper,
   Typography,
+  CircularProgress,
 } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import CheckoutProductList from "../Components/CheckoutProductList";
@@ -17,9 +18,9 @@ import Section from "../Components/Section";
 import ShippingDetails from "../Components/ShippingDetails";
 import OrderDetailsProvider from "../Context/OrderDetailsContext";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import DoneIcon from "@material-ui/icons/Done";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import OrderSummary from "../Components/OrderSummary";
+import PlaceOrder from "../Components/PlaceOrder";
 
 function getSteps() {
   return ["Your cart", "Shipping details", "Payment details", "Order summary"];
@@ -98,7 +99,7 @@ function Checkout() {
                     <Button
                       endIcon={
                         activeStep === steps.length - 1 ? (
-                          <DoneIcon />
+                          <PlaceOrder />
                         ) : (
                           <ArrowDropDownIcon />
                         )
@@ -116,9 +117,8 @@ function Checkout() {
           ))}
         </Stepper>
         {activeStep === steps.length && (
-          <Paper square elevation={0}>
-            <Typography>All steps completed - you're finished</Typography>
-            <Button onClick={handleReset}>Reset</Button>
+          <Paper square elevation={0} style={{ paddingLeft: "3rem" }}>
+            <CircularProgress />
           </Paper>
         )}
       </Section>

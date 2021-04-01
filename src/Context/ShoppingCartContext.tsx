@@ -18,9 +18,11 @@ export interface CartItem {
 interface ShoppingCartValue {
   cart: CartItem[];
   totalPrice: number;
+
   add: (item: CartItem) => void;
   remove: (item: CartItem) => void;
   changeQuantity: (item: CartItem, action: "increase" | "decrease") => void;
+  emptyCart: () => void;
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartValue>({
@@ -29,6 +31,7 @@ export const ShoppingCartContext = createContext<ShoppingCartValue>({
   add: () => {},
   remove: () => {},
   changeQuantity: () => {},
+  emptyCart: () => {},
 });
 
 const ShoppingCartProvider: FC<{}> = ({ children }) => {
@@ -39,6 +42,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     setTotalPrice(getTotalPrice());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   useEffect(() => {
@@ -73,12 +77,20 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
     setCart(updatedCart);
   };
 
-  let price: number = 0;
+  const emptyCart = () => {
+    const emptyCart: CartItem[] = [];
+    setCart(emptyCart);
+  };
+
   const getTotalPrice = () => {
-    for (let i = 0; i < cart.length; i++) {
-      price += parseFloat(cart[i].product.price) * cart[i].quantity;
+    let price = 0;
+    if (cart.length) {
+      for (let i = 0; i < cart.length; i++) {
+        price += parseFloat(cart[i].product.price) * cart[i].quantity;
+      }
+      return Number(price.toFixed(2));
     }
-    return Number(price.toFixed(2));
+    return 0;
   };
 
   const changeQuantity = (item: CartItem, action: "increase" | "decrease") => {
@@ -105,6 +117,7 @@ const ShoppingCartProvider: FC<{}> = ({ children }) => {
         add,
         remove,
         changeQuantity,
+        emptyCart,
       }}
     >
       {children}

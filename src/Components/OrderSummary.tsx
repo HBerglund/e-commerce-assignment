@@ -85,6 +85,10 @@ function OrderSummary() {
             <Typography variant="body2" gutterBottom>
               {order.orderDetails.deliveryOption}
             </Typography>
+            <Typography variant="body2" gutterBottom>
+              Delivered at:{" "}
+              {order.getDeliveryDay(order.orderDetails.deliveryOption)}
+            </Typography>
           </div>
           <div>
             <Typography variant="h6" gutterBottom>

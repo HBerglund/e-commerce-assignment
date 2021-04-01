@@ -12,7 +12,7 @@ function CheckoutProductList() {
       {cart.length > 0 ? (
         <div>
           {cart.map((item) => (
-            <CartListItem item={item} mutable={true} />
+            <CartListItem item={item} mutable={true} key={item.product.id} />
           ))}
         </div>
       ) : (

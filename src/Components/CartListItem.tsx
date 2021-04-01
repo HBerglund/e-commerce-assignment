@@ -10,7 +10,7 @@ import { ShoppingCartContext, CartItem } from "../Context/ShoppingCartContext";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   item: CartItem;

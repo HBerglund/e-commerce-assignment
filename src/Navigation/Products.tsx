@@ -65,6 +65,7 @@ function Products() {
           />
           {categories.map((category) => (
             <FilterButton
+              key={category}
               category={category}
               activePage={activeCategory}
               onActiveCategoryClick={handleActivePage}

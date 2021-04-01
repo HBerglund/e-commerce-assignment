@@ -16,7 +16,6 @@ const useStyles = makeStyles(() =>
 );
 
 function ProductGrid(props: Props) {
-  console.log(props.products.length);
   const classes = useStyles();
 
   if (props.products.length > 0) {

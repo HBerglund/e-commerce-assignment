@@ -88,6 +88,7 @@ function CheckoutDrawer(props: Props) {
             <div className={classes.itemsWrapper}>
               {cart.map((item) => (
                 <CartListItem
+                  key={item.product.id}
                   item={item}
                   mutable={true}
                   handleExit={handleDrawerExit}
