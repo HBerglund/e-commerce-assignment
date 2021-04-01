@@ -3,8 +3,8 @@ import Section from "../Components/Section";
 import faqQuestions from "../faqQuestions";
 import FaqQuestion from "../Components/FaqQuestion";
 import Hero from "../Components/Hero";
-import imageSources from "../assets/imageSources";
 import { useEffect } from "react";
+import imageSources from "../assets/imageSources";
 
 function Faq() {
   const useStyles = makeStyles(() =>
