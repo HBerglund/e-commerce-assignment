@@ -28,7 +28,7 @@ function getSteps() {
 }
 
 function Checkout() {
-  const orderDetails = useContext(OrderDetailsContext);
+  const { orderDetails, orderIsValidated } = useContext(OrderDetailsContext);
 
   const useStyles = makeStyles(() =>
     createStyles({
@@ -68,65 +68,63 @@ function Checkout() {
     }
   }
 
-  return (
-    <OrderDetailsProvider>
-      <Section>
-        <Typography variant="h3" component="h1" gutterBottom>
-          Checkout
-        </Typography>
-        <Divider />
+  console.log({ activeStep, orderIsValidated });
 
-        <Stepper
-          className={classes.stepperRoot}
-          activeStep={activeStep}
-          orientation="vertical"
-        >
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-              <StepContent>
-                <Typography>{getStepContent(index)}</Typography>
+  return (
+    <Section>
+      <Typography variant="h3" component="h1" gutterBottom>
+        Checkout
+      </Typography>
+      <Divider />
+      <Stepper
+        className={classes.stepperRoot}
+        activeStep={activeStep}
+        orientation="vertical"
+      >
+        {steps.map((label, index) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+            <StepContent>
+              <Typography>{getStepContent(index)}</Typography>
+              <div>
                 <div>
-                  <div>
-                    <Button
-                      endIcon={<ExpandLessIcon />}
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      endIcon={
-                        activeStep === steps.length - 1 ? (
-                          <DoneIcon />
-                        ) : (
-                          <ArrowDropDownIcon />
-                        )
-                      }
-                      variant="contained"
-                      color={
-                        activeStep === steps.length - 1
-                          ? "secondary"
-                          : "primary"
-                      }
-                      onClick={handleNext}
-                    >
-                      {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                    </Button>
-                  </div>
+                  <Button
+                    endIcon={<ExpandLessIcon />}
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    endIcon={
+                      activeStep === steps.length - 1 ? (
+                        <DoneIcon />
+                      ) : (
+                        <ArrowDropDownIcon />
+                      )
+                    }
+                    variant="contained"
+                    color={
+                      activeStep === steps.length - 1 ? "secondary" : "primary"
+                    }
+                    disabled={activeStep === 1 && !orderIsValidated}
+                    onClick={handleNext}
+                  >
+                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                  </Button>
                 </div>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        {activeStep === steps.length && (
-          <Paper square elevation={0}>
-            <Typography>All steps completed - you're finished</Typography>
-            <Button onClick={handleReset}>Reset</Button>
-          </Paper>
-        )}
-      </Section>
-    </OrderDetailsProvider>
+              </div>
+            </StepContent>
+          </Step>
+        ))}
+      </Stepper>
+      {activeStep === steps.length && (
+        <Paper square elevation={0}>
+          <Typography>All steps completed - you're finished</Typography>
+          <Button onClick={handleReset}>Reset</Button>
+        </Paper>
+      )}
+    </Section>
   );
 }
 

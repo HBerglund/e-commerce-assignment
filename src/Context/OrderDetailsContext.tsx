@@ -18,6 +18,8 @@ interface OrderDetailsValue {
   orderDetails: OrderDetails;
   setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => void;
   getShippingPrice: (delivery: string) => number;
+  orderIsValidated: boolean;
+  validateOrder: (validated: boolean) => void;
 }
 
 export const OrderDetailsContext = createContext<OrderDetailsValue>({
@@ -35,6 +37,8 @@ export const OrderDetailsContext = createContext<OrderDetailsValue>({
   },
   setNewOrderDetails: (e: ChangeEvent<HTMLInputElement>) => {},
   getShippingPrice: (delivery: string) => 0,
+  orderIsValidated: false,
+  validateOrder: (validated: boolean) => {},
 });
 
 const OrderDetailsProvider: FC<{}> = ({ children }) => {
@@ -52,6 +56,13 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
     paymentOption: "",
   });
 
+  const [orderIsValidated, setOrderIsValidated] = useState(false);
+
+  const validateOrder = (validated: boolean) => {
+    console.log("Validated" + orderIsValidated);
+    setOrderIsValidated(validated);
+  };
+
   const setNewOrderDetails = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setOrderDetails({
@@ -59,8 +70,6 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
       [e.target.name]: value,
     });
   };
-
-  console.log(orderDetails);
 
   const getShippingPrice = (delivery: string): number => {
     switch (delivery) {
@@ -78,12 +87,16 @@ const OrderDetailsProvider: FC<{}> = ({ children }) => {
     }
   };
 
+  console.log({ orderIsValidated });
+
   return (
     <OrderDetailsContext.Provider
       value={{
         orderDetails,
         setNewOrderDetails,
         getShippingPrice,
+        orderIsValidated,
+        validateOrder,
       }}
     >
       {children}

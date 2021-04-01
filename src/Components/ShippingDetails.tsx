@@ -1,5 +1,5 @@
 import { makeStyles, TextField, Typography } from "@material-ui/core";
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 import ShippingSelect from "./ShippingSelect";
 
@@ -24,70 +24,113 @@ function ShippingDetails() {
 
   const classes = useStyles();
 
-  const validateName = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value.match(/^([^0-9]*)$/)) {
-      setShowErrorName(true);
+  const hasMissingInfo = () => {
+    const {
+      name,
+      phone,
+      email,
+      street,
+      postal,
+      city,
+      country,
+    } = order.orderDetails;
+    if (name && phone && email && street && postal && city && country) {
+      return true;
     } else {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    console.log("useeffect " + order.orderIsValidated);
+    const hasError =
+      showErrorName ||
+      showErrorPhone ||
+      showErrorEmail ||
+      showErrorStreet ||
+      showErrorPostalCode ||
+      showErrorCity ||
+      showErrorCountry;
+    if (hasError || hasMissingInfo) {
+      order.validateOrder(false);
+    } else {
+      order.validateOrder(true);
+    }
+  }, [
+    showErrorName,
+    showErrorPhone,
+    showErrorEmail,
+    showErrorStreet,
+    showErrorPostalCode,
+    showErrorCity,
+    showErrorCountry,
+  ]);
+
+  const validateName = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.match(/[a-ö][A-Ö]/)) {
+      console.log(e.target.value);
       setShowErrorName(false);
       order.setNewOrderDetails(e);
+    } else {
+      setShowErrorName(true);
     }
   };
 
   const validatePhone = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value.match(/^\d{10}$/)) {
-      setShowErrorPhone(true);
-    } else {
+    if (e.target.value.match(/^\d{10}$/)) {
       setShowErrorPhone(false);
       order.setNewOrderDetails(e);
+    } else {
+      setShowErrorPhone(true);
     }
   };
 
   const validateEmail = (e: ChangeEvent<HTMLInputElement>) => {
     if (
-      !e.target.value.match(
+      e.target.value.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
     ) {
-      setShowErrorEmail(true);
-    } else {
       setShowErrorEmail(false);
       order.setNewOrderDetails(e);
+    } else {
+      setShowErrorEmail(true);
     }
   };
 
   const validateStreet = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value.match(/^\s*\S+(?:\s+\S+){2}/)) {
-      setShowErrorStreet(true);
-    } else {
+    if (e.target.value.match(/^.{3,}$/)) {
       setShowErrorStreet(false);
       order.setNewOrderDetails(e);
+    } else {
+      setShowErrorStreet(true);
     }
   };
 
   const validatePostalCode = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value.match("^\\d{3}\\s*\\d{2}$")) {
-      setShowErrorPostalCode(true);
-    } else {
+    if (e.target.value.match("^\\d{3}\\s*\\d{2}$")) {
       setShowErrorPostalCode(false);
       order.setNewOrderDetails(e);
+    } else {
+      setShowErrorPostalCode(true);
     }
   };
 
   const validateCity = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value.match(/^([^0-9]*)$/)) {
-      setShowErrorCity(true);
-    } else {
+    if (e.target.value.match(/[a-ö][A-Ö]/)) {
       setShowErrorCity(false);
       order.setNewOrderDetails(e);
+    } else {
+      setShowErrorCity(true);
     }
   };
 
   const validateCountry = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value.match(/^([^0-9]*)$/)) {
-      setShowErrorCountry(true);
-    } else {
+    if (e.target.value.match(/[a-ö][A-Ö]/)) {
       setShowErrorCountry(false);
       order.setNewOrderDetails(e);
+    } else {
+      setShowErrorCountry(true);
     }
   };
 
