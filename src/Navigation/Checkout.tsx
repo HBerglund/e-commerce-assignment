@@ -3,20 +3,17 @@ import {
   createStyles,
   Divider,
   makeStyles,
-  Paper,
   Step,
   StepContent,
   StepLabel,
   Stepper,
   Typography,
-  CircularProgress,
 } from "@material-ui/core";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CheckoutProductList from "../Components/CheckoutProductList";
 import PaymentDetails from "../Components/PaymentDetails";
 import Section from "../Components/Section";
 import ShippingDetails from "../Components/ShippingDetails";
-import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import OrderSummary from "../Components/OrderSummary";
@@ -27,19 +24,12 @@ function getSteps() {
 }
 
 function Checkout() {
-  const { orderIsValidated, validateOrder } = useContext(OrderDetailsContext);
-
   const useStyles = makeStyles(() =>
     createStyles({
       root: {},
       stepperRoot: {},
     })
   );
-
-  useEffect(() => {
-    validateOrder(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
@@ -50,7 +40,6 @@ function Checkout() {
   }, []);
 
   const handleNext = () => {
-    validateOrder(false);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -105,10 +94,6 @@ function Checkout() {
                       endIcon={<ArrowDropDownIcon />}
                       variant="contained"
                       color="primary"
-                      disabled={
-                        (activeStep === 1 && !orderIsValidated) ||
-                        (activeStep === 2 && !orderIsValidated)
-                      }
                       onClick={handleNext}
                     >
                       Next
