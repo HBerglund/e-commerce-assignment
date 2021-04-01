@@ -15,7 +15,7 @@ import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 function ShippingSelect() {
   const order = useContext(OrderDetailsContext);
 
-  const [deliveryValue, setDeliveryValue] = useState("");
+  const [deliveryValue, setDeliveryValue] = useState("DHL");
 
   const theme = useTheme();
   const matchesSm = useMediaQuery(theme.breakpoints.up("sm"));
@@ -89,6 +89,7 @@ function ShippingSelect() {
         aria-label="vendor"
         name="deliveryOption"
         onChange={order.setNewOrderDetails}
+        defaultValue="DHL"
       >
         <div className={classes.flexWrapper}>
           <div className={classes.vertical}>

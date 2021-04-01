@@ -2,13 +2,9 @@ import { Typography } from "@material-ui/core";
 import Section from "../Components/Section";
 import imageSources from "../assets/imageSources";
 import Hero from "../Components/Hero";
-import { useContext } from "react";
-import { OrderDetailsContext } from "../Context/OrderDetailsContext";
 
 function OrderConfirmation() {
   const newOrderNumber = new Date().getTime().toString(36);
-  const orderDetails = useContext(OrderDetailsContext);
-  orderDetails.emptyOrderDetails();
 
   return (
     <>
