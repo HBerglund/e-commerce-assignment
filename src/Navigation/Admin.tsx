@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Section from "../Components/Section";
 import { ProductsContext, Product } from "../Context/ProductListContext";
 import AdminListItem from "../Components/AdminListItem";
@@ -8,6 +8,10 @@ import NewProductForm from "../Components/NewProductForm";
 function Admin() {
   const productsContext = useContext(ProductsContext);
   const products: Product[] = productsContext.list;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [showForm, setShowForm] = useState<boolean>(false);
 

@@ -4,10 +4,10 @@ export const theme = responsiveFontSizes(
   createMuiTheme({
     palette: {
       primary: {
-        main: "#CC6D5B",
+        main: "#EFCDB6",
       },
       secondary: {
-        main: "#909D7F",
+        main: "#A3B199",
       },
     },
     shape: {

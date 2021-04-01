@@ -14,10 +14,15 @@ import Section from "../Components/Section";
 import Hero from "../Components/Hero";
 import imageSources from "../assets/imageSources";
 import { Facebook, Instagram, LinkedIn, Twitter } from "@material-ui/icons";
+import { useEffect } from "react";
 
 function Contact() {
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up("md"));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const useStyles = makeStyles(() =>
     createStyles({
